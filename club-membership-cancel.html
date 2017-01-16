@@ -1,0 +1,369 @@
+<%-- 
+    Document   : club-membership-cancel
+    Created on : Jan 18, 2016, 2:51:04 PM
+    Author     : Robbie
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Cancel Club Membership</title>
+        <link href="css/bootstrap.css" type="text/css" rel ="stylesheet" media="screen" >
+        <link href="css/bootstrap-responsive.css" type="text/css" rel ="stylesheet">
+        <link href="css/datepicker.css" type="text/css" rel ="stylesheet">
+        <link rel="stylesheet" href="pcss/styles.css" />
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+        <link href="dist/css/bootstrap.css" type="text/css" rel ="stylesheet" media="screen" >
+    </head>
+    <body>
+        <!-- nav- start -->
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="cds-script.jsp"> <span class="glyphicon glyphicon-home" aria-hidden="true"></span> <span class="sr-only ">(current)</span></a></li>
+                        <li><a href="cds-script-2.jsp">Service Repair</a></li>
+                        <li class="active"><a href="scheduled-service.jsp">Scheduled Service</a></li>
+                        <li><a href="replacement.jsp">Replacement</a></li>
+                        <li class="active"><a href="compliments.jsp">Compliment(Happy)</a></li>
+                        <li><a href="concerns.jsp">Concern(Unhappy)</a></li>
+                        <li class="active"><a href="reschedule-service.jsp">Rescheduled Service </a></li>
+                        <li><a href="reschedule-schedule.jsp">Rescheduled Scheduled Service </a></li>
+                        <li class="active"><a href="reschedule-placement-app.jsp">Rescheduled Replacement Appointment</a></li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+                 <div class="page-header"  style="margin-top:5px; text-align:center; color:#FFFFFF">
+                    <h2 style="text-align:center;color:#000000">Cancel Club Membership</h2>
+                 </div>
+            </div><!-- /.container-fluid -->
+        </nav>
+       <!--nav end -->
+       
+       <div class="container-fluid" style="margin-top:145px; width:85%; margin-left:auto; margin-right:auto;">
+            <!-- <div style="margin-top:-90px; text-align:center;color:#000000" class="page-header"><h2>Cancel Club Membership</h2></div> -->
+            <div class = "row-fluid">
+              <!-- span7 area start-->
+                <div class = "span7">
+                   <form class="form-inline" name ="cmodify" action= "">
+                    <span id = "chair" style="font-size:17px; font-weight:bold; margin-right:auto; margin-left:15px;"></span>
+                    <div class ="control-group">
+                        <label class ="lblline" style = "font-size:17px;">Club Membership:</label>
+                            <input class="span3" type = "text" size = "" name ="members" id = "members" onkeydown = "membership()"/>
+                    </div>
+                    <span id = "movies" style="font-size:17px; font-weight:bold; margin-right:auto; margin-left:15px;"></span>
+                    <div class ="control-group">
+                        <label class ="lblline">Phone Number:</label>
+                                <select class = "select" onfocus = "oneNum()" onchange = "oneNum()" id = "mobile"autocomplete = "off">
+                                    <option value = "0">Select </option>
+                                    <option value = "home">Home</option>
+                                    <option value = "cell">Cell</option>
+                                    <option value = "office">Office</option>
+                                </select>
+                            <input class="span3" type = "text" name ="phonenumber" id = "phonenumber" maxlength ="12" onchange ="oneNum()" autocomplete = "off" onkeyup = "InputPhone(this)" />
+                            <input class = "span1" type = "text" placeholder = "Ext"/>
+                    </div>
+                    <span id = "oenmessage" style="font-size:17px; font-weight:bold;"></span>
+                    <div id="emailDIV">
+                        <div class = "control-group">
+                            <label class ="lblline">Email Address:</label>
+                                <input class="span3" type = "text" size = "45" name ="email" id = "email" onkeyup= "mailVal()" onfocus= "mailVal()" autocomplete = "off"/>
+                                <input type = "button" id = "addEmail" value = "+" onclick = "emailAdd()"/>
+                        </div>
+                   </div>
+                   <div class ="control-group">
+                    <!-- <label class ="lblline"></label>
+                        <label class = "type"><input type= "radio" name = "livtype" value ="pnay"  id ="pnay"  autocomplete = "off" />Company</label>
+                        <label class = "type"><input type= "radio" name = "livtype" value ="rseident"  id ="rseident" autocomplete = "off"  />Residential</label>
+                        <label class = "type"><input type= "radio" name = "livtype" value ="crseident"  id ="crseident"  autocomplete = "off"  />Both</label> -->
+                    </div>
+<!--resident area start -->                    
+            <div id = "residinfo">
+            <hr>
+               <div class = "control-group">
+                      <label class = "lblline" style = "font-size:25px;font-weight: bold;">Residential:</label>
+                        <!-- <label class = "type"><input type= "radio" name = "livtype" id ="cVacation" autocomplete = "off"/>Vacation</label>
+                        <label class = "type"><input type= "radio" name = "livtype" id ="cRanch" autocomplete = "off"/>Ranch</label>
+                        <label class = "type"><input type= "radio" name = "livtype" id ="clake" autocomplete = "off"/>Lake House</label>
+                        <label class = "type"><input type= "radio" name = "livtype" id ="cRental" autocomplete = "off"/>Rental</label> -->
+                </div>
+                <span id = "emessage" style="font-size:17px; font-weight:bold;"></span>
+                    <div class = "control-group">
+                        <label  class ="lblline">First Name:</label>
+                            <input class="span2"   type = "text" size = "" name ="fname" id = "fname" maxlength= "45" onkeyup ="namfVal()" autocomplete = "off" onblur= "showNumber1()"/>
+                        <label  class ="lblmiddle" style = "margin-right:auto; margin-left:-80px;">Middle Name:</label>
+                            <input class="span2" type = "text" autocomplete = "off" name ="mname" id = "mname" onkeyup = "namemVal()" onblur= "showNumber1()" autocomplete = "off" />
+                        <label  class ="lblright" style = "margin-right:auto; margin-left:-110px;">Last Name:</label>
+                            <input class="span2" type = "text" autocomplete = "off" name ="lname" id = "lname" onkeyup = "namlVal()" onblur= "showNumber1()" autocomplete = "off" />
+                    </div>
+                    <span id = "dmessage" style="font-size:17px; font-weight:bold;"></span>
+                        <div class = "control-group">
+                            <label  class ="lblline" >Zip:</label>
+                                <input class="span2" type = "text" size = "s" name ="zip" id = "zip" maxlength = "5" onkeyup= "codeVal()" onchange = "addChange()"/>
+                             <label  class ="lblmiddle" style = "margin-right:auto; margin-left:-155px;">City:</label>
+                                <input class="span2" type = "text" size = "" name ="city" id = "city" onkeyup = "ciVal()" onchange = "addChange()"/>
+                             <label class ="lblright" style = "margin-right:auto; margin-left:-180px;" >State:</label>
+                                <input class="span1" type = "text" size = "" name ="state" id = "state" maxlength = "2" placeholder ="TX" onkeyup = "stVal()" onchange = "addChange()"/>
+                                <label class = "type"><input type= "checkbox" name = "addupdate" value ="addupdate"  id ="addupdate" onclick = "addChange()" />Update Address</label>
+                        </div>
+                    <span id = "amessage" style="font-size:17px; font-weight:bold;"></span>
+                        <div class = "control-group">
+                            <label class ="lblline"> Address:</label>
+                                <input class= "span2" type = "text" size = "" name= "address" id = "address" onkeyup = "houseVal()"autocomplete = "default" onchange = "addChange()"/>
+                                <input class= "span3" type = "text" size = "" name= "address1" id = "address1" onkeyup = "streetVal()" onchange = "addChange()"/>
+                                <select class = "select2" id = "strloc" onfocus = "locstVal()">
+                                    <option value = "0" >Select</option>
+                                    <option value = "avenue">Apartment</option>
+                                    <option value = "street">Suite</option>
+                                    <option value = "road">None</option>
+                                </select>
+                                <input class= "span1" type = "text" size = "" name= "address2" id = "address2" onkeyup = "suiteVal()" autocomplete = "default" onchange = "addChange()" />
+                        </div>
+                         
+            </div><!--end of residinf div-->
+<!--resident area (end) -->
+
+
+
+<!--company area (start) --> 
+                <div id = "compinfo" style = "display:">
+                <hr>
+                <div class = "control-group">
+                    <label class = "lblline" style = "font-size:25px;font-weight: bold;">Company:</label>
+                        <input class="span4" type = "text" size = "" name ="pan" id = "pan" maxlength = "" onkeyup= ""/>
+                        <!-- <label class = "type"><input type="radio" value="Industial" name = "residential" class = "intyope" id = "industial" onclick ="numVal()" autocomplete = "off" >Industial</label>
+                        <label class = "type"><input type="radio" value="Educational" name = "residential" id = "educational" onclick ="numVal()" autocomplete = "off">Educational</label>
+                        <label class = "type"><input type="radio" value="religious" name = "residential" id = "religious" onclick ="numVal()">Religious</label>
+                        <label class = "type"><input type="radio" value="religious" name = "residential" id = "religious" onclick ="numVal()">Commerical</label> -->
+                </div>
+                    <h4>Contract Information</h4>
+                    <span id = "" style="font-size:17px; font-weight:bold;"></span>
+                        <div class = "control-group">
+                            <label  class ="lblline" style = "font-size:20px;">First Name:</label>
+                                <input class="span3"  style = "font-size:20px;" type = "text" size = "" name ="conname" id = "conname" maxlength= "45" onkeyup ="namfVal()" autocomplete = "off"/>
+                            <label  class ="lblmiddle" style = "margin-right:auto; margin-left:-80px;font-size:20px" >Last Name:</label>
+                                <input class="span3" style = "font-size:20px;" type = "text" size = "" name ="conlname" id = "conname" 
+                                onkeyup = "namlVal()" autocomplete = "off"/>
+                    </div>
+                    <span id = "dmessage" style="font-size:17px; font-weight:bold;"></span>
+                        <div class = "control-group">
+                            <label  class ="lblline" >Zip:</label>
+                                <input class="span2" type = "text" size = "s" name ="zip" id = "comzip" maxlength = "5" onkeyup= "codeVal()" onchange = "addChange()"/>
+                             <label  class ="lblmiddle" style = "margin-right:auto; margin-left:-155px;">City:</label>
+                                <input class="span2" type = "text" size = "" name ="comcity" id = "comcity" onkeyup = "ciVal()" onchange = "addChange()"/>
+                             <label class ="lblright" style = "margin-right:auto; margin-left:-180px;" >State:</label>
+                                <input class="span1" type = "text" size = "" name ="comstate" id = "comstate" maxlength = "2" placeholder ="TX" onkeyup = "stVal()" onchange = "addChange()"/>
+                                <label class = "type"><input type= "checkbox" name = "addupdate" value ="addupdate"  id ="addupdate" onclick = "addChange()" />Update Address</label>
+                        </div>
+                    <span id = "amessage" style="font-size:17px; font-weight:bold;"></span>
+                        <div class = "control-group">
+                            <label class ="lblline"> Company Address:</label>
+                                <input class= "span2" type = "text" size = "" name= "comaddress" id = "comaddress" onkeyup = "houseVal()"autocomplete = "default" onchange = "addChange()" autocomplete = "off"/>
+                                <input class= "span3" type = "text" size = "" name= "comaddress1" id = "comaddress1" onkeyup = "streetVal()" onchange = "addChange()" autocomplete = "off"/>
+                                <select class = "select2" id = "strloc" onfocus = "locstVal()" autocomplete = "off">
+                                    <option value = "0" >Select</option>
+                                    <option value = "street">Suite</option>
+                                    <option value = "road">None</option>
+                                </select>
+                                <input class= "span1" type = "text" size = "" name= "comaddress2" id = "comaddress2" onkeyup = "suiteVal()" autocomplete = "off" onchange = "addChange()" />
+                        </div>
+                         
+        </div><!--end of compinfo div -->
+<!--company area (start) --> 
+                    <span id = "dowin" style="font-size:17px; font-weight:bold;"></span>
+                    <div class ="control-group">
+                        <label  class ="lblline">Reason:</label>
+                            <select id = "canrea"  onclick = "reasonVal()" >
+                                <option value ="0">Select</option>
+                                <option value ="r1">Reason 1</option>
+                                <option value ="r2">Reason 2</option>
+                                <option value ="r3">Reason 3</option>
+                                <option value ="r4">Reason 4</option>
+                            </select>
+                    </div>
+                    <div class ="control-group">
+                        <label class ="lblline" >Confirmation Number:</label>
+                            <input class="span2" type = "text"  name ="rnumber" id = "rnumber" maxlength = "7"/>
+                        <input id = "cancel" type = "button" onclick = "confirmation()" id= "confirm" value = "Cancel Confirmation" />
+                    </div>
+                    <div class = "control-group">
+                      <label class = "lblline">Notes:</label>
+                    </div>
+                    <div class = "control-group">
+                        <label class = "question2"  >
+                            <textarea style = "margin-right:auto;margin-left:155px; margin-top:-25px; width:400px"rows ="5" id = "messpost" autocomplete = "off"></textarea>
+                         <div id ="wordcount">0</div></label>
+                    </div>
+                    <div class="form-actions">
+                        <!-- <button class="btn launchConfirm" id = "confirm" onclick ="formVal()" onchange = "stboVal()"> Confirm</button>
+                        <a href="#sConfirm" class="btn" onclick ="formVal()" id = "firm" onchange = "stboVal()">Confirm </a> -->
+                        <a href="#sConfirm"><input type="button" class="btn" value="Confirm" onclick ="formVal()" onchange = "stboVal()" id = "firm"/></a>
+                         <a class="btn" href="cds-script.html">Return to Inbound Home Page</a>
+                    </div> 
+                  
+                </form>
+       
+                </div>
+              <!--span7 area end-->
+
+              <!--span5 area end-->
+                <div class = "span5">
+                    <div class="accordion" id="accordion2" >
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">Rep Script</a>
+                        </div>
+                        <div id="collapseOne" class="accordion-body collapse in">
+                            <div class="accordion-inner">
+                                <div class="alert alert-info" style="width:80%; min-height:30px;" id="message">
+                                <strong style="font-size:17px;" id="showScript"></strong></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">Frequest Ask Questions</a>
+                        </div>
+                    <div id="collapseTwo" class="accordion-body collapse">
+                        <div class="accordion-inner">
+                            <h3>How much does it cost for you to come out? What does your service fee include?</h3>
+                            <p>Our service fee includes diagnosing the problem, checking the system operation, and advising of what your system need to work  at its best efficiency. It's really the best bargin when it come to  
+                            service because it's flat rate and there no hourly charge. When would you like us to come out? Would you like us to come out? Would you prefer us today or tomorrow?</p>
+                            <h3>Explanation</h3>
+                            <p>You have to give value to the service, or the service fee will always be too high as far as the  customer is concerned. Telling the customer what is coverd by the  service fee helps create the value.</p>
+                            <h3>"I can get it cheaper</h3>
+                            <p>I'm sure you can find someone who'll charge you less on the front end, but i"m also sure we'll give you better service and better warranties too.  We offer an exclusive "fixed right ot it's free quarantee 
+                            and lifetime parts warranties. I'm sure the once our technician come out, you'll be very impressed with our service. Now would you be home____or ____ for us to come by?</p>
+                            <h3>Explanation</h3>
+                            <p>While this isn't really a question, what the customer is really asking is why does it cost so much.  Here again, the important thing is to build value in the customer's mind. Remember that 75%
+                            customer's satifaction comes from the service he's received.</p>
+                            <h3>How much is Freon?</h3>
+                            <p>The technician will be able to evaluate your system and determine what you need.  We don't change by the pound, which in end saves you money. I guarantee we'll do the best possible job for you when 
+                            we come out</p>
+                            <h3>Explanation</h3>
+                            <p>If the unit is  cooling, talk with the customer about scheduling a tune up. Remember, up to pounds of Freon can be added for the cost of tune up, and then there are all the other
+                            benefits of a tune up to help sell it.</p>
+                            <p>If unit is not cooling , book a service call and send a service technician.</p>
+                            <h3>How much does it cost for you to come out? What does your service fee include?</h3>
+                            <p>Let go ahead and get you on the schedule. Would you prefer us today or tomorrow?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <table align= "right" class="table table-bordered table-hover sortable" id= "memberlist">
+                        <tr>
+                            <th colspan="6"><h4> Indoor Warranty</h4></th>
+                        </tr>
+                    
+                        <tr>
+                            <th style ="width:10; text-align:center" id = "c0">Member Id</th>
+                            <th style ="width:10; text-align:center" id = "c1">Address</th>
+                            <th style ="width:10; text-align:center" id = "c2">Bronze $80</th>
+                            <th style ="width:10; text-align:center" id = "c3">Silver $100</th>
+                            <th style ="width:10; text-align:center" id = "c4">Gold $250</th>
+                            <th style ="width:10; text-align:center" id = "c5">Platinum $1000</th>
+                        </tr>   
+                   
+                    <tbody>
+                        
+                        <tr>
+                            <td>#123478</td>
+                            <td>1414 Book Drive</td>
+                            <td style = "text-align:center;"><input type ="checkbox"/></td>
+                            <td style = "text-align:center;"><input type ="checkbox"/></td>
+                            <td style = "text-align:center;"><input type ="checkbox"/></td>
+                            <td style = "text-align:center;"><input type ="checkbox"/></td>
+                        </tr>
+                        <tr>
+                            <td ><label ><span id= "list1"></span></label></td>
+                            <td ><label ><span id= "list2"></span> <span id= "list3"><span id= "list4"></span></label></td>
+                            <td style = "text-align:center;"><input type ="checkbox"/></td>
+                            <td style = "text-align:center;"><input type ="checkbox"/></td>
+                            <td style = "text-align:center;"><input type ="checkbox"/></td>
+                            <td style = "text-align:center;"><input type ="checkbox"/></td>
+                        </tr>
+                    </tbody>
+
+                </table>
+                <table align= "right" class="table table-bordered table-hover sortable" id= "memberlist">
+                                <thead>
+                                    <tr>
+                                        <th colspan="5"><h4> Change Level</h4></th>
+                                    </tr>
+                                    <tr>
+                                        <th> Address</th>
+                                        <th> Old Level</th>
+                                        <th> New Level</th>
+                                        <th> Pay Period</th>
+                                    </tr>   
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style = "text-align:center;"><input type ="checkbox"/> 233 South Frank Ave</td>
+                                        <td >Bronze</td>
+                                         <td style = "text-align:center;"><input type ="checkbox"/> Bronze  <input type ="checkbox"/>Silver <input type ="checkbox"/>Gold <input type ="checkbox"/>Platinum</td>
+                                         <td style = "text-align:center;"><input type ="checkbox"/> Monthly <input type ="checkbox"/> Annual</td>
+                                    </tr>
+                                </tbody>
+
+                                </table>
+
+                                <!-- if there is more that one system-->
+                                <table align= "right" class="table table-bordered table-hover sortable" id= "memberlist">
+                                <thead>
+                                    <tr>
+                                        <th colspan="6"><h4> if more than one</h4></th>
+                                    </tr>
+                                    <tr>
+                                        <th> Address </th>
+                                        <th> System</th>
+                                        <th> Level</th>
+                                        <th style = "text-align:center;"> Monthly</th>
+                                        <th style = "text-align:center;"> Annual</th>
+                                        <th style = "text-align:center;"> Amount</th>
+                                        
+                                    </tr>   
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td ><input type ="checkbox"/> 233 South Frank Ave</td>
+                                        <td >Bronze</td>
+                                         <td style = "text-align:center;">Platinum</td>
+                                         <td style = "text-align:center;"><input type ="checkbox"/></td>
+                                         <td style = "text-align:center;"><input type ="checkbox"/></td>
+                                         <td style = "text-align:center;">$500.00</td>
+                                    </tr>
+                                </tbody>
+
+                                </table>
+                </div><!--span4 area end-->
+            </div><!--rowfluid-->
+        </div><!--container-->
+        <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <script type="text/javascript" src="js/scripts.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="dist/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="pjs/repScript.js"></script>
+        <script type="text/javascript" src="pjs/display.js"></script>
+        <script type="text/javascript" src="pjs/validation.js"></script>
+        <script type="text/javascript" src="pjs/service.js"></script>
+        <script type="text/javascript" src="pjs/format.js"></script>
+        <script type="text/javascript" src="pjs/append.js"></script>
+        <script type="text/javascript" src="pjs/jquery.masked.js"></script>
+        <script type="text/javascript" src="pjs/jquery.mask.min.js"></script>
+    </body>
+</html>

@@ -1,0 +1,346 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html ng-app="testApp">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Caller ID</title>
+        <link href="css/bootstrap.css" type="text/css" rel ="stylesheet" media="screen" >
+        <link href="css/bootstrap-responsive.css" type="text/css" rel ="stylesheet">
+        <link href="css/datepicker.css" type="text/css" rel ="stylesheet">
+        <link rel="stylesheet" href="pcss/styles.css" />
+        <!-- <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />  -->
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <!--  <link rel="stylesheet" href="http:/resources/demos/style.css"> -->
+        <link href="dist/css/bootstrap.css" type="text/css" rel ="stylesheet" media="screen" >
+         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+   
+</head>
+<body>
+<!-- nav- start -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+       <div class="container-fluid">
+           <!-- Brand and toggle get grouped for better mobile display -->
+           <div class="navbar-header">
+             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+               <span class="sr-only">Toggle navigation</span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+             </button>
+           </div>
+          <div class="page-header"style="margin-top:5px; text-align:center; color:#FFFFFF"><h2 style="text-align:center;color:#000000">Caller ID</h2></div>
+       </div><!-- /.container-fluid -->
+    </nav>
+<!--nav end -->
+<div class="container-fluid" style="margin-top:100px; margin-left:auto; background-color:white; margin-right:auto; border-width:1px; border-radius:4px;">
+   <div class="row">
+    <div class="col-md-7">
+       <div class="panel panel-info" ng-controller="ContractListController" style ="margin-top:10px;" >
+            <!-- Default panel contents -->
+                <div class="panel-heading" style = "text-align:center; font-size: 20px;">Contact List</div>
+                  <!-- Table -->
+                  <table class="table table-bordered tableC" style = "text-align:center;">
+                    <thead>
+                      <tr>
+                        <th>Select</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                       
+                      </tr>
+                      <tr class = "searchText">
+                        <th><input type = "checkbox" id = "checkall" autocomplete = "off"></th>
+                        <th><input type = "text"  class = "form-control radi1"/></th>
+                        <th><input type = "text"  class = "form-control radi1"/></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng:repeat="contract in contracts">
+                         <td><input type = "checkbox" class = "radi1" ng-model= "ci1" value = "r1" autocomplete = "off"></td>
+                         <td>{{contract.firstName}}</td>
+                         <td>{{contract.lastName}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                <div class="panel-footer">
+                   <label><input type="checkbox" id="" value="">Add contact</label>
+                 </div>
+        </div><!--end of panel Contact List panel-->
+        
+        <!--Residential/Company List Table start-->
+        <div class="panel panel-info" ng-controller="CompanyListController">
+        <!-- Default panel contents -->
+             <div class="panel-heading" style = "text-align:center; font-size: 20px;"> Company List</div>
+              <table class="table table-responsive table-bordered table2">
+                <thead>
+                  <tr>
+                    <th>Select</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>TX</th>
+                    <th>Zip</th>
+                  </tr>
+                  <tr>
+                      <th><input type = "checkbox"></th>
+                      <th><input type = "textbox" class="form-control" name = ""></th>
+                      <th><input type = "textbox" class="form-control" name = ""></th>
+                      <th><input type = "textbox" class="form-control" name = ""></th>
+                      <th><input type = "textbox" class="form-control" name = ""></th>
+                      <th><input type = "textbox" class="form-control" name = ""></th>
+                      <th><input type = "textbox" class="form-control" name = ""></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng:repeat="company in companies">
+                    <td><input type = "checkbox" autocomplete = "off"></td>
+                    <td>{{company.name}}</td>
+                    <td>{{company.location}}</td>
+                    <td>{{company.companyId}}</td>
+                    <td>{{company.companyId}}</td>
+                    <td>{{company.companyId}}</td>
+                    <td>{{company.companyId}}</td>
+                  </tr>
+                </tbody>
+
+            </table> 
+         </div><!-- end of Residential/Company-->
+            <!-- Residential/Company List Table Table end-->
+        
+        <div class="panel panel-info" ng-controller="PropertyListController">
+        <!-- Default panel contents -->
+        <div class="panel-heading" style = "text-align:center; font-size: 20px;">Property List</div>
+            <table class="table table-responsive table-bordered table3">
+              <thead>
+                <tr>
+                  <th>Select</th>
+                  <th>Property Name</th>
+                  <th>Address</th>
+                  <th>City</th>
+                  <th>State</th>
+                  <th>Zip</th>
+              </tr>
+              <tr>
+                <th><input type = "checkbox" id = ""></th>
+                <th><input type = "text" id = "" class = "form-control"></th>
+                <th><input type = "text" id = "" class = "form-control"></th>
+                <th><input type = "text" id = "" class = "form-control"></th>
+                <th><input type = "text" id = "" class = "form-control"></th>
+                <th><input type = "text" id = "" class = "form-control"></th>
+                
+              </tr>
+            </thead>
+            <tbody>
+                <tr ng:repeat="property in properties">
+                  <td><input type = "checkbox" autocomplete = "off"></td>
+                  <td>{{property.name}}</td>
+                  <td>{{property.location}}</td>
+                  <td>{{property.city}}</td>
+                  <td>{{property.state}}</td>
+                  <td>{{property.propertyId}}</td></tr>
+            </tbody>
+        </table>
+         <div class="panel-footer">
+              <label class="checkbox-inline"><input type="checkbox" id="" value="option1">Add Property</label>
+          </div>
+    </div>
+
+    </div><!--end of column 7-->
+    <div class="col-md-5">
+        <div class="panel panel-default" style = "margin-top:10px;">
+                <!-- Default panel contents -->
+                <div class="panel-heading">Sample 2</div>
+                <div class="panel-body">
+                <button class="btn btn-primary" id = "acButton1">AC Heating</button>
+                <button class="btn btn-primary" id = "pluButton1">AC Heating</button>
+               </div>
+
+                <!-- Table -->
+               <table class="table" style = "text-align:center;display:none" id = "acTable1">
+                  <thead>
+                    <tr>
+                      <th col = "5" style = "text-align:center"> AC Heating Table</th>
+                    </tr>
+                    <tr>
+                      <th>Select</th>
+                      <th>Date</th>
+                      <th>Description</th>
+                      <th>Technician</th>
+                      <th>Cost</th>
+                    </tr>
+
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><input type = "radio" autocomplete = "off"></td>
+                      <td>11/15/2014</td>
+                      <td>Replace Unit</td>
+                      <td>Technician 1</td>
+                      <td>$150.00</td>
+                    </tr>
+                  </tbody>
+
+                </table>
+
+              <hr>
+       </div>
+        <hr>
+        
+        <div class="panel panel-primary">
+        <div class="panel-body">
+            <form class="form-inline" id = "infoUser">
+              <div class="form-group">
+                <label>First Name</label>
+                   <input type="text" class="form-control" id="firstname" onchange = "issue()"  autocomplete = "off">
+                <label>Last Name</label>
+                  <input type="text" class="form-control" id="lastname" onchange = "issue()" autocomplete = "off">
+              </div>
+              
+              <span id = "bestMess" style="font-size:17px;font-weight:bold;"></span>
+              <div class = "form-group">
+                <label style = "margin-left:55px;">Is <input type = "text" id ="idNum" class = "form-control" onchange = "copyNum()"  onchange = "issue()"> the best number to contact you?</label>
+                    <label><input type= "radio" id ="bnYes" name = "best" onclick = "" onfocus = "" autocomplete = "off" >Yes</label>
+                    <label><input type= "radio" id ="bnNo" name = "best" onclick = "bnVal()" onfocus = "bnVal()" autocomplete = "off">No</label>
+              </div>
+              
+               <!-- if yes id check it will show this hidden div(refer to:) Start-->
+                <div class = "form-group bestYes" style = "display:none">
+                    <p style = "margin-left:55px;">Is this a
+                        <label><input type = "radio" name = "best1" id = "beCell" onclick = "bnVal()" onfocus = "" autocomplete = "off">Cell</label>
+                        <label><input type = "radio" name = "best1" id = "beHome" onclick = "bnVal()" onfocus = "" autocomplete = "off">Home or
+                        </label>  
+                        <label><input type = "radio" name = "best1" id = "beOffice" onclick = "bnVal()" onfocus = "" autocomplete = "off">Office number ?</label>
+                        <input type = "text" autocomplete = "off" id = "best1Text" onchange = "bnVal()" onfocus = "" style = "display:none"/>
+                    </p>
+                </div>
+              <!--if no id check it will show this hidden div(refer to:) End-->
+              <!-- if yes id check it will show this hidden div(refer to:) Start-->
+                <div class = "form-group bestNo" style = "display:none">
+                    <p style = "margin-left:40px;">What is the best number to contact you on
+                        <input type = "text" class = "span2" id = "ben0" maxlength = "12" onkeyup = "InputPhone(this)" onchange = "bnVal()" onfocus = "bnVal()"     autocomplete = "off">is this a 
+                       <label> <input type = "radio" name = "ben" id ="ben1" onclick = "bnVal()" onfocus = "bnVal()" autocomplete = "off">Cell</label>
+                       <label> <input type = "radio" name = "ben" id ="ben2" onclick = "bnVal()" onfocus = "bnVal()" autocomplete = "off">Home</label>
+                       <label> <input type = "radio" name = "ben" id ="ben3" onclick = "bnVal()" onfocus = "bnVal()" autocomplete = "off">Office</label> ?
+                        <input type = "text" class = "span2" id ="ben3Text" style = "display:none" onchange = "bnVal()" onfocus = "bnVal()" 
+                        autocomplete = "off"/></p>
+                </div>
+              <!--if no id check it will show this hidden div(refer to:) End-->
+
+            <span id = "ddmessage" style="font-size:17px; font-weight:bold;"></span>
+                <div id="emailDIV">
+                    <div class = "form-group">
+                        <label class ="lblline">Email Address</label>
+                         <input type="text" class="form-control" id="ebox" onchange = "issue()" autocomplete = "off">
+                        <!-- <input class="form-control" type = "text" size = "45" name ="email" id = "email" onkeyup= "mailVal()" onfocus= "mailVal()" autocomplete = "off" /> -->
+                        <label>@</label>
+                        <input type="text" class="form-control" id="ebox1" onchange = "issue()" autocomplete = "off">
+                        <label >.</label>
+                       <!--domain Listing-->
+                        <select name = "domain"  id = "domain" onclick = "" class = "select2" autocomplete = "off" 
+                        data-toggle="tooltip" data-original-title="What type of domain?" data-placement="top">
+                            <option value = "0">Select</option>
+                            <option value = "com">com</option>
+                            <option value = "org">org</option>
+                            <option value = "edu">edu</option>
+                            <option value = "net">net</option>
+                            <option value = "gov">gov</option>
+                            <option value = "aero">aero</option>
+                            <option value = "asia">asia</option>
+                            <option value = "biz">biz</option>
+                            <option value = "cat">cat</option>
+                            <option value = "coop">coop</option>
+                            <option value = "info">info</option>
+                            <option value = "int">int</option>
+                            <option value = "jobs">jobs</option>
+                            <option value = "mil">mil</option>
+                            <option value = "mobi">mobi</option>
+                            <option value = "other">other</option>
+                        </select>
+                       <!--  <input class="span2" type = "text" id = "email1" onchange = "mailVal()" onfocus= "mailVal()" autocomplete = "off"/> -->
+                        <input type = "button" id = "addEmail" value = "+" onclick = "emailAdd()" title = "Add Additional Email"/>
+                        <label class = "type"><input type= "radio" name = "ednemai" value ="dnemai"  id ="dnemai" onclick = "" autocomplete = "off"/>Decline</label>
+                        <label class = "type"><input type= "radio" name = "ednemai" value ="clear" id ="clear" onclick = "" autocomplete = "off"/>Clear</label>
+                    </div>
+
+                    <div class = "form-group" style = "display:none" id ="emailType">
+                        <label class ="lblline">Select Email Type:</label>
+                        <label class = "type"><input type= "radio" name = "ednemai0"  id ="eyahoo" onclick = "mailVal()" autocomplete = "off"/> yahoo</label>
+                        <label class = "type"><input type= "radio" name = "ednemai0" value ="Gmail"  id ="egmail" onclick = "mailVal()" autocomplete = "off"/> gmail</label>
+                        <label class = "type"><input type= "radio" name = "ednemai0" value ="Hotmail"  id ="ehotmail" onclick = "mailVal()" autocomplete = "off"/> hotmail</label>
+                        <label class = "type"><input type= "radio" name = "ednemai0" value ="Ymail"  id ="eymail" onclick = "mailVal()" autocomplete = "off"/>ymail</label>
+                        <label class = "type"><input type= "radio" name = "ednemai0" value ="Outlook"  id ="eoutlook" onclick = "mailVal()" autocomplete = "off"/>outlook</label>
+                        <label class = "type"><input type= "radio" name = "ednemai0" value ="Zoho"  id ="ezoho" onclick = "mailVal()" autocomplete = "off"/>zoho</label>
+                        <label class = "type"><input type= "radio" name = "ednemai0" value ="yandex"  id ="eyandex" onclick = "mailVal()" autocomplete = "off"/>yandex</label>
+                        <label class = "type"><input type= "radio" name = "ednemai0" value ="AIM"  id ="eaim" onclick = "mailVal()"  autocomplete = "off"/>aim</label>
+                       <label class = "type"><input type= "radio" name = "ednemai0" value ="Mail"  id ="emali" onclick = "mailVal()" autocomplete = "off"/>mail</label>
+                        <label class = "type"><input type= "radio" name = "ednemai0" value ="Inbox"  id ="einbox" onclick = "mailVal()" autocomplete = "off"/>Inbox</label>
+                        <!-- <label class = "type"><input type= "radio" name = "ednemai0" value ="Other"  id ="eother" onclick = "mailVal()" autocomplete = "off"/>Other</label> -->
+                    </div>
+              </div><!--end of emailDiv-->
+               
+               <div class = "form-group">
+                <p style = "margin-left:40px;">Would you like to be notified when the techician is enrounte by
+                    <input type = "radio" name = "choi" id ="same" value = "Text" onclick = "showNumber()" autocomplete = "off" data-toggle="tooltip" data-original-title ="Alert text before Techincan Arrival" data-placement="top"> Text <input type = "radio" 
+                    id = "choice2" value = "Email" name = "choi" autocomplete = "off" data-toggle="tooltip" data-original-title ="or Email" data-placement="top"> Email or <input type = "radio" name = "choi" id ="techBoth" autocomplete = "off" data-toggle="tooltip" data-original-title ="Alert by both text and email" data-placement="top"> Both ?</p>
+                </div>
+                <span id = "omessage" style="font-size:17px; font-weight:bold;"></span>
+                <div class = "form-group mobile" style = "display:none">
+                    <label class ="lblline">Mobile Text Alert: </label>
+                      <input class="span2" type = "text" size = "12" maxlength = "12" name ="textphone" 
+                      id = "textphone" onchange = "tphVal()" onkeyup = "InputPhone(this)" onblur = "showNumber()" autocomplete = "off"/>
+                      <span class = "phoneList" style = "font-size:17px;"></span>
+                </div>
+                <!--hidden div for radio button selection email and both -->
+                <div class = "form-group emailChoice" style = "display:none">
+                    <label class ="lblline">Email Address: </label>
+                    <input class="span5" type = "text" size = "12" name ="sameEmail" id = "sameEmail" autocomplete = "off"/>
+                </div>
+                <!--span div to display additional email address -->
+                <div class = "form-group">
+                    <span class = "emList" style = "font-size:17px;"></span>
+                </div>
+             
+            </form>
+        
+        </div>
+        <div class="panel-footer ">
+        <div>
+          Would  you like to add additional contact?
+            <label class="checkbox-inline"><input type="radio" id="" value="option1"> Yes</label>
+            <label class="checkbox-inline"><input type="radio" id="" value="option2"> No</label>
+        </div>
+
+        <div>
+          Would you like to have a primary contact?
+          <label class="checkbox-inline"><input type="radio" id="" value="option1"> Yes</label>
+          <label class="checkbox-inline"><input type="radio" id="" value="option2"> No</label>
+        </div>
+        <div class="form-actions">
+          <input type="submit" class="btn btn-info" value="Enter" id = "EnterNow"/> 
+        </div>
+       
+        </div>
+      </div>
+        
+        
+    </div>
+  </div>
+</div>
+        <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <script type="text/javascript" src="js/scripts.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="dist/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="pjs/repScript.js"></script>
+        <script type="text/javascript" src="pjs/display.js"></script>
+        <script type="text/javascript" src="pjs/validation.js"></script>
+        <script type="text/javascript" src="pjs/service.js"></script>
+        <script type="text/javascript" src="pjs/format.js"></script>
+        <script type="text/javascript" src="pjs/append.js"></script>
+        <script type="text/javascript" src="pjs/test.js"></script>
+        <script type="text/javascript" src="pjs/jquery.masked.js"></script>
+        <script type="text/javascript" src="pjs/jquery.mask.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+</body>
+</html>

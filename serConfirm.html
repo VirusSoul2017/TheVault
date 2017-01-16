@@ -1,0 +1,263 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Service Confirm</title>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <style>
+            .ltext{
+                width: 180px;
+                text-align: right;
+                font-size: 17px;
+            }
+            
+            table{
+                font-size: 15px;
+            }
+        </style>
+<!--http://jsfiddle.net/asifrc/EfRWZ/2/-->
+    </head>
+    <body>
+        <%!String[] rcpi;%>
+        <%!String[] hcpip;%>
+        <%!String[] cchB; %> 
+        <%!String[] rsnhe; %>
+        <div class="container-fluid" style="margin-top:145px; margin-left:auto; width:55%; margin-right:auto;  border-width:1px;border-radius:4px;">
+            <div class ="row">
+                <form class ="form-inline" action ="cds-script-2.jsp" >
+                    <jsp:useBean id="serCon" scope="session" class="sinfo.service" />
+                    <jsp:setProperty name="serCon" property="fname"/>
+                    <jsp:setProperty name="serCon" property="lname"/>
+                    <jsp:setProperty name="serCon" property="address"/>
+                    <jsp:setProperty name="serCon" property="address1"/>
+                    <jsp:setProperty name="serCon" property="city"/>
+                    <jsp:setProperty name="serCon" property="state"/>
+                    <jsp:setProperty name="serCon" property="zip"/>
+                    <jsp:setProperty name="serCon" property="address3"/>
+                    <jsp:setProperty name="serCon" property="setT"/>
+                    <jsp:setProperty name="serCon" property="setA"/>
+                    <jsp:setProperty name="serCon" property="therm"/>
+                    <jsp:setProperty name="serCon" property="therm1" />
+                    <jsp:setProperty name="serCon" property="cpiUS" />
+                    <jsp:setProperty name="serCon" property="heThem" />
+                    <jsp:setProperty name="serCon" property="heThem1"/>
+                    <jsp:setProperty name="serCon" property="saddress"/>
+                    <jsp:setProperty name="serCon" property="saddress1" />
+                    <jsp:setProperty name="serCon" property="saddress2"/>
+                    <jsp:setProperty name="serCon" property="szip"/>
+                    <jsp:setProperty name="serCon" property="sstate"/>
+                    <jsp:setProperty name="serCon" property="scity"/>
+                    <jsp:setProperty name="serCon" property="bbuilding"/>
+                    <jsp:setProperty name="serCon" property="bstreet" />
+                    <jsp:setProperty name="serCon" property="bSelection"/>
+                    <jsp:setProperty name="serCon" property="pan"/>
+                    <jsp:setProperty name="serCon" property="bcity"/>
+                    <jsp:setProperty name="serCon" property="bstate"/>
+                    <jsp:setProperty name="serCon" property="bzip"/>
+                    <jsp:setProperty name="serCon" property="cTherm"/>
+                    <jsp:setProperty name="serCon" property="cTherm1"/>
+                    <jsp:setProperty name="serCon" property="tsetat"/>
+                    <jsp:setProperty name="serCon" property="tsetat1" />
+                    <jsp:setProperty name="serCon" property="ciUS" />
+                    <jsp:setProperty name="serCon" property="access"/>
+                    <jsp:setProperty name="serCon" property="ah"/>
+                    <jsp:setProperty name="serCon" property="gateText"/>
+                    <jsp:setProperty name="serCon" property="gsh"/>
+                    <jsp:setProperty name="serCon" property="cpo"/>
+                    <jsp:setProperty name="serCon" property="cpi"/>
+                    <jsp:setProperty name="serCon" property="ccc"/>
+                    <jsp:setProperty name="serCon" property="cpiUS"/>
+                    <jsp:setProperty name="serCon" property="tdate" />
+                    <jsp:setProperty name="serCon" property="cpii"/>
+                    <jsp:setProperty name="serCon" property="cpo1"/>
+                    <jsp:setProperty name="serCon" property="cpic" />
+                    <jsp:setProperty name="serCon" property="cpih"/>
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                          <h3 class="panel-title" style = "text-align:center; font-size:25px;">Service Confirm</h3>
+                        </div><!--end of panel heading-->
+                        <div class="panel-body">
+                            <!-- Table -->
+                            <table class="table table-striped">
+                                <tr>
+                                   <th class = "ltext">Primary Contact:</th>
+                                   <td style = "font-size: 20px;">
+                                       <%
+                                        String fix =request.getParameter("fixTitle");
+                                        out.println(fix);
+                                        %>
+                                       <jsp:getProperty name="serCon" property="fname" />
+                                       <jsp:getProperty name="serCon" property="lname" />
+                                       
+                                    </td>
+                                   <th class = "ltext">Address:</th>
+                                   <td colspan="3">
+                                       <jsp:getProperty name="serCon" property="address" />
+                                       <jsp:getProperty name="serCon" property="address1" />
+                                       <%
+                                            String adType =request.getParameter("strloc1");
+                                            out.println(adType);
+                                        %>
+                                        <jsp:getProperty name="serCon" property="address3" />
+                                        <jsp:getProperty name="serCon" property="city" />
+                                        <jsp:getProperty name="serCon" property="state" />
+                                        <jsp:getProperty name="serCon" property="zip" />
+                                       
+                                   </td> 
+                                </tr>
+                                <tr>
+                                   <th class = "ltext">Mailing Address:</th>
+                                   <td colspan="3">
+                                       <jsp:getProperty name="serCon" property="saddress" />
+                                       <jsp:getProperty name="serCon" property="saddress1" />
+                                       <%
+                                        String mbt =request.getParameter("stroloc1");
+                                        out.println(mbt);
+                                        %>
+                                        <jsp:getProperty name="serCon" property="saddress2" />
+                                        <jsp:getProperty name="serCon" property="scity" />
+                                        <jsp:getProperty name="serCon" property="sstate" />
+                                        <jsp:getProperty name="serCon" property="szip" />
+                                        
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class = "ltext">Business/Service:</th>
+                                    <td>
+                                        <jsp:getProperty name="serCon" property="bbuilding" />
+                                        <jsp:getProperty name="serCon" property="bstreet" />
+                                        <%
+                                        String cbt =request.getParameter("bDDL");
+                                        out.println(cbt);
+                                        %>
+                                        <jsp:getProperty name="serCon" property="bSelection" />
+                                        <jsp:getProperty name="serCon" property="bcity" />
+                                        <jsp:getProperty name="serCon" property="bstate" />
+                                        <jsp:getProperty name="serCon" property="bzip" />
+                                        
+                                    </td>
+                                    <th class = "ltext">Company Name:</th>
+                                    <td><jsp:getProperty name="serCon" property="pan"/></td>
+                                </tr>
+                                <tr>
+                                    <th colspan="4" style = "text-align:center; font-size:17px;">Scope of Work</th>
+                                </tr>
+                                <tr>
+                                    <th class = "ltext">Concern/Problem:</th>
+                                    <td>
+                                        <jsp:getProperty name="serCon" property="cpo" />
+                                        <jsp:getProperty name="serCon" property="cpi" />
+                                        <%
+                                            rcpi=request.getParameterValues("cpi1");
+                                            if(rcpi !=null){
+                                                for(int i= 0; i< rcpi.length; i++){
+                                                    out.println(","+rcpi[i]);
+                                                }
+                                            }else{
+                                                 out.println("");
+                                            }
+
+                                        %>
+                                        <jsp:getProperty name="serCon" property="cpii" />
+                                        <%
+                                            hcpip=request.getParameterValues("cpip");
+                                            if(hcpip !=null){
+                                                for(int i= 0; i< hcpip.length; i++){
+                                                    out.println(","+hcpip[i]);
+                                                }
+                                            }else{
+                                                 out.println("");
+                                            }
+
+                                        %>
+                                        <jsp:getProperty name="serCon" property="cpo1" />
+                                        <jsp:getProperty name="serCon" property="cpic" />
+                                        <%/**Not Cooling Evenly Commerical**/
+                                            cchB =request.getParameterValues("cpi0c");
+                                            if(cchB !=null){
+                                                for(int i= 0; i< cchB.length; i++){
+                                                    out.println(","+cchB[i]);
+                                                }
+                                            }else{
+                                                 out.println("");
+                                            }
+                                        %>
+                                        <jsp:getProperty name="serCon" property="cpih" />
+                                         <%/**Not Cooling Evenly Commerical**/
+                                                rsnhe =request.getParameterValues("rsnhe");
+                                                if(rsnhe !=null){
+                                                    for(int i= 0; i< rsnhe.length; i++){
+                                                        out.println(","+rsnhe[i]);
+                                                    }
+                                                }else{
+                                                     out.println("");
+                                                }
+                                         %>
+                                        
+                                    </td>
+                                    <th class = "ltext">Thermostat:</th>
+                                    <td>
+                                        <label></label>
+                                            <jsp:getProperty name="serCon" property="setT" />
+                                            <jsp:getProperty name="serCon" property="therm" />
+                                            <jsp:getProperty name="serCon" property="heThem" />
+                                            
+                                        <label></label>
+                                            <jsp:getProperty name="serCon" property="setA" />
+                                            <jsp:getProperty name="serCon" property="therm1" />
+                                            <jsp:getProperty name="serCon" property="heThem1" />
+                                          
+                                        <label></label>
+                                             <jsp:getProperty name="serCon" property="cTherm" />
+                                             <jsp:getProperty name="serCon" property="cTherm1" />
+                                             <jsp:getProperty name="serCon" property="tsetat" />
+                                             <jsp:getProperty name="serCon" property="tsetat1" />
+                                             
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class = "ltext">Unit Service:</th>
+                                    <td>
+                                        <jsp:getProperty name="serCon" property="cpiUS" />
+                                        <jsp:getProperty name="serCon" property="ciUS"/>
+                                    </td>
+                                    <th class = "ltext">Access Entry:</th>
+                                    <td>
+                                        <jsp:getProperty name="serCon" property="access" /> 
+                                        <jsp:getProperty name="serCon" property="ah" />
+                                        <jsp:getProperty name="serCon" property="gateText" />
+                                        <jsp:getProperty name="serCon" property="gsh" />
+                                        
+                                    </td>
+                                </tr>
+                                <tr>
+                                   <th class = "ltext">Payment Method:</th>
+                                   <td><jsp:getProperty name="serCon" property="ccc" /></td>
+                                   <th class = "ltext">Appointment:</th>
+                                   <td><jsp:getProperty name="serCon" property="tdate" /></td>
+                                </tr>
+
+                                <tr>
+                                   <th class = "ltext">Call Notes:</th>
+                                   <td colspan="3">
+                                       
+                                   </td>
+                                </tr>
+                                <tr>
+                                   <th class = "ltext">Access notes:</th>
+                                   <td colspan = "3">
+                                       
+                                   </td>
+                                </tr>
+                            </table>
+                        </div><!--end of panel -->
+                    </div><!--end of panel-->
+                     <button type ="submit">Return to Service Page</button>
+                     <button type = "submit">Submit</button>
+                         
+                </form><!--end of form-->
+            </div><!--end of row -->
+        </div><!--end of container-fluid-->
+    </body>
+</html>

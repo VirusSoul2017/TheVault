@@ -1,0 +1,293 @@
+
+.pln {
+  color: #111111;
+}
+
+@media screen {
+  /* string content */
+  .str {
+    color: #739200;
+  }
+
+  /* a keyword */
+  .kwd {
+    color: #739200;
+  }
+
+  /* a comment */
+  .com {
+    color: #999999;
+  }
+
+  /* a type name */
+  .typ {
+    color: #ff0055;
+  }
+
+  /* a literal value */
+  .lit {
+    color: #538192;
+  }
+
+  /* punctuation */
+  .pun {
+    color: #111111;
+  }
+
+  /* lisp open bracket */
+  .opn {
+    color: #111111;
+  }
+
+  /* lisp close bracket */
+  .clo {
+    color: #111111;
+  }
+
+  /* a markup tag name */
+  .tag {
+    color: #111111;
+  }
+
+  /* a markup attribute name */
+  .atn {
+    color: #739200;
+  }
+
+  /* a markup attribute value */
+  .atv {
+    color: #ff0055;
+  }
+
+  /* a declaration */
+  .dec {
+    color: #111111;
+  }
+
+  /* a variable name */
+  .var {
+    color: #111111;
+  }
+
+  /* a function name */
+  .fun {
+    color: #538192;
+  }
+}
+/* Use higher contrast and text-weight for printable form. */
+@media print, projection {
+  .str {
+    color: #006600;
+  }
+
+  .kwd {
+    color: #006;
+    font-weight: bold;
+  }
+
+  .com {
+    color: #600;
+    font-style: italic;
+  }
+
+  .typ {
+    color: #404;
+    font-weight: bold;
+  }
+
+  .lit {
+    color: #004444;
+  }
+
+  .pun, .opn, .clo {
+    color: #444400;
+  }
+
+  .tag {
+    color: #006;
+    font-weight: bold;
+  }
+
+  .atn {
+    color: #440044;
+  }
+
+  .atv {
+    color: #006600;
+  }
+}
+/* Style */
+pre.prettyprint {
+  background: white;
+  font-family: Menlo, "Bitstream Vera Sans Mono", "DejaVu Sans Mono", Monaco, Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  border: 1px solid #cccccc;
+  padding: 10px;
+}
+
+/* Specify class=linenums on a pre to get line numbering */
+ol.linenums {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* IE indents via margin-left */
+li.L0,
+li.L1,
+li.L2,
+li.L3,
+li.L4,
+li.L5,
+li.L6,
+li.L7,
+li.L8,
+li.L9 {
+  color: #ccc;
+}
+
+/* Alternate shading for lines */
+li.L1,
+li.L3,
+li.L5,
+li.L7,
+li.L9 {
+  background: #f7f7f7;
+}
+Status API Training Shop Blog About © 2013 GitHub, Inc. Terms Privacy Security Contact 
+
+
+
+.slide-title{
+  display: inline-block;
+  float:left;
+  width:200px;
+  margin-right:80px;
+}
+
+
+
+.page-header {
+	padding-bottom:0px;
+	margin: 0px 0 10px;
+}
+
+
+.form-horizontal .control-label{
+	text-align:left;
+	width:260px;
+}
+
+.form-horizontal .control-group{
+	margin-bottom:-15px;
+}
+
+
+iframe{
+	width:100%;
+	height:600px;
+}
+
+
+
+.box{
+	position:relative;
+	border-radius:3px;
+	padding:14px;
+	margin-top:10px;
+	background-color:#eff0f2;
+	height:100px;
+}
+
+
+.tile {
+  position: relative;
+  right:15px;
+  border-radius: 3px;
+  background-color: #eff0f2;
+  text-align:left;
+  height:420px;
+  overflow-y:scroll;
+  overflow-x:hidden;
+}
+
+.video-list{
+	position:relative;
+	width:100%;
+}
+
+.tile p {
+	margin-bottom:0px;
+}
+
+.vid-thumbnail{
+	position:relative;
+	margin-top:5px;
+}
+
+p.vid-title{
+	position:relative;
+	width:100px;
+	font-weight:bold;
+	font-size:10pt;
+}
+
+
+p.vid-description{
+	position:relative;
+	font-size:8pt;
+}
+a:link {
+	text-decoration:none;
+}
+
+.myth_sections{
+	position:relative;
+	float:left;
+	left:15px;
+	margin-right:20px;
+	margin-top:-10px;
+}
+
+#log_bg{
+	background-color:#34495e;
+	width:100%;
+}
+
+.nav{
+	margin-left:-15px;
+}
+
+.nav-list > .active > a:hover,{
+	background-color:none;
+}
+
+
+.nav-list > li > a,
+.nav-list .nav-header{
+	text-shadow:none;
+
+}
+
+.well{
+position:relative;
+width:100%;
+
+}
+
+.well,span {
+	margin-bottom:0px;
+}
+
+.well a:link, a:hover{
+	text-decoration:none;
+
+}
+
+.row-fluid input[type="text"];
+
+}
+
+.brand,{
+	text-decoration:none;
+}

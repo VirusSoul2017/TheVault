@@ -1,0 +1,269 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Modal and Table Test Page</title>
+        <link href="css/bootstrap.css" type="text/css" rel ="stylesheet" media="screen" >
+        <link href="css/bootstrap-responsive.css" type="text/css" rel ="stylesheet">
+<!--        <link href="css/datepicker.css" type="text/css" rel ="stylesheet">-->
+        <link rel="stylesheet" href="pcss/styles.css" />
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <link href="dist/css/bootstrap.css" type="text/css" rel ="stylesheet" media="screen" >
+        <style>
+            .towBox{
+                position: relative;
+                margin:0 auto;
+                width:100%
+            }
+            .box1, box2{
+                border:1px solid white;
+                color: white;
+            }
+            .box1 {
+                width: 20%;
+                background-color: #111;
+                position: fixed;
+           }
+           .box2{
+                width: 80%;
+                background-color: #777;
+                float: right;
+           }
+           .testTable{
+               text-align: center;
+           }
+            
+        </style>
+    </head>
+    <body>
+      <div class ="towBox">
+          <h1>Testing  Table for Edit, Add, Delete</h1>
+            <div class ="box1">
+                 <!--tables sample start -->
+                    <table class="setpoint-form-table">
+                        <tr>
+                            <th colspan="5">
+                                <p style="font-size:16px; float:left;text-align:center;">Table 1</p>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td colspan="5" height="20px"></td>
+                        </tr>
+                        <tr>
+                            <input type="text" id="RowPlaceholder2" style="visibility:hidden;" />
+                            <td style="font-size:14px">First Name</td>
+                            <td>
+                                <input type="text" id="fName" class="setpoint-textbox" />
+                            </td>
+                            <td style="font-size:14px;">Last Name</td>
+                            <td>
+                                <input type="text" id="lName" class="setpoint-textbox" />
+                                 <button type="button" onclick="HvacStandards()">Submit</button>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td colspan="5" height="20px"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="5">
+                                <br />
+                                <br />
+                                <table width="600px" id="testingWithEdit">
+                                    <tr>
+                                        <td style="background-color:#fff; color:#00468C; border-bottom:1px solid #000; border-right:1px solid #000;">First Name</td>
+                                        <td style="background-color:#fff; color:#00468C; border-bottom:1px solid #000;">Last Name</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+            <!--table sample end-->
+            </div><!--end of box one-->
+            <div class = "box2">
+                <table class="">
+                        <tr>
+                            <th colspan="5">
+                                <p style="font-size:16px;text-align:center;">Editable Table</p>
+                            </th>
+                        </tr>
+                        <tr>
+                            <input type="text" id="" style="visibility:hidden;" />
+                            <td style="font-size:14px;text-align:center;">First Name</td>
+                            <td><input type="text" id="first"/></td>
+                            <td style="font-size:14px;">Last Name</td>
+                            <td><input type="text" id="last"/></td>
+                             <td style="font-size:14px;">Email Address</td>
+                            <td><input type="text" id="eadd" style = "width:200px;" /></td>
+                            <td style="font-size:14px;">Primary</td>
+                            <td><input type="text" id="prim" style = "width:50px;" /></td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:14px;text-align:center;">Address</td>
+                            <td><input type ="text" name ="address"  id ="address" style = "width:300px;" ></td>
+                            <td style="font-size:14px;text-align:center;">City</td>
+                            <td><input type ="text" name ="address"  id ="city" style = "width:200px;" ></td>
+                            <td style="font-size:14px;text-align:center;">State</td>
+                            <td><input type ="text" name ="address"  id ="state" style = "width:50px;" ></td>
+                            <td style="font-size:14px;text-align:center;">Zip</td>
+                            <td><input type ="text" name ="address"  id ="zip" style = "width:100px;" ></td>
+                        </tr>
+                        <tr>
+                            <td><button type="button" onclick="NewList()">Submit</button></td>
+                        </tr>
+                </table>
+                <table width="600px" id="testEdit" style = "text-align:center;">
+                    <tr>
+                        <td style="background-color:#fff; color:#00468C; border-bottom:1px solid #000; border-right:1px solid #000;text-align:center;">First Name</td>
+                        <td style="background-color:#fff; color:#00468C; border-bottom:1px solid #000; border-right:1px solid #000;text-align:center; border-right:1px solid #000;">Last Name</td>
+                        <td style="background-color:#fff; color:#00468C; border-bottom:1px solid #000; border-right:1px solid #000;text-align:center; border-right:1px solid #000;">Email Address</td>
+                        <td style="background-color:#fff; color:#00468C; border-bottom:1px solid #000;text-align:center; border-right:1px solid #000;">Primary</td>
+                    </tr>
+                </table>
+                <table width="600px" id="testEdit1" style = "text-align:center;">
+                    <tr>
+                        <td style="background-color:#fff; color:#00468C; border-bottom:1px solid #000;text-align:center;border-right:1px solid #000;">Address</td>
+                        <td style="background-color:#fff; color:#00468C; border-bottom:1px solid #000;text-align:center; border-right:1px solid #000;">City</td>
+                        <td style="background-color:#fff; color:#00468C; border-bottom:1px solid #000;text-align:center;border-right:1px solid #000;">State</td>
+                        <td style="background-color:#fff; color:#00468C; border-bottom:1px solid #000;text-align:center; border-right:1px solid #000;">Zip</td>
+                    </tr>
+                </table>
+                
+                            
+                        
+            </div><!--end of box2-->
+        </div><!--end of two box-->
+        
+        <!--javaScript start-->
+        
+            <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+            <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+            <script type="text/javascript" src="js/scripts.js"></script>
+            <script type="text/javascript" src="js/bootstrap.js"></script>
+            <script type="text/javascript" src="js/bootstrap.min.js"></script>
+            <script type="text/javascript" src="dist/js/bootstrap.min.js"></script>
+            <script type="text/javascript" src="pjs/repScript.js"></script>
+            <script type="text/javascript" src="pjs/display.js"></script>
+            <script type="text/javascript" src="pjs/validation.js"></script>
+            <script type="text/javascript" src="pjs/service.js"></script>
+            <script type="text/javascript" src="pjs/format.js"></script>
+            <script type="text/javascript" src="pjs/append.js"></script>
+<!--            <script type="text/javascript" src="pjs/jquery.masked.js"></script>
+            <script type="text/javascript" src="pjs/jquery.mask.min.js"></script>-->
+            <script>
+                newRow = 1;
+                currentRow = -1;
+
+                function HvacStandards() {
+                    var rowID = newRow;
+                    if (currentRow>0) {
+                        saveEdits();
+                    } else {
+                        var firstName = $("#fName").val();
+                        var lastName = $("#lName").val();
+                        var sHtml = "<tr id='row"+rowID+"'>" +
+                            "<td id=\"firstName" + rowID + "\">" + firstName + "</td>" +
+                            "<td id=\"lastName" + rowID + "\">" + lastName + "</td>" +
+                            
+                            "<td><button onclick='editRow(" + rowID + ")'>Edit</button>&nbsp;" +
+                            "<button onclick='deleteRow(" + rowID + ")'>Delete</button>" +
+                            "</tr>";
+                        $("#testingWithEdit").append(sHtml);
+                        newRow++;
+                        $("#fName,#lName").val("");
+                    }
+                }
+                function editRow(rowID) {
+                    $('#fName').val( $('#firstName'+rowID).html() );
+                    $('#lName').val( $('#lastName'+rowID).html() );
+                    currentRow = rowID;
+                }
+                function saveEdits()
+                {
+                    $('#firstName'+currentRow).html( $('#fName').val() );
+                    $('#lastName'+currentRow).html( $('#lName').val() );
+                    $("#fName,#lName").val("");
+                    currentRow = -1;
+                }
+                function deleteRow(rowID){
+                    $('#row'+rowID).remove();
+                }
+                
+                newRow1 = 1;
+                currentRow1 = -1;
+                
+                function NewList(){
+                    var rowID1 = newRow1;
+                    if (currentRow1>0) {
+                        saveE();
+                    } else {
+                        var fName = $("#first").val();
+                        var lName = $("#last").val();
+                        var pri = $("#prim").val();
+                        var mail = $("#eadd").val();
+                        var addre = $("#address").val();
+                        var cit = $("#city").val();
+                        var stat = $("#state").val();
+                        var zi = $("#zip").val();
+                        var nHtml = "<tr class='ro"+rowID1+"'>" +
+                            "<td id=\"fName" + rowID1 + "\">" + fName + "</td>" +
+                            "<td id=\"lName" + rowID1 + "\">" + lName + "</td>" +
+                            "<td id=\"mail" + rowID1 + "\">" + mail + "</td>" +
+                            "<td id=\"pri" + rowID1 + "\">" + pri + "</td>" +
+                            "<td><button onclick='editRow1(" + rowID1 + ")'>Edit</button>&nbsp;" +
+                            "<button onclick='deleteRow1(" + rowID1 + ")'>Delete</button>" +
+                            "</tr>";
+                        var aHTML = "<tr class='ro"+rowID1+"'>" +
+                            "<td id=\"addre" + rowID1 + "\">" + addre + "</td>" +
+                            "<td id=\"cit" + rowID1 + "\">" + cit + "</td>" +
+                            "<td id=\"stat" + rowID1 + "\">" + stat + "</td>" +
+                            "<td id=\"zi" + rowID1 + "\">" + zi + "</td>" +
+                           "</tr>";
+                        $("#testEdit").append(nHtml);
+                        $("#testEdit1").append(aHTML);
+                        newRow1++;
+                        $("#first,#last,#eadd").val("");
+                        $("#address,#city, #state, #zip, #prim").val("");
+                    }
+                }//end of function
+                
+                 function editRow1(rowID1){
+                    $('#first').val( $('#fName'+rowID1).html() );
+                    $('#last').val( $('#lName'+rowID1).html() );
+                    $('#eadd').val( $('#mail'+rowID1).html() );
+                    $('#prim').val( $('#pri'+rowID1).html() );
+                    $('#address').val( $('#addre'+rowID1).html() );
+                    $('#city').val( $('#cit'+rowID1).html() );
+                    $('#state').val( $('#stat'+rowID1).html() );
+                    $('#zip').val( $('#zi'+rowID1).html() );
+                    currentRow1 = rowID1; 
+                 }
+                 
+                 function saveE(){
+                    $('#fName'+currentRow1).html( $('#first').val() );
+                    $('#lName'+currentRow1).html( $('#last').val() );
+                    $('#mail'+currentRow1).html( $('#eadd').val() );
+                    $('#pri'+currentRow1).html( $('#prim').val() );
+                    $('#addre'+currentRow1).html( $('#address').val() );
+                    $('#cit'+currentRow1).html( $('#city').val() );
+                    $('#stat'+currentRow1).html( $('#state').val() );
+                    $('#zi'+currentRow1).html( $('#zip').val() );
+                    $("#first,#last,#eadd ,#address,#city, #state, #zip, #prim").val("");
+                    currentRow1 = -1; 
+                 }
+                 
+                
+                 function deleteRow1(rowID1){
+                    $('.ro'+rowID1).remove();
+//                    $('#ro1'+rowID1).remove();
+                    $("#first,#last,#eadd ,#address,#city, #state, #zip, #prim").val("");
+                }
+                
+               
+                
+                 
+            </script>
+        <!--javaScript end -->
+    </body>
+</html>

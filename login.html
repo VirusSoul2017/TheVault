@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>AC Genius Login</title>
+        <link rel = "stylesheet" href="css/bootstrap1.css" type ="text/css">
+        <link rel = "stylesheet" href="css/bootstrap-responsive.css" type ="text/css">
+        <link rel= "stylesheet" href="css/styles.css" type ="text/css" >
+        <link href="css/bootstrap.css" type="text/css" rel ="stylesheet" media="screen" >
+        <link href="css/flat-ui.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+        <link rel="shortcut icon" href="images/favicon.ico">
+
+    </head>
+    <body>
+         <div class = "hero-unit">
+            <h1 style = "color:black;"> Comfort Experts/AC Genius </h1>
+            <h2 style = "color:black;"> "You Can Call An Expert or Amateur-It's Your Choice!"</h2>
+            <!--nav bar area start-->
+
+        </div>
+        <div style="margin-top:40px; width:359px; border-style:soild; border-width:2px;border-radius:7px;"class="container">
+          <div class="login-form">
+            <center><img class="img-circle" src="img/ein.png">
+              <h4>Welcome to <strong style="color:#34495e;">Comfort Experts</strong></h4></center>
+               <form autocomplete = "off" >
+                  <span id = "welcome"></span>
+                  <div style="margin-top:10px;" class="control-group">
+                    <input type="text" class="login-field" id="logEmployee" placeholder="Username" autocomplete = "default" onkeyup = ""/>
+                  </div>
+                  <span id = "welcome1"></span>
+                  <div class="control-group">
+                    <input type="password" class="login-field" placeholder="Password" id = "logPassword" autocomplete = "default"onkeyup = "logPass()"/>
+                  </div>
+                    <!--<button type="submit" class="btn btn-large btn-block btn-warning">Login</button>-->
+                    <button type="submit" class="sub-login" onclick = "logPass()">Login</button>
+                    <hr>
+                   <a class="login-link" href="forgt-password.jsp">Forgot your Password?</a>
+              </form>
+            </div>
+        </div>
+
+
+      <script type="text/javascript" src="pjs/validation.js"></script>
+
+    </body>
+</html>

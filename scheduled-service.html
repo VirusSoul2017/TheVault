@@ -1,0 +1,1634 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Scheduled Service</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link href="css/bootstrap.css" type="text/css" rel ="stylesheet" media="screen" >
+        <link href="css/bootstrap-responsive.css" type="text/css" rel ="stylesheet">
+        <link rel="stylesheet" href="css/styles.css" />
+        <link rel="stylesheet" href="css/jquery-ui.css"/>
+        <link href="css/bootstrap1.css" type="text/css" rel ="stylesheet" media="screen" >
+    </head>
+    <body onload ="load();">
+    <!--start of nav-->
+       <nav class="navbar navbar-default navbar-fixed-top">
+              <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="cds-script.html">Home <span class="sr-only">(current)</span></a></li>
+                        <li><a href="cds-script-2.html">Service Repair</a></li>
+                        <li class="active"><a href="scheduled-service.html">Scheduled Service</a></li>
+                        <li><a href="replacement.html">Replacement</a></li>
+                        <li class="active"><a href="compliments.html">Compliment(Happy)</a></li>
+                        <li><a href="concerns.html">Concern(Unhappy)</a></li>
+                        <li class="active"><a href="reschedule-service.html">Rescheduled Service </a></li>
+                        <li><a href="reschedule-schedule.html">Rescheduled Scheduled Service </a></li>
+                        <li class="active"><a href="reschedule-placement-app.html">Rescheduled Replacement Appointment</a></li>
+                    </ul>
+                 </div><!-- /.navbar-collapse -->
+              </div><!-- /.container-fluid -->
+
+              <div class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <form class="navbar-form navbar-left" role="search">
+                            <span id = "messTrunk"></span>
+                            <div class="form-group">
+<!--                                <label>Trunk</label>
+                                  <input type="text" class="form-control" name ="tname" id = "tname" maxlength="12" autocomplete = "off" onblur = "copyNum()"  
+                                  onkeyup = "InputPhone(this)">
+                               <label>Phone Number</label>
+                                  <input type="text" class="form-control" name ="inpho" id = "inpho" maxlength= "12" autocomplete = "off" onkeyup = "InputPhone(this)"
+                                    onblur = "copyNum()" >-->
+                            </div>
+                            <!-- <font size="6" >Service Page</font> -->
+                        </form>
+                    </div>
+                </div>
+				<b align="center">Scheduled Services</b>
+            </div>
+        </nav>
+       <!--end of nav-->
+    <div class="container-fluid" style="margin-top:130px; margin-left:auto; margin-right:auto; border-style:soild; border-width:1px;border-radius:4px;">
+    <div class = "row-fluid">
+         <div class = "col-sm-9 col-md-6 col-lg-7" style = "border-style:soild; border-width:2px;border-radius:7px;">
+            <form class="form-inline" name ="schService" method="post" onsubmit= "return formVal(this)" style ="margin-top:10px;" method = "post" >
+                <div class = "contractName1" >
+                    <span id = "emessage" style="font-size:17px; font-weight:bold;"></span>
+                      <div class = "control-group" style = "margin-top:10px;">
+                        <label class ="lblline" style = "font-size:20px;">First Name:</label>
+                            <select onclick = "suffix()" id = "fixTitle" class = "select4" data-toggle="tooltip" data-original-title="Select Prefix" data-placement="top">
+                                <option value = "0">Select</option>
+                                <option value = "1">Mr.</option>
+                                <option value = "2">Mrs.</option>
+                                <option value = "3">Ms.</option>
+                            </select>
+                            <input class="span3"  style = "font-size:20px;" type = "text" name ="fname" id = "fname" maxlength= "45" onkeyup ="namfVal()" 
+                            autocomplete = "off" onblur= "showNumber1()" data-toggle="tooltip" data-original-title="Enter first Name Or May I have first name" 
+                            data-placement="top"/>
+                        <label  class ="lblmiddle" style = "margin-right:auto; margin-left:-90px; font-size:20px;">Last Name:</label>
+                            <input class="span3" style = "font-size:20px;" type = "text" autocomplete = "off" name ="lname" id = "lname" onkeyup = "namlVal1()" 
+                            onblur= "showNumber1()" data-toggle="tooltip" data-original-title ="Enter last Name Or May I have last name" data-placement="top"/>
+                      </div>
+
+                      <span id = "bestMess" style="font-size:17px;font-weight:bold;"></span>
+                      <div class = "control-group">
+                        <label style = "margin-left:55px;">Is <span id = "idNum" onchange = "copyNum()">4115-445-4564</span> the best number to contact you?</label>
+                            <label><input type= "radio" id ="bnYes" name = "best" onclick = "bnVal()" onfocus = "bnVal()" autocomplete = "off" 
+                                data-toggle="tooltip" data-original-title ="Check if the number on the Same call in" data-placement="top">Yes</label>
+                            <label><input type= "radio" id ="bnNo" name = "best" onclick = "bnVal()" onfocus = "bnVal()" autocomplete = "off"
+                                data-toggle="tooltip" data-original-title ="Check is number will be different from the call in Number" data-placement="top">No</label>
+                      </div>
+
+                      <!-- if yes id check it will show this hidden div(refer to:) Start-->
+                        <div class = "control-group bestYes" style = "display:none">
+                            <p style = "margin-left:55px;">Is this a
+                                <label><input type = "radio" name = "best1" id = "beCell" onclick = "bnVal()" onfocus = "bnVal()" autocomplete = "off">Cell</label>
+                                <label><input type = "radio" name = "best1" id = "beHome" onclick = "bnVal()" onfocus = "bnVal()" autocomplete = "off">Home or</label>  
+                                <label><input type = "radio" name = "best1" id = "beOffice" onclick = "bnVal()" onfocus = "bnVal()" autocomplete = "off">Office number ?</label>
+                                <input type = "text" autocomplete = "off" id = "best1Text" onchange = "bnVal()" onfocus = "bnVal()" style = "display:none"/>
+                            </p>
+                        </div>
+                      <!--if no id check it will show this hidden div(refer to:) End-->
+                      <!-- if yes id check it will show this hidden div(refer to:) Start-->
+                        <div class = "control-group bestNo" style = "display:none">
+                            <p style = "margin-left:40px;">What is the best number to contact you on
+                                <input type = "text" class = "span2" id = "ben0" maxlength = "12" onkeyup = "InputPhone(this)" onchange = "bnVal()" onfocus = "bnVal()"     autocomplete = "off">is this a 
+                               <label> <input type = "radio" name = "ben" id ="ben1" onclick = "bnVal()" onfocus = "bnVal()" autocomplete = "off">Cell</label>
+                               <label> <input type = "radio" name = "ben" id ="ben2" onclick = "bnVal()" onfocus = "bnVal()" autocomplete = "off">Home</label>
+                               <label> <input type = "radio" name = "ben" id ="ben3" onclick = "bnVal()" onfocus = "bnVal()" autocomplete = "off">Office</label> ?
+                                <input type = "text" class = "span2" id ="ben3Text" style = "display:none" onchange = "bnVal()" onfocus = "bnVal()" 
+                                autocomplete = "off"/></p>
+                        </div>
+                      <!--if no id check it will show this hidden div(refer to:) End-->
+
+
+                      <span id = "ddmessage" style="font-size:17px; font-weight:bold;"></span>
+                    <div id="emailDIV">
+                        <div class = "control-group">
+                            <label class ="lblline">Email Address:</label>
+                            <input class="span4" type = "text" size = "45" name ="email" id = "email" onkeyup= "mailVal()" onfocus= "mailVal()" autocomplete = "off" 
+                             data-toggle="tooltip" data-original-title="Enter Email User(12344lou!)" data-placement="top"/>
+                            @ <input class="span2" type = "text" id = "email1" onkeyup = "mailVal()" onfocus= "mailVal()" autocomplete = "off"
+                            data-toggle="tooltip" data-original-title="Select or Enter Email Type" data-placement="top"/>
+                            <label >.</label>
+                           <!--domain Listing-->
+                            <select name = "domain"  id = "domain" onclick = "mailVal()" class = "select2" autocomplete = "off" 
+                            data-toggle="tooltip" data-original-title="What type of domain?" data-placement="top">
+                                <option value = "0">Select</option>
+                                <option value = "com">com</option>
+                                <option value = "org">org</option>
+                                <option value = "edu">edu</option>
+                                <option value = "net">net</option>
+                                <option value = "gov">gov</option>
+                                <option value = "aero">aero</option>
+                                <option value = "asia">asia</option>
+                                <option value = "biz">biz</option>
+                                <option value = "cat">cat</option>
+                                <option value = "coop">coop</option>
+                                <option value = "info">info</option>
+                                <option value = "int">int</option>
+                                <option value = "jobs">jobs</option>
+                                <option value = "mil">mil</option>
+                                <option value = "mobi">mobi</option>
+                                <option value = "other">other</option>
+                            </select>
+                           <!--  <input class="span2" type = "text" id = "email1" onchange = "mailVal()" onfocus= "mailVal()" autocomplete = "off"/> -->
+                            <input type = "button" id = "addEmail" value = "+" onclick = "emailAdd()" title = "Add Additional Email"/>
+                            <label class = "type"><input type= "radio" name = "ednemai" value ="dnemai"  id ="dnemai" onclick = "mailVal()" autocomplete = "off"/>Decline</label>
+                            <label class = "type"><input type= "radio" name = "ednemai" value ="clear" id ="clear" onclick = "mailVal()" autocomplete = "off"/>Clear</label>
+                        </div>
+                        <div class = "control-group" style = "display:none" id ="emailType">
+                            <label class ="lblline">Select Email Type:</label>
+                            <label class = "type"><input type= "radio" name = "ednemai0"  id ="eyahoo" onclick = "mailVal()" autocomplete = "off"/> yahoo</label>
+                            <label class = "type"><input type= "radio" name = "ednemai0" value ="Gmail"  id ="egmail" onclick = "mailVal()" autocomplete = "off"/> 
+                                gmail</label>
+                            <label class = "type"><input type= "radio" name = "ednemai0" value ="Hotmail"  id ="ehotmail" onclick = "mailVal()" autocomplete = "off"/> 
+                                hotmail</label>
+                            <label class = "type"><input type= "radio" name = "ednemai0" value ="Ymail"  id ="eymail" onclick = "mailVal()" autocomplete = "off"/>
+                                ymail</label>
+                            <label class = "type"><input type= "radio" name = "ednemai0" value ="Outlook"  id ="eoutlook" onclick = "mailVal()" autocomplete = "off"/>
+                                outlook</label>
+                            <label class = "type"><input type= "radio" name = "ednemai0" value ="Zoho"  id ="ezoho" onclick = "mailVal()" autocomplete = "off"/>
+                                zoho</label>
+                            <label class = "type"><input type= "radio" name = "ednemai0" value ="yandex"  id ="eyandex" onclick = "mailVal()" autocomplete = "off"/>
+                                yandex</label>
+                            <label class = "type"><input type= "radio" name = "ednemai0" value ="AIM"  id ="eaim" onclick = "mailVal()"  autocomplete = "off"/>
+                                aim</label>
+                           <label class = "type"><input type= "radio" name = "ednemai0" value ="Mail"  id ="emali" onclick = "mailVal()" autocomplete = "off"/>
+                               mail</label>
+                            <label class = "type"><input type= "radio" name = "ednemai0" value ="Inbox"  id ="einbox" onclick = "mailVal()" autocomplete = "off"/>
+                                Inbox</label>
+                            <!-- <label class = "type"><input type= "radio" name = "ednemai0" value ="Other"  id ="eother" onclick = "mailVal()" autocomplete = "off"/>Other</label> -->
+                        </div>
+                         <!-- <div class = "control-group" style = "display:none" id = "yghHidden">
+                            <div class = "control-group" id = "extType">
+                            <label class ="lblline">Enter Email Type:</label>
+                             <label>@</label><input type = "text" class ="span3" onkeyup= "mailVal()" onfocus= "mailVal()" id = "yghText" autocomplete = "off"/>
+                               <label class = "type"><input type= "radio" name = "ednemai1" id ="extCom" onclick = "mailVal()" autocomplete = "off" />
+                                    com</label>
+                                <label class = "type"><input type= "radio" name = "ednemai1" id ="extOrg" onclick = "mailVal()" autocomplete = "off"/>
+                                    org</label>
+                                <label class = "type"><input type= "radio" name = "ednemai1" id ="extEdu" onclick = "mailVal()" autocomplete = "off"/>
+                                    edu</label>
+                                <label class = "type"><input type= "radio" name = "ednemai1" id ="extNet" onclick = "mailVal()" autocomplete = "off"/>
+                                    net</label>
+                                <label class = "type"><input type= "radio" name = "ednemai1" id ="extGov" onclick = "mailVal()" autocomplete = "off"/>
+                                    gov</label>
+                            </div>
+                        </div> -->
+                    </div><!--end of emailDiv-->
+
+
+                    <div class = "control-group">
+                    <p style = "margin-left:40px;">Would you like to be notified when the techician is enrounte by
+                        <input type = "radio" name = "choi" id ="same" value = "Text" onclick = "showNumber()" autocomplete = "off" data-toggle="tooltip" data-original-title ="Alert text before Techincan Arrival" data-placement="top"> Text <input type = "radio" 
+                        id = "choice2" value = "Email" name = "choi" autocomplete = "off" data-toggle="tooltip" data-original-title ="or Email" data-placement="top"> Email or <input type = "radio" name = "choi" id ="techBoth" autocomplete = "off" data-toggle="tooltip" data-original-title ="Alert by both text and email" data-placement="top"> Both ?</p>
+                    </div>
+                    <span id = "omessage" style="font-size:17px; font-weight:bold;"></span>
+                    <div class = "control-group mobile" style = "display:none">
+                        <label class ="lblline">Mobile Text Alert: </label>
+                          <input class="span2" type = "text" size = "12" maxlength = "12" name ="textphone" 
+                          id = "textphone" onchange = "tphVal()" onkeyup = "InputPhone(this)" onblur = "showNumber()" autocomplete = "off"/>
+                          <span class = "phoneList" style = "font-size:17px;"></span>
+                    </div>
+                    <!--hidden div for radio button selection email and both -->
+                    <div class = "control-group emailChoice" style = "display:none">
+                        <label class ="lblline">Email Address: </label>
+                        <input class="span5" type = "text" size = "12" name ="sameEmail" id = "sameEmail" autocomplete = "off"/>
+                    </div>
+                    <!--span div to display additional email address -->
+                    <div class = "control-group">
+                        <span class = "emList" style = "font-size:17px;"></span>
+                    </div>
+            </div><!--end of contractName-->
+
+            <!--div to for additional contact if yes is checked(Start)-->
+            <div class = "contractName2">
+            </div>
+            <!--div to for additional contact if yes is checked(End)-->
+
+            <div class = "control-group">
+                <p style = "margin-left:25px;">Would  you like to add additional contact?
+                    <label><input type= "radio" name = "adCon" id = "contractButton1" onclick = "" autocomplete = "off">Yes</label>
+                    <label><input type= "radio" name = "adCon" onclick = "" autocomplete = "off">No</label>
+                </p>
+            </div>
+
+                <span id = "dmessage" style="font-size:17px; font-weight:bold;"></span>
+                <div class = "control-group">
+                        <label  class ="lblline" >Zip:</label>
+                            <input class="span2" type = "text" autocomplete = "off" name ="zip" id = "zip" maxlength = "5" onkeyup= "codeVal()"
+                            data-toggle="tooltip" data-original-title="Enter Zip Code" data-placement="top"/>
+                         <label  class ="lblmiddle" style = "margin-right:auto; margin-left:-155px;">City:</label>
+                            <input class="span4" type = "text" autocomplete = "off" name ="city" id = "city" onkeyup = "ciVal()">
+                         <label class ="lblright" style = "margin-right:auto; margin-left:-180px;" >State:</label>
+                            <input class="span1" type = "text" autocomplete = "off" name ="state" id = "state" maxlength = "2" onkeyup = "stVal()" />
+                </div>
+                <span id = "amessage" style="font-size:17px; font-weight:bold;"></span>
+                <div class = "control-group">
+                    <label class ="lblline"> Service Address:</label>
+                        <input class= "span2" type = "text" name= "address" id = "address" onkeyup = "houseVal()" onfocus = "houseVal()"
+                        autocomplete = "off" data-toggle="tooltip" data-original-title="What is your building Number?" data-placement="top"/>
+                        <input class= "span3" type = "text" name= "address1" id = "address1" onkeyup = "streetVal()" autocomplete = "off"
+                         data-toggle="tooltip" data-original-title="What is your Street Name?" data-placement="top"/>
+                        <select class = "select2" id = "strloc" onfocus = "locstVal()" autocomplete = "off" onclick = "locstVal()"
+                        data-toggle="tooltip" data-original-title ="Do you live in a apartment or suite number?" data-placement="top">
+                            <option value = "0" >Select</option>
+                            <option value = "apartment" id = "apartment">Apartment</option>
+                            <option value = "suite" id = "suite">Suite</option>
+                            <option value = "nonet" id = "noneT">None</option>
+                        </select> 
+                    <input class= "span1" type = "text"  name= ""  id = "address3" autocomplete = "off"/>
+                </div>
+
+            <div id = "mediablock">
+                    <span id = "admessage" style="font-size:20px;font-weight:bold;text-align:center;"></span>
+                    <div class ="control-group">
+                        <label id = "hideLabel" style = "display:none;" >How did you hear about us?</label>
+                        <div id = "seconArea1">
+                            <div class = "control">
+                                <label class = ""></label>
+                                <label class = "type"><input type= "radio" name = "airv" value ="media"  id ="media" onclick = "airVal()" onfocus = "airVal()" autocomplete = "off" data-toggle="tooltip" data-original-title="Advertisement special or ad using  direct, radio, Television, Newpaper,Good 2CU options" data-placement="top" />Advertising</label>
+                                <label class = "type"><input type= "radio" name = "airv" value ="internet" id ="internet" onclick = "airVal()" onfocus = "airVal()"  autocomplete = "off" data-toggle="tooltip" data-original-title="Internet Search used to find HVAC Compnay" data-placement="top" />Internet</label>
+                                <label class = "type"><input type= "radio" name = "airv" value ="refer"  id ="refer" onclick = "airVal()" onfocus = "airVal()"  autocomplete = "off" data-toggle="tooltip" data-original-title="Refer by customer" data-placement="top" />Referral</label>
+                                <label class = "type"><input type= "radio" name = "airv" value ="van"  id ="van" onclick = "airVal()" onfocus = "airVal()"  autocomplete = "off" data-toggle="tooltip" data-original-title="Company Truck or Van" data-placement="top" />Van/Truck
+                                  </label>
+                                <label class = "type"><input type= "radio" name = "airv" value ="event"  id ="event" onclick = "airVal()" onfocus = "airVal()"  autocomplete = "off" data-toggle="tooltip" data-original-title="A planned public or social occasion." data-placement="top" />Event
+                                  </label>
+                                <label class = "type"><input type= "radio" name = "airv" value ="toma"  id ="toma"  onclick = "airVal()" onfocus = "airVal()"  autocomplete = "off" data-toggle="tooltip" data-original-title="Advertistment are designed for small space and high frequecy provide for customer" data-placement="top"/>TOMA
+                                  </label>
+                                    <select autocomplete = "off">
+                                        <option>Select Type</option>
+                                        <option class = "secChoice" >Community Support</option>
+                                        <option class = "secChoice" >Sticker</option>
+                                        <option class = "secChoice" >Door Hanger</option>
+                                        <option class = "secChoice" >Alliance</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                             <!--this for Advertising selection start-->
+                            <div style= "display:none"  id="mediachoice">
+                                <div class = "control-group">
+                                    <label class ="lblline" style = "margin-right:auto; margin-left:65px;" ></label>
+                                        <label class = "type"><input type= "radio" name = "adSele" value ="direct" id ="direct" onclick = "airVal()" 
+                                            autocomplete = "off"/>Direct Mail</label>
+                                        <label class = "type"><input type= "radio" name = "adSele" value ="radio" id ="radio" onclick = "airVal()"
+                                            autocomplete = "off"/>Radio</label>
+                                        <label class = "type"><input type= "radio" name = "adSele" value ="tele" id ="tele" onclick = "airVal()" 
+                                            autocomplete = "off"/>Television</label>
+                                        <label class = "type"><input type= "radio" name = "adSele" value ="newpaper" id ="newpaper" onclick = "airVal()" 
+                                            autocomplete = "off"/>Newpaper</label>
+                                        <label class = "type"><input type= "radio" name = "adSele" value ="gtcu" id ="gtcu" onclick = "airVal()" autocomplete = "off"/> Good 2CU</label>
+                                </div>
+                            </div>
+                            <!--this for Advertising selection end-->
+                            <!--this for direct mail selection start-->
+                            <div style= "display:none" id="directmail">
+                                <div class = "control-group">
+                                    <label class = "question" style = "margin-right:auto; margin-left:150px;">Mailer Name:</label>
+                                        <select id = "dmail" class = "select3" autocomplete = "off" onclick = "airVal()">
+                                            <option id = "dchoice" value = "0">Select</option> 
+                                            <option id = "fifty" value = "1">AC & Heating $59 Tune Up</option>   
+                                        </select>
+                                    <label class = "question2" style = "margin-right:auto; margin-left:-120px">Offer Code:</label>
+                                        <input type ="text" class = "span2" autocomplete = "off" id  = "dchoiceOffer"/>
+                                </div>
+                            </div>
+                            <!-- this is for Internet  selection start-->
+                            <div style= "display:none"  id="internetChoice">
+                                <div class ="control-group">
+                                    <label class = "question" style = "margin-right:auto; margin-left:110px;">Choose:</label>
+                                        <label class = "type"><input type= "checkbox" name = "google" value ="google"  id ="google" onchange = "airVal()"/>Google</label>
+                                        <label class = "type"><input type= "checkbox" name = "yahoo" value ="yahoo"  id ="yahoo" onchange = "airVal()"/>Bing</label>
+                                        <label class = "type"><input type= "checkbox" name = "angie" value ="angie"  id ="angie" onclick = "airVal()"/>Angie List</label>
+                                        <label class = "type"><input type= "checkbox" name = "website" value ="website"  id ="website" />Our Website</label>
+                                        <label class = "type"><input type="checkbox" name = "tmm" value = "tmm" id = "tmm"/>TMM</label>
+                                        <label class = "type"><input type= "checkbox" name = "yelp" value ="yelp"  id ="yelp" />Yelp</label>
+                                </div>
+                                <div class = "control-group">
+                                    <label class = "question" style = "margin-right:auto; margin-left:110px;"></label>
+                                    <label class = "type"><input type= "checkbox" name = "yelp" value ="Home Advisor"  id ="homeVis" />Home Advisor</label>
+                                    <label class = "type"><input type= "checkbox" name = "yelp" value ="Home Improvement"  id ="homeImp" />Home Improvement</label>
+                                    <label class = "type"><input type= "checkbox" name = "other" value ="other"  id ="other" onclick = "airVal()" />Other</label><br />
+                                        <input  class="span2" style= "display:none; margin-right:auto; margin-left:300px;" type = "text" name ="otco" id = "otco" onkeyup = "airVal()"/>
+                                </div>
+                                <span id ="inCount" class = "question" style = "margin-right:auto; margin-left:110px;"></span>
+                                <div class = "control-group">
+                                    <label class = "question" style = "margin-right:auto; margin-left:110px;">Search Input:</label>
+                                        <input type ="text" class = "span7" autocomplete = "off"  id  = "intSearch" rows ="2" maxlength = "100"/>
+                                </div>
+                               <div class = "control-group">
+                                    <label class = "question" style = "margin-right:auto; margin-left:110px;">Offer Code:</label>
+                                        <input type ="text" class = "span3" autocomplete = "off" id  = ""/>
+                                </div>
+                                <!-- <div>
+                                    <label class = "question" style = "margin-right:auto; margin-left:65px;"></label>
+                                    <input class="span2" style= "display:none" type = "text" name ="otco" id = "otco" onkeyup = "airVal()"/>
+                                </div>    -->
+                            </div>
+                            <!-- this is for Internet  selection end-->
+
+                            <!-- this is for radio  selection start-->           
+                            <div style= "display:none" id="radioanswer">
+                                <div class ="control-group">
+                                    <label class = "question" style = "margin-right:auto; margin-left:150px;">Radio Station:</label>
+                                        <!-- <input class="span2" type = "text" size = "" name ="rstation" id = "rstation" onchange = "airVal()"/> -->
+                                    <select id="rstation" autocomplete = "off">
+                                        <option>Select </option>
+                                        <option>Option 1</option>
+                                        <option>Option 2</option>
+                                        <option>Option 3</option>
+                                    </select>
+                                    <label class = "question2" style = "margin-right:auto; margin-left:-200px;">Ad:</label>
+                                        <input class="span2" type = "text" size = "" name ="rad" id = "rad" onchange = "airVal()"/>
+                                </div>
+                                <div class ="control-group">
+                                    <label class = "question" style = "margin-right:auto; margin-left:150px;">Offer Code:</label>
+                                        <input type = "text" id ="radioOffer" autocomplete = "off"/>
+                                </div>
+                            </div>
+                        <!-- this is for radio  selection end--> 
+                         <!-- this is for television  selection start-->
+                        <div style= "display:none" id="teleans">
+                            <div class ="control-group">
+                                <label class = "question" style = "margin-right:auto; margin-left:120px;">Channel :</label>
+                                    <!-- <input class="span2" type = "text" size = "" name ="chan" id = "chan" onchange = "airVal()"/> -->
+                                    <select id="chan" autocomplete = "off">
+                                        <option>Select </option>
+                                        <option>Option 1 </option>
+                                        <option>Option 2</option>
+                                        <option>Option 3 </option>
+                                    </select>
+                                <label class = "question2" style = "margin-right:auto; margin-left:-150px;" >Ad Name:</label>
+                                    <input class="span2" type = "text" size = "" name ="tio" id = "tio" onchange = "airVal()"/>
+                            </div>
+                            <div class ="control-group">
+                                    <label class = "question" style = "margin-right:auto; margin-left:120px;">Offer Code:</label>
+                                        <input type = "text" id ="chanOffer" autocomplete = "off"/>
+                                </div>
+                        </div>
+                        <!-- this is for television  selection end-->
+                        <!-- this is for newpaper  selection start-->
+                        <div style= "display:none" id="newwpaperans">
+                            <div class ="control-group">
+                                <label class = "question" style = "margin-right:auto; margin-left:180px;">Newpaper Name:</label>
+                                    <!-- <input class="span2" type = "text" size = "" name ="news" id = "news" onchange = "airVal()"/> -->
+                                    <select id="news" autocomplete = "off">
+                                        <option>Select </option>
+                                        <option>Option 1 </option>
+                                        <option>Option 2</option>
+                                        <option>Option 3 </option>
+                                    </select>
+                                <label class = "question2" style = "margin-right:auto; margin-left:-200px;" >Ad:</label>
+                                    <input class="span2" type = "text" size = "" name ="nad" id = "nad" onchange = "airVal()"/>
+                            </div>
+                            <div class ="control-group">
+                                    <label class = "question" style = "margin-right:auto; margin-left:180px;">Offer Code:</label>
+                                        <input type = "text" id ="newsOffer" autocomplete = "off"/>
+                                </div>
+                        </div>
+                        <!-- this is for newpaper selection end-->
+                            <!--this for Referral selection start-->
+                            <div style= "display:none" id="questionChoice">
+                                <div class ="control-group">
+                                    <label class = "lblline" style = "margin-right:auto; margin-left:150px;" >Refer By</label>
+                                    <div class = "controls">
+                                        <label class = "question" style = "margin-right:auto; margin-left:150px;" >First Name:</label>
+                                            <input class="span3" type = "text" size = "" name ="firstn" id = "firstn" onchange = "airVal()" 
+                                            autocomplete = "off"/>
+                                        <label class = "lblmiddle" style = "margin-right:auto; margin-left:-110px;">Last Name:</label>
+                                            <input class="span3" type = "text" size = "" name ="lastn" id = "lastn" onchange = "airVal()"
+                                            autocomplete = "off"/>
+                                    </div>
+                                </div>
+                                <div class ="control-group">
+                                    <label class = "question" style = "margin-right:auto; margin-left:150px;" >Zip:</label>
+                                            <input class="span2" type = "text" maxlength = "5" name ="qcity" id = "qcity2" onchange = "airVal()" 
+                                            autocomplete = "off"/>
+                                    <label class = "" >City:</label>
+                                        <input class="span3" type = "text" size = "" name ="qcity" id = "qcity" onchange = "airVal()" 
+                                        autocomplete = "off"/>
+                                    <label class = "">State:</label>
+                                            <input class="span1" type = "text" size = "" name ="qcity" id = "qcity1" onchange = "airVal()" 
+                                            autocomplete = "off"/>
+                                        
+                                </div>
+                                <!-- <div class = "control-group">
+                                    <label class = "question" style = "margin-right:auto; margin-left:150px;">Offer Code:</label>
+                                            <input type ="text" class = "span2" autocomplete = "off" id  = "dchoiceOffer"/>
+                                </div> -->
+                            </div>
+                            <!--this for Referral selection end-->
+                            
+                            <!--this for direct mail selection end-->
+                            <!-- this is for event  selection start-->
+                            <div style= "display:none" id="eventques">
+                                <div class ="control-group">
+                                    <label class = "question" style = "margin-right:auto; margin-left:170px;"> Choose Event:</label>
+                                    <select onclick = "airVal()" id = "ec">
+                                        <option value = "0" >Select </option>
+                                        <option value = "1" >Option 1 </option>
+                                    </select>
+                                    <label >Offer Code:</label>
+                                        <input type = "text" id ="newsOffer" autocomplete = "off"/>
+                                </div>
+                            </div>
+                        </div>
+                    <div id = "seconArea">
+                            <!-- this is for event  selection end-->
+                            <div class = "control-group"  >
+                                <label class = ""></label>
+                                <label class = "type"><input type="radio" name = "airv" value = "soon" id = "soon" onclick = "airVal()" onfocus = "airVal()" 
+                                    autocomplete = "off" data-toggle="tooltip" data-original-title="Local Companies" data-placement="top"/>Community Support</label>
+                                <label class = "type"><input type="radio" name = "airv" value = "sticker" id = "sticker" onclick = "airVal()" onfocus = "airVal()"
+                                    autocomplete = "off" data-toggle="tooltip" data-original-title="Stickers place  at different location of current promotions" data-placement="top"/>Sticker</label>
+                                <label class = "type"><input type="radio" name = "airv" value = "dhanger" id = "dhanger" onclick = "airVal()" onfocus = "airVal()"
+                                    autocomplete = "off" data-toggle="tooltip" data-original-title="Advertistment flyers place on doors" data-placement="top"/>Door Hanger</label>
+                                <label class = "type"><input type="radio" name = "airv" value = "alliance" id = "alliance" onclick = "airVal()" onfocus = "airVal()" 
+                                    autocomplete = "off" data-toggle="tooltip" data-original-title="Sister Companies" data-placement="top"/>Alliance</label>
+                                <label class = "type"><input type="radio" name = "airv" value ="otherd"  id ="otherd" onclick = "airVal()" autocomplete = "off"
+                                    data-toggle="tooltip" data-original-title="Enter Advertistment type is not listed" data-placement="top"/>
+                                    Other</label>
+                                <input style= "display:none; margin-right:auto; margin-left:10px;" class="span2" type = "airv" size = "" name ="otherChoice" id = "otherChoice" onkeyup = "airVal()"/>
+                                <select autocomplete = "off" class = "select0" autocomplete = "off">
+                                    <option>Select Type</option>
+                                    <option class = "secChoice1" >Direct</option>
+                                    <option class = "secChoice1" >Internet</option>
+                                    <option class = "secChoice1" >Referral</option>
+                                    <option class = "secChoice1" >Van/Truck</option>
+                                    <option class = "secChoice1" >Event</option>
+                                    <option class = "secChoice1" >Toma</option>
+                                </select>
+                            </div>
+                            
+                
+                        <!--this is for community support area start-->
+                        <div style = "display:none" id= "commques">
+                            <label class = "question" style = "margin-right:auto; margin-left:50px;">Select Location:</label>
+                                <select id = "ommunity" onclick = "airVal()" onfocus = "airVal()">
+                                    <option value = "0" >Select </option>
+                                    <option value = "1" >Lion Club</option>
+                                    <option value = "2" >Team Sport</option>
+                                    <option value = "3" id = "cother"> Other</option>
+                                </select>
+                                <input class="span2" style= "display:none" type = "text" name ="otco3" id = "otco3" onfocus = "airVal()" onkeyup = "airVal()"/>
+                                <label class = "question2" style = "margin-right:auto; margin-left:-120px">Offer Code:</label>
+                                    <input type ="text" class = "span2" autocomplete = "off" id = "csOffer" onkeyup = "airVal()" onfocus = "airVal()"/>
+                        </div>
+            <!--this is for community support area end--> 
+                        <!-- this is for door hanger  selection start-->
+                        <div style= "display:none" id="doorques">
+                            <div class = "control-group">
+                                <label class = "question" style = "margin-right:auto; margin-left:100px;"> Name:</label>
+                                     <select id = "doorOP" autocomplete = "off" onchange = "airVal()" onfocus = "airVal()" >
+                                        <option value = "0">Select</option>
+                                        <option value = "1">Option 1</option>
+                                        <option value = "2">Option 2</option>
+                                        <option value = "3">Option 3</option>
+                                        <option value = "4">Option 4</option>
+                                        <option value = "5">Option 5</option>
+                                     </select>
+                                <label class = "question2" style = "margin-right:auto; margin-left:-150px;" > Source:</label>
+                                    <input class="span3" type = "text" name ="dnQuestion" id = "dsource" onchange = "airVal()" onfocus = "airVal()"/>
+                            </div>
+                            <div class ="control-group">
+                                    <label class = "question" style = "margin-right:auto; margin-left:100px;">Offer Code:</label>
+                                        <input type = "text" id ="newsOffer" autocomplete = "off"/>
+                                </div>
+                        </div>
+                    <!-- this is for door hanger selection end-->
+            
+            <!--this is for alliance area start-->
+                    <div style = "display:none" id= "allianques">
+                        <div class = "control-group">
+                            <label class = "question" style = "margin-right:auto; margin-left:50px;">Company Name:</label>
+                                <select onclick = "airVal()" id = "anceall">
+                                    <option value = "0" >Select </option>
+                                    <option value = "h1"> Other</option>
+                                </select>
+                                <input class="span2" style= "display:none" type = "text" name ="otco4" id = "otco4" />
+                        </div>
+                        <div class ="control-group">
+                            <label class = "question" style = "margin-right:auto; margin-left:50px;">First Name:</label>
+                                <input type = "text" id ="anFirst" autocomplete = "off" onchange = "airVal()" onfocus = "airVal()"/>
+                            <label class = "question2" style = "margin-right:auto; margin-left:-110px;">Last Name:</label>
+                                <input type = "text" id ="anLast" autocomplete = "off" onchange = "airVal()" onfocus = "airVal()"/>
+                        </div>
+                        <div class ="control-group">
+                            <label class = "question" style = "margin-right:auto; margin-left:50px;">Offer Code:</label>
+                                <input type = "text" id ="newsOffer" autocomplete = "off"/>
+                        </div>
+                    </div>
+                    <!--this is for alliance support area end--> 
+                    </div><!--end of secondArea div-->
+            </div><!--end of mediablock div-->
+
+                 <span id = "comAddon" style="font-size:17px; font-weight:bold;"></span><!--span validation message-->
+                <div class ="control-group">
+                    <label class = "lblline"> Building Type:</label>
+                     <label class = "type"><input type="radio" value="Residual" name = "resid" id = "residential" onclick ="buildVal()" 
+                        onfocus = "buildVal()" autocomplete = "off" data-toggle="tooltip" data-original-title="House, Duplex and Apartment" 
+                        data-placement="top">Residential</label>
+                    <label class = "type"><input type="radio" value="Business" name = "resid" class = "intyope" id = "business" onfocus = "buildVal()" 
+                        onclick ="buildVal()" autocomplete = "off" data-toggle="tooltip" data-original-title="Corporation or LLC" 
+                        data-placement="top">Business</label>
+                    <label class = "type"><input type="radio" value="Industial" name = "resid" class = "intyope" id = "industial" 
+                        onclick ="buildVal()" onfocus = "buildVal()" autocomplete = "off" data-toggle="tooltip" data-original-title="Warehouse, Railroad Companies" data-placement="top" >Industrial</label>
+                    <label class = "type"><input type="radio" value="Educational" name = "resid" id = "educational" onfocus = "buildVal()"
+                        onclick ="buildVal()" autocomplete = "off" data-toggle="tooltip" data-original-title="Schools" data-placement="top">Educational</label>
+                    <label class = "type">
+                        <input type="radio" value="religious" name = "resid" onfocus = "buildVal()" id = "religious" onclick ="buildVal()" 
+                        autocomplete = "off"  data-toggle="tooltip" data-original-title="Chruch Organizations" data-placement="top">Religious</label>
+                    <label class = "type"><input type="radio" value="religious" name = "resid" onfocus = "buildVal()" id = "muilti" 
+                        onclick ="buildVal()" autocomplete = "off" data-toggle="tooltip" data-original-title="Duplex,Townhouses, Apartment" 
+                        data-placement="top">Multi-Family</label>
+                   <select class = "span2" id = "builtDDL" data-toggle="tooltip" data-original-title="Select if building type is not listed" 
+                        data-placement="top" autocomplete = "off"  >
+                        <option> Select</option>
+                        <option> Select 1</option>
+                        <option id = "builtOther"> Other</option>
+                   </select>
+                </div>
+                <!--hidden div for ddl  option Other id = builtDDL start  -->
+                 <div class = "control-group" style = "display:none" id = "builtDiv">
+                    <label class = "lblline"> Building Type:</label>
+                    <input type = "text" id ="builtAdd" class = "span4" autocomplete = "off"  data-toggle="tooltip" 
+                    data-original-title="Enter Company Name" data-placement="top" >
+                    <input type = "button" id ="Addbuilt" value = "Add Building Type" onclick ="buildVal()" >
+                </div>
+                <!--hidden div for ddl  option Other id = id = builtDDL start  -->
+                <!--This is for  selection business, industial, educational, religious-->
+               <div style= "display:none" id="colist">
+                    <div class = "control-group">
+                        <label class = "lblline">Company Name:</label>
+                        <input class="span5" type = "text" name ="pan" id = "pan" onkeyup ="numVal()" autocomplete = "off" 
+                           data-toggle="tooltip" data-original-title="Enter Company Name" data-placement="top"/>
+                        <label class = "type"><input type="radio" value="INC" name = "btype" id = "cInc" onclick ="CompanyOther1()" 
+                           onfocus = "CompanyOther1()" data-toggle="tooltip" data-original-title="Corporation" data-placement="top">INC</label>
+                        <label class = "type"><input type="radio" value="LLC" name = "btype" id = "cLLc" onclick ="CompanyOther1()" 
+                           onfocus = "CompanyOther1()" data-toggle="tooltip" data-original-title=" Limited Liability Companies:Small Busniesses " 
+                           data-placement="top">LLC</label>
+                        <label class = "type"><input type="radio" value="LP"  name = "btype" id = "cLP"  onclick ="CompanyOther1()" 
+                            onfocus = "CompanyOther1()"  data-toggle="tooltip" data-original-title=" Serving as a general or limited partner" 
+                            data-placement="top">LP</label>
+                    </div>
+                </div>
+                <!--hidden div for ddl  option Other id = AddComp start  -->
+                <div class = "control-group" style = "display:none" id = "compAd">
+                    <label class = "lblline">Other Company:</label>
+                    <input type = "text" id ="yanpAdd" class = "span4" autocomplete = "off">
+                    <input type = "button" id ="panyAdd" value = "Add Company" onclick ="CompanyOther()" >
+                </div>
+
+                <div id = "directHidden" style  = "display:none">
+                    <span id = "ptypeMess" style="font-size:17px; font-weight:bold;"></span>
+                    <div class = "control-group">
+                        <label style="font-size:17px;" class = "question"> Is your system</label>
+                        <label class = "type"><input type= "radio" name = "adb" value ="package" id ="dpackage"  autocomplete = "off"  onclick = "dpackageVal()" onfocus = "dpackageVal()"/> Package</label>
+                        <label class = "type"><input type= "radio" name = "adb" value ="Spilt System" id ="dspilt" autocomplete = "off" onclick = "dpackageVal()" onfocus = "dpackageVal()"/>Spilt System</label>
+                        <label class = "type"><input type= "radio" name = "adb" value ="Evaporative"  id ="devap" autocomplete = "off" onclick = "dpackageVal()" onfocus = "dpackageVal()"/>Evaporative</label>
+                        <label class = "type"><input type= "radio" name = "adb" value ="Geothermal"  id ="dgeoth"  autocomplete = "off" onclick = "dpackageVal()" onfocus = "dpackageVal()"/> Geothermal</label>
+                        <label class = "type"><input type= "radio" name = "adb" value ="Mini Split"  id ="dmspilt"  autocomplete = "off" onclick = "dpackageVal()" onfocus = "dpackageVal()"/>Mini Split</label>
+                        <label class = "type"><input type= "radio" name = "adb" value ="I Don't Know"  id ="dhidk"  autocomplete = "off" onclick = "dpackageVal()" onfocus = "dpackageVal()"/>I Don't Know</label>
+                    </div>
+
+                    <!--Commerical (Heat Type) start -->
+                    <div class ="control-group htDHide1 " style = "display:none">
+                        <label class = "question" style="font-size:17px;"> Heat Type:</label>
+                        <label class = "type"><input type= "radio" name = "adb1" value ="Heat Pump" id ="hpHeat" autocomplete = "off" onclick = "" onfocus = "" /> Heat Pump</label>
+                        <label class = "type"><input type= "radio" name = "adb1" value ="" id ="hpGas" autocomplete = "off" onclick = "" onfocus = ""  />Gas</label>
+                        <label class = "type"><input type= "radio" name = "adb1" value ="" id ="hpElec" autocomplete = "off" onclick = "" onfocus = "" />Electric
+                        </label>
+                        <label class = "type"><input type= "radio" name = "adb1" value ="" id ="hpDual" autocomplete = "off" onclick = "" onfocus = "" />Dual Fuel
+                        </label>
+                    </div>
+                    <!--Commerical (Heat Type) end-->
+                    
+                    <span id = "htypeMess" style="font-size:17px; font-weight:bold; color:red;"></span>
+                    <div id ="pselDiv" style = "display:none">
+                         <div class ="control-group">
+                            <label class = "question" style="font-size:17px;"> Heat Type:</label>
+                                <label class = "type"><input type= "radio" name = "psel" value ="heat" id ="heatr" autocomplete = "off" 
+                                onclick = "" onfocus = "" />Heat Pump</label>
+                                <label class = "type"><input type= "radio" name = "psel" value ="gasr" id ="gasr" autocomplete = "off" 
+                                onclick = "" onfocus = ""  />Gas</label>
+                                <label class = "type"><input type= "radio" name = "psel" value ="electric" id ="electricr" autocomplete = "off" 
+                                onclick = "" onfocus = "" />Electric</label>
+                                <label class = "type"><input type= "radio" name = "psel" value ="dual" id ="dualr" autocomplete = "off" 
+                                onclick = "" onfocus = "" />Dual Fuel</label>
+                                <label class = "type"><input type= "radio" name = "psel" value ="hydronic" id ="hydr" autocomplete = "off" 
+                                onclick = "" onfocus = "" />Hydronic</label>
+                                <label class = "type"><input type= "radio" name = "psel" value ="iflores" id ="iflor" autocomplete = "off" 
+                                onclick = "" onfocus = "" />In Floor Radiant</label>
+                                <label class = "type"><input type= "radio" name = "psel" value ="wood" id ="wood" autocomplete = "off" 
+                                onclick = "" onfocus = "" />Wood</label>
+                        </div>
+                        <div class = "control-group">
+                            <label class = "question" style="font-size:17px;"></label>
+                                <select id = "phtDDL" autocomplete = "off">
+                                    <option>Select</option>
+                                    <!-- <option id = "phtOthr">Other</option> -->
+                                </select>
+                                <input type = "text" autocomplete = "off" class = "phtShow" id = "phtShow" />
+                        </div>
+                        <!--if  heat is click-->
+                        <div class = "control-group" id = "elegas11r" style = "display:none">
+                            <label class = "question">Type of Gas:</label>
+                                <label class = "type"><input type= "radio" name = "thi" value ="propane" id ="propane" onclick = "gasVal1()" autocomplete = "off" />Propane</label>
+                                <label class = "type"><input type= "radio" name = "thi" value ="natural"  id ="natural" onclick = "gasVal1()" autocomplete = "off"/>Natural Gas</label>
+                        </div>
+                        <span id = "resiMessage10" style="font-size:17px; font-weight:bold; color:red;"></span>
+                        <div class = "control-group">
+                            <label class = "question">Unit Location:</label>
+                            <label class = "type"><input type= "radio" name = "ty10" value =""  id ="roofr" autocomplete = "off" onclick = "Union()" 
+                                onfocus = "Union()"/>Roof</label>
+                            <label class = "type"><input type= "radio" name = "ty10" value =""  id ="ground" autocomplete = "off" onclick = "Union()" 
+                                onfocus = "Union()"/>Ground</label>
+                            <label class = "type"><input type= "radio" name = "ty10" value =""  id ="locWall" autocomplete = "off" onclick = "Union()" 
+                                onfocus = "Union()"/>Wall</label>
+                            <select id = "ty10Sel">
+                                <option>Select</option>
+                               <!--  <option id = "ty10th">Other</option> -->
+                            </select>
+                             <input type="text" id ="ty10text" class = "span3" autocomplete = "off" >
+                        </div>
+                        <div class = "control-group grounSho" style  = "display:none">
+                            <label class = "question">Roof Access:</label>
+                                <label class = "type"><input type= "radio" name = "ty20" value =""  id ="perRoof" autocomplete = "off" onclick = "Union()" onfocus = "Union()"/>Permit Roof Access</label>
+                                <label class = "type "><input type= "radio" name = "ty20" value =""  id ="supLad" autocomplete = "off" onclick = "Union()" onfocus = "Union()"/>Ladder</label>
+                        </div>
+                        <!--Supply ladder onclick hidden area -->
+                        <span id = "LadMessage" style="font-size:17px; font-weight:bold;"></span>
+                         <div class = "ladderSho" style  = "display:none;">
+                            <div class = "control-group" >
+                                <label class = "question">Estimate Ladder Needed:</label>
+                                <label class = "type"><input type= "radio" name = "eln0" value =""  id ="ladSize" autocomplete = "off" onclick = "LadderSize()" 
+                                    onfocus = "LadderSize()"/>16 ft</label>
+                                <label class = "type"><input type= "radio" name = "eln0" value =""  id ="ladSize1" autocomplete = "off" onclick = "LadderSize()" 
+                                    onfocus = "LadderSize()"/>24 ft</label>
+                                <label class = "type"><input type= "radio" name = "eln0" value =""  id ="ladSize2" autocomplete = "off" onclick = "LadderSize()" 
+                                    onfocus = "LadderSize()"/>30 ft</label>
+                                <select id = "ladderSeletion" autocomplete = "off">
+                                    <option value = "0"> Select Ladder Size</option>
+                                    <option value = "" id = ""> Size 1</option>
+                                    <option value = "" id = ""> Size 1</option>
+                                    <!-- <option value = "" id = "otLadder"> Add Other Size</option> -->
+                                     <input type="text" id ="ladSize" class = "span1" autocomplete = "off" >
+                                </select>
+                            </div>
+                        </div>
+                    </div><!--end of id = "packageSel"--> 
+
+                    <!--Split System , click heat or electric it will show question for indoor and out Residential hidden div start-->
+            <div id = "spiSystemSel" style = "display:none">
+                <span id = "hgeMessage" style="font-size:17px; font-weight:bold;"></span>
+                 <div class ="control-group">
+                    <label class = "question" style="font-size:17px;"> Heat Type:</label>
+                    <label class = "type"><input type= "checkbox" name = "heatr" value ="heat" id ="heatrspi" autocomplete = "off" onclick = "hgeType()"  
+                        onfocus = "hgeType()"/>Heat Pump</label>
+                    <label class = "type"><input type= "checkbox" name = "gasr" value ="gasr" id ="gasrspi" autocomplete = "off" onclick = "hgeType()"  
+                        onfocus = "hgeType()" />Gas</label>
+                    <label class = "type"><input type= "checkbox" name = "electricr" value ="electric" id ="electricrspi" autocomplete = "off" 
+                        onclick = "hgeType()"  onfocus = "hgeType()"/>Electric</label>
+                    <label class = "type"><input type= "checkbox" name = "dualr" value ="dual" id ="dual" autocomplete = "off" onclick = "hgeType()"  
+                        onfocus = "hgeType()"/>Dual</label>
+                </div>
+
+                <div id = "gasSpBut" style = "display:none">
+                    <div class = "control-group">
+                        <label class = "question"> Type of Gas:</label>
+                            <label class = "type"><input type= "radio" name = "thi1" value ="propane" id ="gpro" onclick = "hgeType()" onfocus = "hgeType()" autocomplete = "off" />Propane</label>
+                            <label class = "type"><input type= "radio" name = "thi1" value ="natural"  id ="gnat" onclick = "hgeType()" onfocus = "hgeType()" autocomplete = "off"/>Natural Gas</label>
+                    </div>
+                </div><!--end of id = gasSpBut-->
+
+                <div id = "splitHeatbutton" style = "display:none">
+                    <div class = "control-group">
+                        <label class = "question"> Unit Age:</label>
+                            <label>Is Indoor and Outdoor Unit Approximate Same Age?</label>
+                            <label class = "type"><input type= "radio" name = "ageD" id ="heleyes" autocomplete = "off" onclick = "hgeType()"  onfocus = "hgeType()"/>
+                                Yes</label>
+                            <label class = "type"><input type= "radio" name = "ageD" id ="heleno" autocomplete = "off" onclick = "hgeType()"  onfocus = "hgeType()"/>
+                                No</label>
+                    </div>
+                    <!--click yes (id = "hpyes") it will show question "Is Indoor and Outdoor Unit Approximate Same Age?"-->
+                    <div id = "yeshep" style = "display:none">
+                        <div class = "control-group">
+                            <label class = "question">System Age </label>
+                                <input type ="text" class = "span1" id ="hgeAge" autocomplete = "off" maxlength = "2" onkeyup = "hgeType()"  onfocus = "hgeType()"/>
+                            <label>Years Old Or</label>
+                                <input type ="text" class = "span2" id ="hgeYear" autocomplete = "off" maxlength = "4" />
+                            <label>Year Installed</label>
+                        </div>
+                    </div>
+                    <div id = "nohep" style = "display:none">
+                         <div class = "control-group">
+                            <label class = "question">Outdoor Unit  </label>
+                                <input type ="text" class = "span1" id = "htou" maxlength ="2" onchange = "hgeType()"  onfocus = "hgeType()" autocomplete = "off"/>
+                            <label>Years Old Or</label>
+                                <input type ="text" class = "span2" id = "htou1" autocomplete = "off"/>
+                            <label>Year Installed</label>
+                        </div>
+                        <div class = "control-group">
+                            <label class = "question">Indoor  Electric  </label>
+                                <input type ="text" class = "span1" id = "hine" maxlength ="2" onchange = "hgeType()"  onfocus = "hgeType()" autocomplete = "off"/>
+                            <label>Years Old Or</label>
+                                <input type ="text" class = "span2" id = "hine1" autocomplete = "off"/>
+                            <label>Year Installed</label>
+                        </div>
+                     </div><!--end of nohep div-->
+                </div>
+
+        <!--Residential Outdoor Unit Location Split System-->
+                <span id = "filtMessage" style="font-size:17px; font-weight:bold;color:red;"></span>   
+                    <div class = "control-group rgwFilt" style = "display:none">
+                        <label class = "question">Outdoor Unit Location:</label>
+                            <label class = "type"><input type= "radio" name = "outD" id ="roofilt" autocomplete = "off" onclick = "filt()" onfocus = "filt()"/>
+                                Roof</label>
+                            <label class = "type"><input type= "radio" name = "outD" id ="grouilt" autocomplete = "off" onclick = "filt()" onfocus = "filt()"/>
+                                Ground</label>
+                            <label class = "type"><input type= "radio" name = "outD" id ="wallilt" autocomplete = "off" onclick = "filt()" onfocus = "filt()"/>
+                                Wall</label>
+                            <select id = "filtDDL" autocomplete = "off">
+                                <option>Select</option>
+                            </select>
+                            <input type = "text" id ="filtText" class = "span3" maxlength = "" autocomplete = "off">
+                    </div>
+                   <div class = "control-group" id = "outdSplit" style  = "display:none">
+                       <label class = "question">Roof Access:</label>
+                        <label class = "type grounSho"><input type= "radio" name = "acce" id ="prfSpilt" autocomplete = "off" onclick = "filt()" onfocus = "filt()"/>Permit Roof Access</label>
+                        <label class = "type grounSho"><input type= "radio" name = "acce" id ="lSpilt" autocomplete = "off" onclick = "filt()" onfocus = "filt()"/>Ladder</label>
+                    </div>
+                    
+                    <!--Supply ladder onclick hidden area -->
+                <span id = "reatSPI" style="font-size:17px; font-weight:bold; color:red;"></span>
+                    <div class = "control-group" id = "AccessLad" style  = "display:none;">
+                        <label class = "question">Estimate Ladder Needed:</label>
+                        <label class = "type"><input type= "radio" name = "roSize" id ="rosi1" autocomplete = "off" onclick = "heatSpilt()" onfocus = "heatSpilt()"/>16</label>
+                        <label class = "type"><input type= "radio" name = "roSize" id ="rosi2" autocomplete = "off" onclick = "heatSpilt()" onfocus = "heatSpilt()"/>24</label>
+                        <label class = "type"><input type= "radio" name = "roSize" id ="rosi3" autocomplete = "off" onclick = "heatSpilt()" onfocus = "heatSpilt()"/>30</label>
+                        <select  id = "elnList">
+                            <option> Select Ladder Size</option>
+                            <option value = "other" id = "ELNOth"> Other</option>
+                        </select>
+                        <input type = "text" id ="olz" class = "span1" maxlength = "2"  onkeypress = "heatSpilt()" autocomplete = "off">
+                    </div>
+                    <!--build type start-->
+                    <span id = "ebsMess" style="font-size:17px; font-weight:bold;"></span>   
+                    <div class = "control-group" id = "rooHeight" style = "display:none">
+                        <label class= "question"> Estimate Height:</label>
+                            <input type = "text" class ="span1" max = "3" autocomplete = "off" id ="ehText" onkeyup = "" onfocus = ""/>
+                        <label>ft</label>
+                        <label> or Estimate Building Story:</label>
+                        <label class = "type"><input type= "radio" name = "bStory" id ="story" autocomplete = "off" onclick = "ebs()" onfocus = "ebs()"/>1</label>
+                        <label class = "type"><input type= "radio" name = "bStory" id ="story1" autocomplete = "off" onclick = "ebs()" onfocus = "ebs()"/>2</label>
+                        <label class = "type"><input type= "radio" name = "bStory" id ="story2" autocomplete = "off" onclick = "ebs()" onfocus = "ebs()"/>3</label>
+                        <label class = "type"><input type= "radio" name = "bStory" id ="storyOt" autocomplete = "off" onclick = "ebs()" onfocus = "ebs()"/>Other</label>
+                        <input type = "text" class = "span2" autocomplete = "off" id = "storyText" onchange = "ebs()" maxlength ="2"  style = "display:none" />
+                    </div><!--building type end-->
+
+                    <span id = "iduMess" style="font-size:17px; font-weight:bold;"></span>   
+                    <div class = "control-group iduDiv" style = "display:none">
+                        <label class = "question">Indoor Unit Location:</label>
+                            <label class = "type"><input type= "radio" name = "iul" id ="iduclos" onclick = "LocationIn()" onfocus = "LocationIn()" 
+                                autocomplete = "off"/>Closet</label>
+                            <label class = "type"><input type= "radio" name = "iul" id ="idugara" autocomplete = "off" onclick = "LocationIn()" 
+                                onfocus = "LocationIn()"/>Garage</label>
+                            <label class = "type"><input type= "radio" name = "iul" id ="idubase" autocomplete = "off"  onclick = "LocationIn()" 
+                                onfocus = "LocationIn()"/>Basement</label>
+                            <label class = "type"><input type= "radio" name = "iul" id ="iduatti" autocomplete = "off"  onclick = "LocationIn()" 
+                                onfocus = "LocationIn()"/>Attic</label>
+                            <label class = "type"><input type= "radio" name = "iul" id ="iducs"  onclick = "LocationIn()" onfocus = "LocationIn()" 
+                                autocomplete = "off"/>Crawl Space</label>
+                    </div>
+                     <!--Attic button if click it will display hidden button(start)-->
+                    <div id = "inatticDiv" style = "display:none">
+                        <div class = "control-group">
+                            <label class = "question">Attic:</label>
+                            <label class = "type"><input type= "radio" name = "atul" id ="ticvia" autocomplete = "off" onclick = "LocationIn()" onfocus = "LocationIn()"/>Access Via</label>
+                            <label class = "type"><input type= "radio" name = "atul" id ="ticpds" autocomplete = "off" onclick = "LocationIn()" onfocus = "LocationIn()"/>Pull Down Stair Case</label>
+                            <label class = "type"><input type= "radio" name = "atul" id ="ticsw" autocomplete = "off" onclick = "LocationIn()" onfocus = "LocationIn()"/>Scuttle Hole</label>
+                            <label class = "type"><input type= "radio" name = "atul" id ="ticdoo" autocomplete = "off" onclick = "LocationIn()" onfocus = "LocationIn()"/>Door</label>
+                        </div>
+                       <!--hidden div when click id =estOther (other)-->
+                        <div class = "control-group" id = "atticDiv" style = "display:none">
+                            <label class = "question">Other Room:</label>
+                                <input type = "text" id ="atticInput" class = "span1" maxlength = "2" autocomplete = "off">
+                                <input type = "button" id ="attButton" value = "Add Attic Size"  onclick = "CeilingHeight()">
+                        </div>
+                    </div>
+                    <!--Attic button if click it will display hidden button(end)-->
+                    <div id = "garageHide" style = "display:none">
+                        <div class = "control-group">
+                            <label class = "question">Stairs Locations: </label>
+                                <label class = "type"><input type= "radio" name = "ggh" id ="slrs1" onclick = "LocationIn()" onfocus = "LocationIn()" 
+                                    autocomplete = "off"/>House</label>
+                                <label class = "type"><input type= "radio" name = "ggh" id ="slrs2" onclick = "LocationIn()" onfocus = "LocationIn()" 
+                                    autocomplete = "off"/>Garage</label>
+                        </div>
+                        <div class = "control-group">
+                        <label class = "question"> Special Notes:</label>
+                        </div>
+                        <div class = "control-group">
+                            <label class = "question2"  >
+                            <textarea  id = "garNotes" style = "margin-top:-35px; margin-left: 200px;" maxlength = "1024" rows ="5">
+                            </textarea>
+                            <div id ="letterCou">0</div>
+                            </label>
+                        </div>
+                    </div><!--end of garage-->
+
+            </div><!--end of div = "spiSystemSel"(Residentail)-->
+        </div><!--end of directHidden-->
+
+        <!--Start of residetinal "Are you the homeowner?" -->
+            <!--  <div class="alert alert-info" style="width:50%;height:50px;text-align: center;margin-left:52px;" id="message">
+                    <strong style="font-size:17px;margin-top:20px;" id="showScript20"></strong></div> -->
+             <span id = "gemessage1" style="font-size:17px; font-weight:bold;"></span>
+            <div id = "homeselect" style = "display:none;">
+                    <span id = "mmessage" style="font-size:17px; font-weight:bold;"></span>
+                    <div class = "control-group">
+                        <label style="font-size:17px;margin-left:52px;">Are you the home owner?</label>
+                        <label class = "type"><input type= "radio" name = "home1" value ="hyes"  id ="hyes" onfocus = "homselVAl()" 
+                            onclick ="homselVAl()" autocomplete = "off" />Yes</label>
+                        <label class = "type"><input type= "radio" name = "home1" value ="hno"  id ="hno" onfocus = "homselVAl()" 
+                            onclick ="homselVAl()" autocomplete = "off" />No</label>
+                    </div>
+            </div>
+            <!--residenital hidden div if no is checked-->
+                <div id = "residques" style = "display:none">
+                    <div class = "control-group">
+                        <label> Property Owner Information</label>
+                            <div class = "control">
+                                <label  class ="question" >First Name:</label>
+                                <input class="span2" type = "text" name ="owinfo" id = "owinfo" maxlength= "45" onchange ="homselVAl()" autocomplete = "off" />
+                                <!-- <label  class ="lblmiddle" style = "margin-right:auto; margin-left:-80px;">Middle Intial:</label>
+                                    <input class="span2" type = "text" size = "" name ="" id = "" onkeyup = "" autocomplete = "off" /> -->
+                                <label  class ="lblright" style = "margin-right:auto; margin-left:-120px;">Last Name:</label>
+                                <input class="span2" type = "text" size = "" name ="owinfo1" id = "owinfo1" onchange = "homselVAl()" autocomplete = "off" />
+                            </div>
+                        </div>
+                        <div class = "control-group">
+                            <label class ="question">Zip:</label>
+                                <input class="span1" type = "text" name ="poaddre4" id ="poaddre4"  maxlength = "5" onchange = "homselVAl()"/>
+                            <label  class ="lblmiddle" style = "margin-right:auto; margin-left:-100px;">City:</label>
+                                <input class="span3" type = "text" name ="poaddre5" id = "poaddre5" onchange = "homselVAl()"/>
+                            <label class ="lblright" style = "margin-right:auto; margin-left:-180px;">State:</label>
+                                <input class="span1" type = "text" name ="poaddre7" id = "poaddre7" maxlength = "2" onchange = "homselVAl()"/>
+                        </div>  
+                        <div class = "control-group">
+                            <label class ="question">  Address:</label>
+                                <input class= "span2" type = "text"  name= "poaddre1" id = "poaddre1" onchange = "homselVAl()" />
+                                <input class= "span3" type = "text"  name= "poaddre2" id = "poaddre2" onchange = "homselVAl()" />
+                                <select class = "select2" id = "poaddre3" onclick = "homselVAl()">
+                                    <option value = "0" >Select</option>
+                                    <option value = "avenue">Apartment</option>
+                                    <option value = "street">Suite</option>
+                                    <option value = "neither" id = "neither">None</option>
+                                </select>                                    
+                            <input class= "span1" type = "text" name= "poaddre31" id = "poaddre31" onchange = "homselVAl()"/>
+                        </div>
+                            
+                        <div class = "control-group">
+                            <label class = "question"> Phone Number:</label>
+                                <input class = "span3" type = "text" id ="phonenjum" maxlength = "12" onchange = "homselVAl()" onkeyup = "InputPhone(this)"  autocomplete = "off"/>
+                        </div>
+                        <span id = "gemessage3" style="font-size:17px; font-weight:bold;"></span>
+                        <div class = "control-group" style = "display:none" id = "renOwn">
+                            <label>Who will be paying for the repairs?</label>
+                                <label class = "type"><input type= "radio" name = "parepairs" value ="paren"  id ="paren" onfocus = "homsel2VAl()" 
+                                    onclick = "homsel2VAl()" autocomplete = "off" />Renter</label>
+                                <label class = "type"><input type= "radio" name = "parepairs" value ="parown"  id ="parown" onfocus = "homsel2VAl()"  
+                                    onclick = "homsel2VAl()"  autocomplete = "off"/>Owner</label>
+                        </div>
+                </div><!--end of  display none-->
+            <!--end of residetinal "Are you the homeowner?" -->
+
+            <!--Business Mailing and Service address the same?(start)-->
+                <span id = "mailBusDiv" style="font-size:17px; font-weight:bold;"></span>
+                <div class ="control-group mailBusiness"  style = "display:none">
+                    <label style="font-size:17px;"> Is your business or company mailing and service address the same?</label>
+                        <label class = "type"><input type= "radio" name = "mp" value ="Yes" id ="mp1" onclick = "smVAl1()" onfocus = "smVAl1()" 
+                            autocomplete = "off" data-toggle="tooltip" data-original-title="Choose if company mail is not using P.O. Box" 
+                            data-placement="top"/>Yes</label>
+                        <label class = "type"><input type= "radio" name = "mp" value ="No"  id ="mp2" onclick = "smVAl1()" onfocus = "smVAl1()" 
+                            autocomplete = "off" data-toggle="tooltip" data-original-title="If using different address" data-placement="top"/>No</label>
+                </div>
+                <div style = "display:none" id ="busMailing">
+                    <div class = "control-group">
+                        <label class ="lblline">Zip:</label>
+                            <input class="span1" type = "text" name ="bzip" id = "bzip" maxlength = "5" onchange = "smVAl1()" data-toggle="tooltip" 
+                            data-original-title="Enter Zip Code" data-placement="top" autocomplete = "off"/>
+                        <label>City:</label>
+                            <input class="span4" type = "text" name ="bcity" id = "bcity" onchange = "" autocomplete = "off"/>
+                         <label>State:</label>
+                            <input class="span1" type = "text" name ="bstate" id = "bstate" onchange = "" maxlength = "2" autocomplete = "off"/>
+                    </div>
+                    <div class = "control-group">
+                        <label class ="lblline">Address:</label>
+                            <input class= "span2" type = "text" id = "bbuiling" onchange = "smVAl1()" onfocus = "smVAl1()" autocomplete = "off"
+                            data-toggle="tooltip" data-original-title="Enter Street Number" data-placement="top" />
+                            <input class= "span3" type = "text" id = "bstreet" onchange = "smVAl1()" onfocus = "smVAl1()" autocomplete = "off" 
+                            data-toggle="tooltip" data-original-title="Enter Street Name" data-placement="top"/>
+                            <select class = "select2" id = "bDDL" autocomplete = "off" onclick = "smVAl1()" data-toggle="tooltip" 
+                            data-original-title="Select Building Type" data-placement="top">
+                                <option value = "0" >Select</option>
+                                <option id = "avenue1" value = "avenue">Apartment</option>
+                                <option id = "street1" value = "street">Suite</option>
+                                <option id = "road1" value = "road">None</option>
+                            </select>                                    
+                        <input class= "span1" type = "text"  name= "san" id = "sanText" onchange = "" autocomplete = "off" 
+                        data-toggle="tooltip" data-original-title="Enter Suite or Apartment Number" data-placement="top" />
+                    </div>
+
+                </div><!--end of div id ="busMailing"-->
+
+            <!--Business Mailing and Service address the same?(end)-->
+            
+            <span id = "businB" style="font-size:17px; font-weight:bold;"></span>
+            <div id = "homeselect1" style = "display:none;">
+                <div class = "control-group">
+                    <label>Are you the</label>
+                    <label class = "type"><input type= "radio" name = "tlb" value ="Tenant"  id ="owOccup" onfocus = "buildingB()" 
+                        onclick = "buildingB()" autocomplete = "off"  data-toggle="tooltip" 
+                        data-original-title="Business owner who the sole or anchor tenant of a commercial property" data-placement="top" />Owner Occupied</label>
+                    <label>or</label>
+                    <label class = "type">
+                        <input type= "radio" name = "tlb" value ="Tenant"  id ="busLease" onfocus = "buildingB()" 
+                        onclick = "buildingB()" autocomplete = "off" data-toggle="tooltip" 
+                        data-original-title="Commerical property is being rent" data-placement="top" />Leased ?</label>
+                </div>
+
+                
+
+                <span id = "techDiv" style="font-size:17px; font-weight:bold;"></span>
+                <div class = "control-group occupiedDiv" style = "display:none">
+                    <div id = "newList">
+                        <label>Who will tech need to contact upon arrival?</label>
+                        <div class = "control">
+                            <label class ="lblline"><input type = "checkbox" id = "sameBus" />First Name:</label>
+                                <input type = "text" class = "span2" id = "fnBusin" onkeyup = "arrival()" autocomplete = "off" 
+                                data-toggle="tooltip" data-original-title="Enter First Name" data-placement="top" />
+                            <label class ="lblmiddle" style = "margin-right:auto; margin-left:-100px;">Last Name:</label>
+                                <input type = "text" class = "span2" id = "lnBusin" onkeyup = "arrival()" autocpmplete = "off"
+                                data-toggle="tooltip" data-original-title="Enter Last Name" data-placement="top"/>    
+                            <label class ="lblright" style = "margin-right:auto; margin-left:-100px;">Phone Number:</label>
+                                <input type = "text" class = "span2" id = "phBusin" onchange = "arrival()"  maxlength = "12" autocpmplete = "off" 
+                                onkeyup = "InputPhone(this)" data-toggle="tooltip" data-original-title="Enter Phone Number" data-placement="top" />
+                            <label>Ext:</label>
+                                <input type = "text" class = "span1" id = "phBusin1" onchange = "arrival()" maxlength = "5" autocpmplete = "off"/>
+                                <button id = "aBusCon">+</button>
+                        </div>
+                    </div>
+                    
+                </div>
+            <!--radio button "No" hidden div -->
+            <div id = "noBuild" style = "display:none">
+                <!--if No is chosen it will display this hidden div-->
+                 <label> Building Information</label>
+                    <div class = "control-group"  style = "display:none">
+                      <label>Will you be responsible for paying repairs?</label>
+                        <label class = "type"><input type= "radio" name = "prYN" value =""  id ="prYes" onfocus = "building()" onclick = "building()" 
+                            autocomplete = "off" />Yes</label>
+                        <label class = "type"><input type= "radio" name = "prYN" value =""  id ="prNo" onfocus = "building()" onclick = "building()"  
+                            autocomplete = "off"/>No</label>
+                    </div>
+                    <div class = "control-group">
+                        <label>Will the </label>
+                        <label class = "type"><input type= "radio" name = "tlb" value ="Tenant"  id ="tlb0" onfocus = "building()" 
+                            onclick = "building()" autocomplete = "off" />Tenent</label>
+                        <label>or</label>
+                        <label class = "type"><input type= "radio" name = "tlb" value ="Landlord" id ="tlb1" onfocus = "building()" 
+                            onclick = "building()" autocomplete = "off"/>Landlord</label>
+                        <label>are reponsible for paying repairs?</label>
+                    </div>
+
+                    <!-- Tenent radio button hidden div-->
+                    <div class = "control-group eamount " style = "display:none">
+                        <label>Do you have an exceeding amount?</label>
+                            <label class = "type"><input type= "radio" name = "eamou" id ="eamou1" onfocus = "building()" onclick = "building()" autocomplete = "off" 
+                                />Yes</label>
+                            <label class = "type"><input type= "radio" name = "eamou" id ="eamou2" onfocus = "building()" onclick = "building()"  autocomplete = "off"
+                                />No</label>
+                    </div>
+                    <!--end of Tenent radio button hidden div-->
+
+                    <!--Tenent radio button hidden  if radio "Yes" is checked-->
+                    <span id = "" style="font-size:17px; font-weight:bold;"></span>
+                        <div class = "control-group tbaoDiv" style = "display:none">
+                            <label>Tenent Amount:</label>
+                                <input type= "type" class = "span2" id ="tenet" onfocus = "building()" onkeyup= "building()" autocomplete = "off" />
+                            <label> Broker Agent/Owner Amount:</label>
+                                <input type= "type" class = "span2"  id ="baom" onfocus = "building()" onkeyup= "building()" autocomplete = "off" />
+                                
+                        </div>
+                    <!--end of "yes"-->
+
+                <div id = "bciDiv" style = "display:none">
+                    <label> Contact Information:</label>&nbsp;<span id = "businB1" style="font-size:17px; font-weight:bold;"></span>
+                    <div class = "control-group">
+                        <label class ="lblline">Company Name:</label>
+                            <input class= "span4" id = "busComp" onfocus = "building1()" onkeyup= "building1()" type = "text" />
+                    </div>
+                    <div class = "control-group">
+                        <label class ="lblline">First Name:</label>
+                            <input class= "span2" type = "text" id = "fn1" onfocus = "building1()" onkeyup= "building1()"/>
+                        <label class ="lblmiddle" style = "margin-right:auto; margin-left:-100px;">Last Name:</label>
+                            <input class= "span2" type = "text" id = "lnl" onfocus = "building1()" onkeyup= "building1()" />
+                        <label class ="lblright" style = "margin-right:auto; margin-left:-100px;">Phone Number:</label>
+                            <input class= "span2" type = "text" id = "pn1" onfocus = "building1()" onkeyup= "building1()" maxlength = "12" 
+                            onkeypress = "InputPhone(this)" />
+                    </div>
+                </div><!--end of  contact information-->
+            </div><!--end of  no radio button hidden div--> 
+        </div><!--end of homeselect1 hidden div-->
+        <!--Residential Mailing and Service address the same?(start)-->
+        <span id = "tradeMess" style = "font-size:17px; font-weight:bold; margin-left:"></span>
+                <div class = "control-group tradeDiv" style = "display:none">
+                    <label class = "lblline">Trade:</label>
+                    <label><input type = "radio" name = "stList" autocomplete = "off" onclick ="tradeVal()" onfocus ="tradeVal()" id = "trade0" 
+                        data-toggle="tooltip" data-original-title="Repair, Service, Maintenance, Duct Work,Installtion,etc" data-placement="top"/>AC Heating
+                     </label>
+                    <label><input type = "radio" name = "stList" autocomplete = "off" onclick ="tradeVal()" onfocus ="tradeVal()" id = "trade1" 
+                       data-toggle="tooltip" data-original-title="Keep pool clean, efficient and safe with routine pool maintenance" 
+                       data-placement="top"/>Pool</label>
+                    <label><input type = "radio" name = "stList" autocomplete = "off" onclick ="tradeVal()" onfocus ="tradeVal()" id = "trade2"
+                    data-toggle="tooltip" data-original-title="Service or installed pipes fitting, valves, drainage for distrubution water" data-placement="top" />Plumbing
+                      </label>
+                    <label><input type = "radio" name = "stList" autocomplete = "off" onclick ="tradeVal()" onfocus ="tradeVal()" id = "trade3" 
+                        data-toggle="tooltip" data-original-title="Set Up sprinkler for lawn Care" data-placement="top"/>Irrigation
+                      </label>
+                    <label><input type = "radio" name = "stList" autocomplete = "off" onclick ="tradeVal()" onfocus ="tradeVal()" id = "trade4"
+                    data-toggle="tooltip" data-original-title="Wiring to help run appliance within a household or company building" data-placement="top" />Electrical</label>
+                    <label><input type = "radio" name = "stList" autocomplete = "off" onclick ="tradeVal()" onfocus ="tradeVal()" id = "trade5"
+                    data-toggle="tooltip" data-original-title="Install a new HVAC System into a company building or home" data-placement="top" />Installation</label>
+                    <label><input type = "radio" name = "stList" autocomplete = "off" onclick ="tradeVal()" onfocus ="tradeVal()" id = "trade7" />Solar </label>
+                </div>
+
+                <div class = "control-group tradeDiv" style = "display:none">
+                    <label class = "lblline"></label>
+                    <label><input type = "radio" name = "stList" autocomplete = "off" onclick ="tradeVal()" onfocus ="tradeVal()" id = "trade8" />Roofing
+                     </label>
+                    <label><input type = "radio" name = "stList" autocomplete = "off" onclick ="tradeVal()" onfocus ="tradeVal()" id = "trade9" />Lawn Care
+                     </label>
+                    <label><input type = "radio" name = "stList" autocomplete = "off" onclick ="tradeVal()" onfocus ="tradeVal()" id = "trade10" />Floor Care
+                     </label>
+                    <label><input type = "radio" name = "stList" autocomplete = "off" onclick ="tradeVal()" onfocus ="tradeVal()" id = "trade11" />Painting
+                     </label>
+                    <label><input type = "radio" name = "stList" autocomplete = "off" onclick ="tradeVal()" onfocus ="tradeVal()" id = "trade12" />Pest Control
+                     </label>
+                </div>
+
+                <div id = "entireDisplay01" style = "display:none"  >
+                    <span id = "gromessage" style="font-size:17px; font-weight:bold;"></span>
+                    <div class ="control-group">
+                        <label>Number of Systems in Home:</label>
+                            <label class = "type"><input type= "radio" name = "nosy" value = "1" onclick = "masVal()" onfocus = "masVal()"  id ="rsysem1" autocomplete = "off"/>1</label>
+                            <label class = "type"><input type= "radio" name = "nosy" value = "2" onclick = "masVal()" onfocus = "masVal()"  id ="rsysem2" autocomplete = "off"/>2</label>
+                            <label class = "type"><input type= "radio" name = "nosy" value = "3" onclick = "masVal()" onfocus = "masVal()"  id ="rsysem3" autocomplete = "off"/>3</label>
+                            <label class = "type"><input type= "radio" name = "nosy" value = "4" onclick = "masVal()" onfocus = "masVal()"  id ="rsysem4" autocomplete = "off"/>4</label>
+                            <input class="span1" type = "text" name ="agenum" id = "agenum" maxlength = "3" onkeyup = "masVal()"  autocomplete = "off" />
+                    </div>
+                    
+                    <!-- This area for number of system if two or more (addsystems) -->
+                    <div id = "addsystems" style = "display:none">        
+                        <div class ="control-group">
+                            <label style = "margin-right:auto; margin-left:-140px; font-size:17px;">Would you like us to check your additional systems, they are only<input class="span1" type = "text" placeholder = "$29" />per system?
+                            <label class = "type"><input type= "checkbox" name = "des" value ="des"  id ="des" onclick = "masVal()" autocomplete = "off" />Yes</label>
+                                <label class = "type"><input type= "checkbox" name = "dd" value ="dd"  id ="dd" onclick = "masVal()" autocomplete = "off"  />No</label>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!--if yes is selected this question will show -->
+                    <span id = "gromessage" style="font-size:17px; font-weight:bold;"></span>
+                    <div id="syoption" style = "display:none">
+                        <div class  = "control-group">
+                            <label style="font-size:17px;">Number of a additional system(s) to check</label>
+                                <input class = "span1" type = "text" name = "onal" id= "onal" maxlength = "3" onkeyup = "masVal()"  autocomplete = "off" />
+                                <label class = "type"><input type= "checkbox" name = "adall" value =""  id ="adall"/>Add All</label>
+                        </div>
+                    </div>
+                
+                <!--if number is the same as for additional system to check it will not show, if different number this area will appear-->
+                <div id="soption" style = "display:none">
+                    
+                </div>
+            </div><!--end of entireDisplay-->
+
+            <span id = "hsMess" style = "font-size:17px; font-weight:bold; margin-left:"></span>
+                <div class = "control-group gelDiv" style = "display:none">
+                    <label>Are you heating systems</label>
+                        <label><input type= "checkbox" autocomplete= "off" onclick = "hsVal()" onfocus = "hsVal()" id = "hs1"/>Gas</label>
+                        <label><input type= "checkbox" autocomplete= "off" onclick = "hsVal()" onfocus = "hsVal()" id = "hs2"/>Elect</label>
+                        <label><input type= "checkbox" autocomplete= "off" onclick = "hsVal()" onfocus = "hsVal()" id = "hs3"/>Dual Fuel</label>
+                    <label>?</label>
+                </div>
+
+                 <div class = "control-group" id = "heatDirect" style = "display:none">
+                    <label class = "question">Type of Gas:</label>
+                        <label class = "type"><input type= "radio" name = "pro" value ="propane" id ="dprop" onclick = "hsVal()" autocomplete = "off" />Propane</label>
+                        <label class = "type"><input type= "radio" name = "pro" value ="natural"  id ="dng" onclick = "hsVal()" autocomplete = "off"/>Natural Gas</label>
+                </div>
+
+                <span id = "asaMess" style = "font-size:17px; font-weight:bold; margin-left:"></span>
+                <div class = "control-group sasaDiv" style= "display:none">
+                    <label>Are all your System Approximate Same Age?</label>
+                    <label class = "type"><input type= "radio" name = "sasa" id ="yas" autocomplete = "off"  onclick = "asaVal()" onfocus = "asaVal()"/>Yes</label>
+                    <label class = "type"><input type= "radio" name = "sasa" id ="npas" autocomplete = "off" onclick = "asaVal()"  onfocus = "asaVal()"/>No</label>
+                </div>
+
+                <div id = "asaDiv" style = "display:none">
+                    <div class = "control-group">
+                        <label> Approximately System Age: </label>
+                            <input type ="text" class = "span1" id ="num1" autocomplete = "off" maxlength = "2" onkeyup = "asaVal()"  onfocus = "asaVal()"/>
+                        <label>Years Old Or</label>
+                            <input type ="text" class = "span2" id ="num2" autocomplete = "off" maxlength = "4" />
+                        <label>Year Installed</label>
+                    </div>
+                </div>
+                <div id = "asaDiv1" style = "display:none;">
+                     <div class = "control-group">
+                        <label>Approximately System Newest Age:</label>
+                            <input type ="text" class = "span1" id = "nu1" maxlength ="2" onchange = "asaVal()"  onfocus = "asaVal()" autocomplete = "off"/>
+                        <label>Years Old Or</label>
+                            <input type ="text" class = "span2" id = "nu2" autocomplete = "off"/>
+                        <label>Year Installed</label>
+                    </div>
+                    <div class = "control-group">
+                        <label>Approximately System Oldest Age:</label>
+                            <input type ="text" class = "span1" id = "nu3" maxlength ="2" onchange = "asaVal()"  onfocus = "asaVal()" autocomplete = "off"/>
+                        <label>Years Old Or</label>
+                            <input type ="text" class = "span2" id = "nu4" autocomplete = "off"/>
+                        <label>Year Installed</label>
+                    </div>
+                </div><!--end of nohep div-->
+                <div class = "control-group sysProDiv" style = "display:none;">
+                    <label>Are you having any problem with any of your systems?</label>
+                        <label><input type = "radio" name = "sysPro" id = "syspro0" autocomplete ="off" >Yes</label>
+                        <label><input type = "radio" name = "sysPro" id = "syspro1" autocomplete ="off" >No</label>
+                </div>
+                <!-- if yes is radio button is checked it will show this hidden div (refer to id = "syspro0")-->
+                <div id = "resiPackage1" style = "display:none;">
+                     <div class = "control-group">
+                        <label class = "question">Concern/Problem:</label>
+                            <label class = "type"><input type= "radio" name = "cpo" value ="cooling"  id = "cooling1" onfocus = "" onclick = "" 
+                                autocomplete = "off" /> Cooling</label>
+                            <label class = "type"><input type= "radio" name = "cpo" value ="heating"  id = "heating1" onfocus = "" onclick = "" 
+                                autocomplete = "off" /> Heating</label>
+                            <label class = "type"><input type= "radio" name = "cpo" value ="heatCool"  id = "heatCool1" onclick = "" onfocus = "" 
+                                autocomplete = "off" />Cooling & Heating</label>
+                            <label class = "type"><input type= "radio" name = "cpo" value ="Water Leak"  id = "leakWater1" onclick = "" onfocus = "" 
+                                autocomplete = "off" />Water Leak</label>
+                            <label class = "type"><input type= "radio" name = "cpo" value ="Noise"  id = "noise1" onclick = "" onfocus = "" 
+                                autocomplete = "off" />Noise</label>
+                            <label class = "type"><input type= "radio" name = "cpo" value ="Smell"  id = "smell01" onclick = "" onfocus = "" 
+                                autocomplete = "off" />Smell</label>
+                            <label class = "type"><input type= "radio" name = "cpo" value ="Detector Going Off"  id = "dgo1" onclick = "" onfocus = "" 
+                                autocomplete = "off" />Detector Going Off</label>
+                    </div>  
+
+                   <div class = "icooling1" style = "display:none">
+                        <div class = "control-group">
+                            <label class = "question">Cooling Issues:</label>
+                                <label class = "type"><input type= "radio" name = "cpi" id = "nc1" autocomplete = "off" onclick = "" onfocus = ""/>Not Cooling</label>
+                                <label class = "type"><input type= "radio" name = "cpi" id = "lc1" autocomplete = "off" onclick = "" onfocus = ""/> Low Cooling</label>
+                                <label class = "type"><input type= "radio" name = "cpi" id = "nio1" autocomplete = "off" onclick = "" onfocus = ""/> Noise</label>
+                                <label class = "type"><input type= "radio" name = "cpi" id = "smell01" autocomplete = "off" onclick = "" onfocus = ""/> Smell</label>
+                                <label class = "type"><input type= "radio" name = "cpi" id = "vibe1" autocomplete = "off" onclick = "" onfocus = ""/> Vibration</label>
+                        </div>
+                         <div class = "control-group">
+                            <label class = "question"></label>
+                            <label class = "type"><input type= "radio" name = "cpi" id = "nce1" autocomplete = "off" onclick = "" onfocus = ""/> Not Cooling Evenly
+                              </label>
+                            <label class = "type"><input type= "radio" name = "cpi" id = "tb1"  autocomplete = "off" onclick = "" onfocus = ""/> Tripping Breaker
+                              </label>
+                            <label class = "type"><input type= "radio" name = "cpi" id = "freu1" autocomplete = "off" onclick = "" onfocus = ""/> Freezing Up
+                               </label>
+                            <label class = "type"><input type= "radio" name = "cpi" id = "watleak1"  autocomplete = "off" onclick = "" onfocus = ""/> Water Leak
+                               </label>
+                        </div>
+                        <div class ="control-group" id = "hideSelectoin">
+                            <label class = "question"></label>
+                            <select class = "span3" id = "ResCoolI" autocomplete = "off">
+                                <option  value = "0"> Select Other Issues</option>
+                                <option  value = "">Issues 1</option>
+                                <!-- <option id = "coolIRes" value = "other" >Other</option> -->
+                            </select>
+                            <input type = "text" class = "span3" id = "cResIOther"/>
+                        </div>
+                        <!--hidden div for not cooling radio button-->
+                        <div class = "control-group zonSy1" style = 'display:none'>
+                            <label class = "question"></label>
+                            <label>Do you have a zoning system ?</label>
+                                <label class = "type"><input type= "radio" name = "zosy" id = "zoYes1" autocomplete = "off" /> Yes</label>
+                                <label class = "type"><input type= "radio" name = "zosy" id = "zoNo1" autocomplete = "off" /> No</label>
+                        </div>
+                        <!--if no radio button is checked it will display hidden div "Do you have a zoning system ?"-->
+                        <span id = "zonMess" style="font-size:17px; font-weight:bold;"></span>
+                        <div class = "control-group zonSye" style = 'display:none'>
+                            <label class = "question"></label>
+                            <label>Thermostat Set at:</label>
+                                <input type = "text" autocomplete = "off" class = "span1" id = "setT1" maxlength="3" onchange = "TZone()" onfocus = "TZone()"/>
+                                <label>&#8457;</label>
+                            <label>Actual Temperature at:</label>
+                                <input type = "text" autocomplete = "off" class = "span1" id = "setA1" maxlength="3" onchange = "TZone()" onfocus = "TZone()"/>
+                                <label>&#8457;</label>
+                        </div>
+                       <div class = "control-group" id = "hideNotes">
+                            <label class = "question">Notes:</label>
+                                 <div class = "control" style = "margin-top:-20px;">
+                                    <label class = "question"></label>
+                                    <textarea class="form-control" id ="messpost4"  maxlength = "1024" rows ="3" style = "height:75px; width:700px;" autocomplete = "off">
+                                    </textarea>
+                                </div>
+                                <div class = "control">
+                                    <label class = "question"></label>
+                                    <span id ="wordcount4">0</span>
+                                </div>
+                        </div>
+                </div><!--end of icooling --> 
+
+                <span id = "resiMessage4" style="font-size:17px; font-weight:bold; color:red;"></span>
+                    <div class = "icooling01" style = "display:none" >
+                        <div class = "control-group">
+                            <label class = "question">Room(s) Not Cooling Evenly:</label>
+                            <label class = "type"><input type= "checkbox" name = "cpi1[]" value ="MasterBed Room" class = "coolTemp" autocomplete = "off" 
+                                id = "masterb" onclick = "roomEvenly()" onfocus = "roomEvenly()"/>Master Bedroom</label>
+                            <label class = "type"><input type= "checkbox" name = "cpi1[]" value ="Kitchen" class = "coolTemp" autocomplete = "off" 
+                                onclick = " roomEvenly()" id = "kitchen" onfocus = "roomEvenly()" /> Kitchen</label>
+                            <label class = "type"><input type= "checkbox" name = "cpi1[]" value ="Living Room" class = "coolTemp" autocomplete = "off"  id = "living" 
+                               onclick = "roomEvenly()" onfocus = "roomEvenly()"/>Living Room</label>
+                            <label class = "type"><input type= "checkbox" name = "cpi1[]" value ="Den" class = "coolTemp" autocomplete = "off" id = "den" 
+                                onclick = "roomEvenly()" onfocus = "roomEvenly()" />Den</label>
+                            <label class = "type"><input type= "checkbox" name = "cpi1[]" value ="Dining Room" class = "coolTemp" autocomplete = "off" 
+                                id = "diningRoom" onclick = "roomEvenly()" onfocus = "roomEvenly()" /> Dining Room</label>
+                        </div>
+                        <div class = "control-group">
+                          <label class = "question"></label>
+                            <label class = "type"><input type= "checkbox" name = "cpi1[]" value ="Game Room" class = "coolTemp" id = "GameRoom" autocomplete = "off"
+                            onclick = "roomEvenly()" onfocus = "roomEvenly()" />Game Room</label>
+                            <label class = "type"><input type= "checkbox" name = "cpi1[]" value ="Office" class = "coolTemp" id = "office" autocomplete = "off"
+                             onclick = "roomEvenly()" onfocus = "roomEvenly()"   /> Office</label>
+                            <label class = "type"><input type= "checkbox" name = "cpi1[]" value ="First Floor" class = "coolTemp" id = "firstFl" autocomplete = "off"
+                            onclick = "roomEvenly()" onfocus = "roomEvenly()" /> First Floor</label>
+                            <label class = "type"><input type= "checkbox" name = "cpi1[]" value ="Second Floor" class = "coolTemp" id = "secondFl"  autocomplete = "off"
+                            onclick = "roomEvenly()" onfocus = "roomEvenly()" /> Second Floor</label>
+                            <label class = "type"><input type= "checkbox" name = "cpi1[]" value ="Third Floor" class = "coolTemp" id = "thirdFl" autocomplete = "off"
+                            onclick = "roomEvenly()" onfocus = "roomEvenly()" /> Third Floor</label>
+                        </div>
+                        <div class = "control-group">
+                            <label class = "question"></label>
+                            <label class = "type"><input type= "checkbox" name = "cpi1[]" value ="Fourth Floor" class = "coolTemp" autocomplete = "off"  id = "fourthFl"
+                                onclick = "roomEvenly()" onfocus = "roomEvenly()"/>Fourth Floor</label>
+                            <label class = "type"><input type= "checkbox" name = "cpi1[]" value ="Sun Room" class = "coolTemp"  autocomplete = "off" id = "sunRoom" 
+                                onclick = "roomEvenly()" onfocus = "roomEvenly()" /> Sun Room</label>
+                            <label class = "type"><input type= "checkbox" name = "cpi1[]" value ="Master Bathroom" class = "coolTemp" autocomplete = "off" 
+                                id = "masterBath" onclick = "roomEvenly()" onfocus = "roomEvenly()" /> Master Bathroom</label>
+                            <label class = "type"><input type= "checkbox" name = "cpi1[]" value ="Utility Room"  class = "coolTemp" autocomplete = "off"  
+                                id = "UtilityRo" onclick = "roomEvenly()" onfocus = "roomEvenly()" /> Utility Room</label>
+                        </div>
+                        <div class = "control-group">
+                            <label class = "question"></label>
+                            <select class = "span3 coolTemp" id ="addR"  autocomplete = "off">
+                                <option id = "selectconcern" value = "0"> Select Room</option>
+                                <option id = "" value = "">Room 1</option>
+                                <option id = "" value = "">Room 2</option>
+                                <option id = "" value = "">Room 3</option>
+                                <option id = "" value = "">Room 4</option>
+                                <option id = "" value = "">None</option>
+                               <!--  <option id = "nceOther" value = ""  >Other</option> -->
+                            </select>
+                            <input type = "text" id = "recnAdd" class = "span3" autocomplete = "off" onkeypress = "roomEvenly()"/>
+                        </div>
+                        <span id = "difMess" style="font-size:17px; font-weight:bold;"></span>
+                        <div class = "control-group">
+                             <!-- <label class = "question"></label> -->
+                            <span id = "moorCooling" style = "font-size:17px;"></span>
+                        </div>
+
+                        <div class = "control-group" >
+                            <label class = "question">Notes:</label>
+                             <div class = "control" style = "margin-top:-20px;">
+                                <label class = "question"></label>
+                                <!-- <input type ="textarea" autocomplete = "off" id = "" style = "height:75px; width:700px;" /> -->
+                                <textarea class="form-control" id ="messpost5"  maxlength = "1024" rows ="3" style = "height:75px; width:700px;" autocomplete = "off"></textarea>
+                            </div>
+                            <div class = "control">
+                                <label class = "question"></label>
+                                <span id ="wordcount5">0</span>
+                            </div>
+                        </div>
+                    </div><!--end of  class = "icooling1"-->
+
+                <div class = "iheating" style = "display:none">
+                <div class = "control-group">
+                    <label class = "question">Heating Issues:</label>
+                        <label class = "type"><input type= "radio" name = "cpii" id = "nh1"  autocomplete = "off" onclick = "" onfocus = ""/>Not Heating</label>
+                        <label class = "type"><input type= "radio" name = "cpii" id = "lh1"  autocomplete = "off" onclick = "" onfocus = "" /> Low Heating</label>
+                        <label class = "type"><input type= "radio" name = "cpii" id = "noh1" autocomplete = "off" onclick = "" onfocus = ""/> Noise</label>
+                        <label class = "type"><input type= "radio" name = "cpii" id = "sh1"  autocomplete = "off" onclick = "" onfocus = ""/> Smell</label>
+                        <label class = "type"><input type= "radio" name = "cpii" id = "vh1"  autocomplete = "off" onclick = "" onfocus = ""/> Vibration</label>
+                </div>
+                <div class = "control-group">
+                    <label class = "question"></label>
+                        <label class = "type"><input type= "radio" name = "cpii" id = "nhe1"  autocomplete = "off" onclick = "" onfocus = "" /> 
+                           Not Heating Evenly</label>
+                        <label class = "type"><input type= "radio" name = "cpii" id = "cotbh1"  autocomplete = "off" onclick = "" onfocus = ""/> 
+                          Tripping Breaker</label>
+                        <label class = "type"><input type= "radio" name = "cpii" id = "wlh1"  autocomplete = "off" oncniolick = "" onfocus = "" /> 
+                           Water Leak</label>
+                        <label class = "type"><input type= "radio" name = "cpii" id = "fzh1"  autocomplete = "off" onclick = "" onfocus = "" /> 
+                          Freezing Up</label>
+                </div>
+                <div class = "control" id = "IssDDL" >
+                    <label class = "question"></label>
+                    <select class = "span3" id ="rheatissu" autocomplete = "off">
+                        <option id = "" value = "0"> Select Issues</option>
+                        <option id = "hOtherIss" value = "" >Other</option>
+                    </select>
+                    <input type = "text" class = "span3" autocomplete = "off"  id = "IssOther"/>
+                </div>
+                <span id = "hTemMessage01" style="font-size:17px; font-weight:bold;"></span>
+                <div class = "control-group heThemDiv" style = "display:none">
+                    <label class = "question">Thermostat Set at:</label>
+                        <input type ="text" autocomplete = "off" id = "heThem01" class ="span1" maxlength ="3" onchange = "hTemp()" onfocus = "hTemp()"/>
+                    <label>deg.f</label>
+                    <label class = "question">Actual Temperature at:</label>
+                        <input type ="text" autocomplete = "off" id = "heThem02" class ="span1" maxlength ="3" onchange = "hTemp()" onfocus = "hTemp()" />
+                    <label>deg.f</label>
+                </div>
+                <div class = "control-group" id ="rheatissue1">
+                    <label class = "question">Notes:</label>
+                         <div class = "control" style = "margin-top:-20px;">
+                            <label class = "question"></label>
+                            <!-- <input type ="textarea" autocomplete = "off" id = "" style = "height:75px; width:700px;" /> -->
+                            <textarea class="form-control" id ="messpost7"  maxlength = "1024" rows ="3" style = "height:75px; width:700px;" autocomplete = "off"></textarea>
+                        </div>
+                        <div class = "control">
+                            <label class = "question"></label>
+                            <span id ="wordcount7">0</span>
+                        </div>
+                </div>
+            </div><!--end of class = "iheating"-->
+
+            <!--Not Heating Evenly radio button selection hidden div (start) -->
+            <div class = "iheating01" style = "display:none">
+                <span id = "cpipMess1" style="font-size:17px; font-weight:bold;"></span><!--span for validation-->
+                <div class = "control-group">
+                    <label class = "question">Room(s) Not Heating  Evenly:</label>
+                        <label class = "type"><input type= "checkbox" name = "cpip" value ="MasterBed Room" class = "heatTempR" autocomplete = "off" 
+                            id ="hmasterb" onclick = "hEvenly()" onfocus = "hEvenly()"/>MasterBed Room</label>
+                        <label class = "type"><input type= "checkbox" name = "cpip" value ="Kitchen" class = "heatTempR" id = "hkitchen" 
+                            autocomplete = "off"  onclick = "hEvenly()" onfocus = "hEvenly()"/> Kitchen</label>
+                        <label class = "type"><input type= "checkbox" name = "cpip" value ="Living Room" class = "heatTempR" id = "hliving" 
+                            autocomplete = "off" onclick = "hEvenly()" onfocus = "hEvenly()"/>Living Room</label>
+                        <label class = "type"><input type= "checkbox" name = "cpip" value ="Den" class = "heatTempR" id = "hden" 
+                            autocomplete = "off" onclick = "hEvenly()" onfocus = "hEvenly()"/>Den</label>
+                        <label class = "type"><input type= "checkbox" name = "cpip" value ="Dining Room"  class = "heatTempR" id = "hdiningRoom"  
+                            autocomplete = "off" onclick = "hEvenly()" onfocus = "hEvenly()"/> Dining Room</label>
+                </div>
+                <div class = "control-group">
+                    <label class = "question"></label>
+                    <label class = "type"><input type= "checkbox" name = "cpip" value ="Game Room" class = "heatTempR" id = "hgameRo"  autocomplete = "off" 
+                        onclick = "hEvenly()" onfocus = "hEvenly()"/>Game Room</label>
+                    <label class = "type"><input type= "checkbox" name = "cpip" value ="Office" class = "heatTempR" id = "hOffice"  
+                    autocomplete = "off" onclick = "hEvenly()" onfocus = "hEvenly()"/> Office</label>
+                    <label class = "type"><input type= "checkbox" name = "cpip" value ="First Floor" class = "heatTempR" id = "hfirstFl"  autocomplete = "off" 
+                        onclick = "hEvenly()" onfocus = "hEvenly()"/> First Floor</label>
+                    <label class = "type"><input type= "checkbox" name = "cpip" value ="Second Floor" class = "heatTempR" id = "hsecondFl"  autocomplete = "off" onclick = "hEvenly()" onfocus = "hEvenly()"/> Second Floor</label>
+                    <label class = "type"><input type= "checkbox" name = "cpip" value ="Third Floor" class = "heatTempR" id = "hthirdFl"  autocomplete = "off" 
+                        onclick = "hEvenly()" onfocus = "hEvenly()"/> Third Floor</label>
+                </div>
+                <div class = "control-group">
+                    <label class = "question"></label>
+                    <label class = "type"><input type= "checkbox" name = "cpip" value ="Fourth Floor"  class = "heatTempR"  autocomplete = "off" 
+                        id = "hfourthFl" onclick = "hEvenly()" onfocus = "hEvenly()"/>Fourth Floor</label>
+                    <label class = "type"><input type= "checkbox" name = "cpip" value ="Sun Room"  class = "heatTempR"  autocomplete = "off" id = "hsunRoom" onclick = "hEvenly()" onfocus = "hEvenly()"/>
+                     Sun Room</label>
+                    <label class = "type"><input type= "checkbox" name = "cpip" value ="Master Bathroom"  class = "heatTempR" id ="hmasterBa"  autocomplete = "off" onclick = "hEvenly()" onfocus = "hEvenly()" />
+                     Master Bathroom</label>
+                    <label class = "type"><input type= "checkbox" name = "cpip" value ="Utility Room" class = "heatTempR"  autocomplete = "off" id ="hUtilityRo" onclick = "hEvenly()" onfocus = "hEvenly()"/> Utility Room</label>
+                </div>
+                <div class = "control-group">
+                    <label class = "question"></label>
+                    <select class = "span3" id = "HeatIssue" autocomplete = "off">
+                        <option id = "" value = "0"> Select Room</option>
+                        <option id = "" value = "Room 1">Room 1</option>
+                        <option id = "" value = "Room 2">CO2</option>
+                        <option id = "" value = "Room 3">Furnace Booming Sound</option>
+                        <option id = "" value = "Room 4">Heat Pump Has Frost</option>
+                        <option id = "" value = "Room 5">None</option>
+                        <!-- <option id = "heatOther" value = "heatOther">Other</option> -->
+                    </select>
+                    <input type = "text" class = "span3" autocomplete = "off" id = "OtherHeat" onkeypress = "hEvenly()" />
+                </div>
+                <div class = "control-group" >
+                    <span id = "heatEName"></span>
+                </div>
+                <div class = "control-group ">
+                    <label class = "question">Notes:</label>
+                    <div class = "control" style = "margin-top:-20px;">
+                        <label class = "question"></label>
+                        <!-- <input type ="textarea" autocomplete = "off" id = "" style = "height:75px; width:700px;" /> -->
+                        <textarea class="form-control" id ="messpost7"  maxlength = "1024" rows ="3" style = "height:75px; width:700px;" autocomplete = "off"></textarea>
+                    </div>
+                    <div class = "control">
+                        <label class = "question"></label>
+                        <span id ="wordcount7">0</span>
+                    </div>
+                </div>
+            </div><!--end of class = "iheating1"-->
+    </div><!--end of id = "resiPackage1" -->
+              <span id = "dateCheckMess" style="font-size:17px; font-weight:bold;"></span>
+                <div class = "control-group ensureDiv" style = "display:none;">
+                    <label>In order to make sure the best service is provide by choosing a day of the week or time to make sure we work with your schedule.</label>
+                    <label>Would you perfer</label>
+                        <label><input type = "radio" name = "maea" id = "ensure1" onclick = "dateCheck1()" onfocus = "dateCheck1()" autocomplete = "off"/>Morning</label>
+                        <label><input type = "radio" name = "maea" id = "ensure2" onclick = "dateCheck1()" onfocus = "dateCheck1()" autocomplete = "off"/>Afternoon</label>
+                        <label><input type = "radio" name = "maea" id = "ensure3" onclick = "dateCheck1()" onfocus = "dateCheck1()" autocomplete = "off"/>Evening</label>
+                        <label><input type = "radio" name = "maea" id = "ensure4" onclick = "dateCheck1()" onfocus = "dateCheck1()" autocomplete = "off"/>Anytime</label>
+                        <label><input type="text" id="da" onfocus = "dateCheck1()" onchange = "dateCheck1()" autocomplete = "off"></label> 
+                    <label>?</label>
+                    <br>
+                   
+                    <label>Date Selection: From</label>
+                        <input type="text" id="from" name="from" onfocus = "dateCheck()" autocomplete = "off" onchange = "dateCheck()">
+                    <label for="to">to</label>
+                        <input type="text" id="to" name="to" onfocus = "dateCheck()" autocomplete = "off" onchange = "dateCheck()">
+                </div>
+
+                <div id="selectdays" style = "display:none">
+                    <label><input type="checkbox" value="Sunday" class="workout_days_option">Sunday</label>
+                    <label><input type="checkbox" value="Monday" class="workout_days_option">Monday</label>
+                    <label><input type="checkbox" value="Tuesday" class="workout_days_option">Tuesday</label>
+                    <label><input type="checkbox" value="Wednesday" class="workout_days_option">Wednesday</label>
+                    <label><input type="checkbox" value="Thursday" class="workout_days_option">Thursday</label>
+                    <label><input type="checkbox" value="Friday" class="workout_days_option">Friday</label>
+                    <label><input type="checkbox" value="Saturday" class="workout_days_option">Saturday</label>
+                    
+
+                    <div>
+                        <label><input type="checkbox" value="Any" class="workout_days_option">Any Day Of the Week</label>
+                        <label><input type="text" id="da2"></label> 
+                    </div>
+                </div>
+           
+                
+                <div class="form-actions">
+                    <a href="#sConfirm"><input type="button" class="btn" value="Confirm" onclick ="formVal()" onchange = "stboVal()" id = "firm"/></a>
+                    <a class="btn" href="cds-script.html"> Return to Inbound Home Page</a>
+                </div> 
+            </form><!--end of form-->
+         </div><!--end of class = "col-sm-9 col-md-6 col-lg-7"-->
+        <div class = "col-sm-3 col-md-6 col-lg-5" >
+                <div class="well well-small">
+                        <div class = "button2">
+                             <a href="second.html"><input type="button" value="Second Opinions" /></a>
+                             <a href="cds-script-2.html"><input type="button" value="Sample 2" /></a>
+                             <a href="cds-script-2.html"><input type="button" value="Sample 3"/></a>
+                             <a href="cds-script-2.html"><input type="button" value="Sample 4"/></a>
+                             <a href="cds-script-2.html"><input type="button" value="Sample 5"/></a>
+                             <a href="cds-script-2.html"><input type="button" value="Sample 6"/></a>
+                             <a href="cds-script-2.html"><input type="button" value="Sample 7"/></a>
+                             <a href="cds-script-2.html"><input type="button" value="Sample 8"/></a>
+                             <a href="cds-script-2.html"><input type="button" value="Sample 9"/></a>
+                             <a href="cds-script-2.html"><input type="button" value="Sample 10"/></a>
+                        </div>
+                </div>
+                        <!-- <div id = "okay" style="color:black"></div> -->
+                        <div id = "okay0" style="color:black"></div>
+                        <div id = "okay1" style="color:blue"></div>
+                        <div id = "okay2" style="color:orange"></div>
+                        <div id = "okayend" style="color:red"></div>
+                        <div id = "time" style="color:red"></div>
+                        <div id = "time2" style="color:blue"></div>
+                        <div id = "tend" style="color:orange"></div>
+                
+
+            <!--Collapse area start-->
+                 <div class="accordion" id="accordion2">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">Rep Script</a>
+                        </div>
+                        <div id="collapseOne" class="accordion-body collapse in">
+                            <div class="accordion-inner">
+                                    <div class="accordion-inner">
+                                        <div class="alert alert-info" style="width:80%; min-height:30px;" id="message">
+                                        <strong style="font-size:17px;" id="showScript"></strong></div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">Frequently Ask Questions</a>
+                        </div>
+                    <div id="collapseTwo" class="accordion-body collapse">
+                        <div class="accordion-inner">
+                            <h3>How much does it cost for you to come out? What does your service fee include?</h3>
+                            <p>Our service fee includes diagnosing the problem, checking the system operation, and advising of what your system need to work  at its best efficiency. It's really the best bargin when it come to  
+                            service because it's flat rate and there no hourly charge. When would you like us to come out? Would you like us to come out? Would you prefer us today or tomorrow?</p>
+                            <h3>Explanation</h3>
+                            <p>You have to give value to the service, or the service fee will always be too high as far as the  customer is concerned. Telling the customer what is coverd by the  service fee helps create the value.</p>
+                            <h3>"I can get it cheaper</h3>
+                            <p>I'm sure you can find someone who'll charge you less on the front end, but i"m also sure we'll give you better service and better warranties too.  We offer an exclusive "fixed right ot it's free quarantee 
+                            and lifetime parts warranties. I'm sure the once our technician come out, you'll be very impressed with our service. Now would you be home____or ____ for us to come by?</p>
+                            <h3>Explanation</h3>
+                            <p>While this isn't really a question, what the customer is really asking is why does it cost so much.  Here again, the important thing is to build value in the customer's mind. Remember that 75%
+                            customer's satifaction comes from the service he's received.</p>
+                            <h3>How much is Freon?</h3>
+                            <p>The technician will be able to evaluate your system and determine what you need.  We don't change by the pound, which in end saves you money. I guarantee we'll do the best possible job for you when 
+                            we come out</p>
+                            <h3>Explanation</h3>
+                            <p>If the unit is  cooling, talk with the customer about scheduling a tune up. Remember, up to pounds of Freon can be added for the cost of tune up, and then there are all the other
+                            benefits of a tune up to help sell it.</p>
+                            <p>If unit is not cooling , book a service call and send a service technician.</p>
+                            <h3>How much does it cost for you to come out? What does your service fee include?</h3>
+                            <p>Let go ahead and get you on the schedule. Would you prefer us today or tomorrow?</p>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">Customer Summary</a>
+                        </div>
+                        <div id="collapseThree" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th></th>
+                                        <th>Address</th>
+                                        <th>Date</th> 
+                                        <th>Next Service Date</th>
+                                        <th>Techican</th>
+                                    </tr>
+                                   <tr>
+                                        <td style = "width:10px"><input type ="checkbox"/></td>
+                                        <td> Address 1</td>
+                                    </tr>
+                                      
+                                    <tr>
+                                        <td><input type ="checkbox"/></td>
+                                        <td> Address 1</td>
+                                    </tr>
+                                    <tr>
+                                            <td><input type ="checkbox"/></td>
+                                            <td> Address 1</td>
+                                    </tr>
+                                    <tr>
+                                            <td><input type ="checkbox"/></td>
+                                            <td> Address 1</td>
+                                    </tr>
+                                </table> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+          
+                 <!--Collapse area end-->
+        </div><!--end of class = "col-sm-3 col-md-6 col-lg-5"-->
+    </div><!--end of row-fluid-->
+  </div><!--end of container-fluid-->
+    
+        <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <script type="text/javascript" src="js/scripts.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/jquery-ui.js"></script>
+        <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min1.js"></script>
+        <script type="text/javascript" src="js/repScript.js"></script>
+        <script type="text/javascript" src="js/display.js"></script>
+        <script type="text/javascript" src="js/validation.js"></script>
+        <script type="text/javascript" src="js/service.js"></script>
+        <script type="text/javascript" src="js/format.js"></script>
+        <script type="text/javascript" src="js/append.js"></script>
+        <script type="text/javascript" src="js/sch.js"></script>
+        <script type="text/javascript" src="js/jquery.masked.js"></script>
+        <script type="text/javascript" src="js/jquery.mask.min.js"></script>
+       
+    </body>
+</html>

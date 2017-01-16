@@ -1,0 +1,215 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Inbound Home</title>
+        <link href="css/bootstrap.css" type="text/css" rel ="stylesheet" media="screen" >
+        <link href="css/bootstrap-responsive.css" type="text/css" rel ="stylesheet">
+        <link href="css/datepicker.css" type="text/css" rel ="stylesheet">
+        <link rel="stylesheet" href="pcss/styles.css" />
+        <!-- <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />  -->
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <!--  <link rel="stylesheet" href="http:/resources/demos/style.css"> -->
+        <link href="dist/css/bootstrap.css" type="text/css" rel ="stylesheet" media="screen" >
+            
+    </head>
+    <body>
+    <div class="container-fluid" style="margin-top:3px;margin-top:100px;margin-left:auto; margin-right:auto;border-width:1px;border-radius:4px;">
+       <div class = "row">
+            <div class="col-sm-9 col-md-6 col-lg-7">
+                <form class="form-inline" onsubmit = "displayNum();" action = "callTaking.jsp" name ="cds" style="margin-top:10px;" method = "post">
+                  <nav class="navbar navbar-default navbar-fixed-top">
+                      <div class="container-fluid">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                          </button>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="cds-script.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+<!--                                 <middle>
+                                        <label style = "margin-left: auto; margin-right:auto; font-size:35px;">Inbound Homes </label>
+                                                <h1 style = "text-align:center">Inbound Home</h1>
+                                    </middle>-->
+                                    <span id = "messTrunk"></span>
+                                    <div class="form-group">
+                                        
+                                        <label>First Name:</label>
+                                          <input type="text" class="form-control" name ="cusName" id = "cusName" maxlength= "45" autocomplete = "off">
+                                        <label>Last Name:</label>
+                                          <input type="text" class="form-control" name ="cuslName" id = "cuslName" maxlength= "45" autocomplete = "off">
+                                        <label style = "font-size:35px;">Inbound Homes </label>
+                                        <label>Phone Number:</label>
+                                          <input type="text" class="form-control " name ="inpho" id = "inpho" maxlength="10" autocomplete = "off" onkeyup = "InputPh(this)" onblur = "copyNum()">
+                                        <label>Trunk:</label>
+                                          <input type="text" class="form-control" name ="tname" id = "tname" onblur = "copyNum()"  autocomplete = "off" onkeyup = "trunDescr()" onfocus = "trunDescr()" >
+                                    </div>
+                                    
+                                   
+                                </ul>
+                         </div><!-- /.navbar-collapse -->                      
+                      </div><!-- /.container-fluid -->
+                    </nav>
+                    <div class ="buttons form-actions">
+                            <a href="callTaking.jsp"><input type="submit" id = "sercall" value="Call Taking" onclick = "displayNum()"/></a>
+                            <a href="cds-script-2.jsp"><input type="submit" id = "serep" value="Service Repair" onclick = "displayNum()"></a>
+                            <a href="scheduled-service.jsp"><input type="submit" id = "sservice" value="Schedule Service" onclick = "displayNum()" /></a>
+                            <a href="replacement.jsp"><input type="button" id = "reservice" value="Replacement" /></a>
+                            <a href="compliments.jsp"><input type="button" value="Compliment(Happy)" /></a>
+                            <a href="concerns.jsp"><input type="button" value="Concern(Unhappy)" /></a>
+                            <a href="solicitor.jsp"><input type="button" value="Soliciter(Selling a Product)"/></a>
+                            <a href="Advertisements.jsp"><input type="button" value="Advertisements(Promoting a Product)" /></a>
+                            <a href="reschedule-service.jsp"><input type="button" value="Rescheduled Service Appointment" /></a>
+                            <a href="reschedule-schedule.jsp"><input type="button" value="Rescheduled Scheduled Service" /></a>
+                            <a href="reschedule-placement-app.jsp"><input type="button" value="Rescheduled Replacement Appointment" /></a>
+                            <a href="club-membership-cancel.jsp"><input type="button" value="Cancel Club Membership" /></a>
+                            <a href="club-membership-modify.jsp"><input type="button" value="Modify Club Membership" /></a>
+                            <a href="billing.jsp"><input type="button" value="Billing Question" /></a>
+                            <a href="payment.jsp"><input type="button" value="Make Payment" /></a>
+                            <a href="message-employee.jsp"><input type="button" value="Message for Employee" /></a>
+                            <a href="human-resources.jsp"><input type="button" value="Human Resource" /></a>
+                            <a href="payroll.jsp"><input type="button" value="Payroll" /></a>
+                            <a href="fleet.jsp"><input type="button" value="Fleet" /></a>
+                            <a href="purchasing.jsp"><input type="button" value="Purchasing"/></a>
+                            <a href="energy-savings-concern.jsp"><input type="button" value="Energy Saving Concern" /></a>
+                            <a href="update_club_payment.jsp"><input type="button" value="Update Club Payment Source"/></a>
+                            <a href="fin_app.jsp"><input type="button" value="Finiacing Application"/></a>
+                            <a href="fin_stat.jsp"><input type="button" value="Finiacing Application Status"/></a>
+                            <a href="request-home-repair.jsp"><input type="button" value="Request Home Repair"/></a>
+                            <a href="technician-arrival-inquiry.jsp"><input type="button" value="Technician Arrivial Status"/></a>
+                            <a href="home-repair.jsp"><input type="button" value="Home Repair Status"/></a>
+                            <a href="accounts-payable.jsp"><input type="button" value="Accounts Payable"/></a>
+                            <a href="accounts-receivable.jsp"><input type="button" value="Accounts Receivable"/></a>
+                            <a href="employment.jsp"><input type="button" value="Employment"/></a>
+                            <a href="employment-verification.jsp"><input type="button" value="Verification of Employment"/></a>
+                            <a href=""><input type="button" value="Parts"/></a>
+                            <a href=""><input type="button" value="Hobson Properties"/></a>
+                            <a href=""><input type="button" value="Self Storage"/></a>
+                            <a href=""><input type="button" value="Hubson Ranch"/></a>
+                            <a href=""><input type="button" value="Application Status"/></a>
+                            <a href=""><input type="button" value="My Fleet GPS"/></a>
+                            <a href=""><input type="button" value="HVAC Wireless"/></a>
+                            <a href=""><input type="button" value="Duct Cleaning"/></a>
+                            <a href=""><input type="button" value="Indoor Air Quailty"/></a>
+                            <a href=""><input type="button" value="HVAC"/></a>
+                            <a href=""><input type="button" value="AC Genius"/></a>
+                    </div>
+                
+                </form>
+            </div><!--end of class="col-sm-9 col-md-6 col-lg-7"-->
+            
+            <div class = "col-sm-3 col-md-6 col-lg-5">
+                  <!--button start-->
+                    <div class = "button2" style = "margin-top:10px;">
+                         <a href="#cancel_form" id="login_pop"><input type = "button" value = "Videoes for Test"/></a>
+                         <a href=""><input type="button" value="Current Advertisements" /></a>
+                         <a href=""><input type="button" value="Product Update" /></a>
+                         <a href=""><input type="button" value="Custumer Comments"/></a>
+                         <a href=""><input type="button" value="Company News"/></a>
+                         <a href=""><input type="button" value="Quiz()"/></a>
+                    </div>
+            <!--button end-->
+            
+            <!--popup form 1-->
+<!--                <a href="#x" class="overlay" id = "cancel_form"></a>
+                    <div class = "popup">
+                        <p>Launch Video</p>
+                            <a href="#" role="button" class="btn" data-toggle="modal">Video 1</a>
+                            <a href="#" role="button" class="btn" data-toggle="modal">Video 2</a>
+                            <a href="#" role="button" class="btn" data-toggle="modal">Video 3</a>
+                            <a href="#" role="button" class="btn" data-toggle="modal">Video 4</a>
+                        <div class = "div1">
+                            <input type="button" value="Lunch"/>
+                            <input type="button" value="Pause"/>
+                            <input type="button" value="Exit"/>
+                        </div>-->
+                        <!--<a href="#login_form" id="login_pop">Beginning</a>-->
+<!--                        <a class="close" href="#close"></a>-->
+<!--                    </div>-->
+            <!--POPUP AREA end-->
+            <div class="accordion" id="accordion2">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">Frequent Ask Questions</a>
+                        </div>
+                        <div id="collapseTwo" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                <h3>How much does it cost for you to come out? What does your service fee include?</h3>
+                                <p>Our service fee includes diagnosing the problem, checking the system operation, and advising of what your system need to work  at its best efficiency. It's really the best bargin when it come to  
+                                service because it's flat rate and there no hourly charge. When would you like us to come out? Would you like us to come out? Would you prefer us today or tomorrow?</p>
+                                <h3>Explanation</h3>
+                                <p>You have to give value to the service, or the service fee will always be too high as far as the  customer is concerned. Telling the customer what is covered by the  service fee helps create the value.</p>
+                                <h3>"I can get it cheaper</h3>
+                                <p>I'm sure you can find someone who'll charge you less on the front end, but i"m also sure we'll give you better service and better warranties too.  We offer an exclusive "fixed right ot it's free quarantee 
+                                and lifetime parts warranties. I'm sure the once our technician come out, you'll be very impressed with our service. Now would you be home____or ____ for us to come by?</p>
+                                <h3>Explanation</h3>
+                                <p>While this isn't really a question, what the customer is really asking is why does it cost so much.  Here again, the important thing is to build value in the customer's mind. Remember that 75%
+                                customer's satisfaction comes from the service he's received.</p>
+                                <h3>How much is Freon?</h3>
+                                <p>The technician will be able to evaluate your system and determine what you need.  We don't change by the pound, which in end saves you money. I guarantee we'll do the best possible job for you when 
+                                we come out</p>
+                                <h3>Explanation</h3>
+                                <p>If the unit is  cooling, talk with the customer about scheduling a tune up. Remember, up to pounds of Freon can be added for the cost of tune up, and then there are all the other
+                                benefits of a tune up to help sell it.</p>
+                                <p>If unit is not cooling , book a service call and send a service technician.</p>
+                                <h3>How much does it cost for you to come out? What does your service fee include?</h3>
+                                <p>Let go ahead and get you on the schedule. Would you prefer us today or tomorrow?</p>
+                            </div>
+                        </div>
+                    </div>
+             </div>
+               <!--Collapse area end-->
+            
+            <!--img display-->
+
+                <div style = "display:none;" id = "ad1" class = "mediaAd">
+                    <label class="page-header"><input type = "checkbox" autocomplete = "off">Ad 1:</label>
+                        <img src="img/49-tune-up-3.png"  class="img-thumbnail" >
+                </div>
+
+                <div style = "display:none;" id = "ad2" class = "mediaAd">
+                    <label><input type = "checkbox" autocomplete = "off">Ad 2:</label>
+                        <img src="img/second-opinion-coupon-2.png"  class="img-thumbnail"  >
+                </div>
+
+                <div style = "display:none;" id = "ad3" class = "mediaAd">
+                    <label><input type = "checkbox" autocomplete = "off">Ad 3:</label>
+                        <img src="img/second-opinion-coupon-2.png"  class="img-thumbnail"  >
+                </div>
+
+                <div style = "display:none;" id = "ad4" class = "mediaAd">
+                    <label><input type = "checkbox" autocomplete = "off">Ad 4:</label>
+                        <img src="img/49-tune-up-3.png"  class="img-thumbnail" >
+                </div>
+            <!--end of image area-->
+            </div><!--end of class = "col-sm-3 col-md-6 col-lg-5"-->
+       </div><!--end of row-fluid-->
+    </div><!--end of Container-fluid--> 
+    
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <script type="text/javascript" src="js/scripts.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="dist/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="pjs/repScript.js"></script>
+        <script type="text/javascript" src="pjs/display.js"></script>
+        <script type="text/javascript" src="pjs/validation.js"></script>
+        <script type="text/javascript" src="pjs/service.js"></script>
+        <script type="text/javascript" src="pjs/format.js"></script>
+        <script type="text/javascript" src="pjs/call.js"></script>
+        <script type="text/javascript" src="pjs/jquery.mask.js"></script>
+        <script type="text/javascript" src="pjs/jquery.mask.min.js"></script>
+        
+    </body>
+</html>

@@ -1,0 +1,66 @@
+<%-- 
+    Document   : fleet
+    Created on : Jan 18, 2016, 5:28:34 PM
+    Author     : Robbie
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Fleet</title>
+        <meta http-equiv="X-UA-Compatible" content="chrome=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">  
+        <link href="css/bootstrap.css" type="text/css" rel ="stylesheet" media="screen" >
+        <link href="css/bootstrap-responsive.css" type="text/css" rel ="stylesheet">
+        <link href="css/datepicker.css" type="text/css" rel ="stylesheet">
+        <link rel="stylesheet" href="pcss/styles.css" />
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+        <link href="dist/css/bootstrap.css" type="text/css" rel ="stylesheet" media="screen" >
+    </head>
+    <body onload ="repScript()">
+        
+          <div class="container-fluid" style="margin-top:120px; margin-left:auto; margin-right:auto; width:85%">
+            <!-- <div style="margin-top:-80px; text-align:center; color:#FFFFFF" class="page-header"><h2>Fleet</h2></div> -->
+            <div class = "row-fluid">
+                <div class="col-sm-9 col-md-6 col-lg-4">
+                    <form class="form-inline" name ="fleet" action= "">
+                        <div class ="buttons">
+                            <a href=""><input type="button" value="Fuel Card"/></a>
+                            <a href=""><input type="button" value="Fleet Sales Person"/></a>
+                            <a href=""><input type="button" value="Trucks Sales Person"/></a>
+                            <a href=""><input type="button" value="Tires"/></a>
+                            <a href=""><input type="button" value="Tracking (GPS)"/></a>
+                            <a href=""><input type="button" value="Wrecker Service"/></a>
+                            <a href=""><input type="button" value="Repair Not Ship" /></a>
+                            <a href=""><input type="button" value="Vehicle Status" /></a>
+                            <a href=""><input type="button" value="Vehicle Status-Location (GPS)" /></a>
+                        </div>
+                    </form>
+                </div><!--span 4 end-->
+<!--span 4 start-->             
+                <div class="col-sm-3 col-md-6 col-lg-8">
+                    <div class="alert alert-info" style="width:80%; min-height:30px;" id="message">
+                            <strong style="font-size:17px;" id="showScript"></strong></div>
+                </div><!--span8 end-->
+            </div><!--row fluid end-->
+        </div><!--container end-->
+        
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <script type="text/javascript" src="js/scripts.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="pjs/repScript.js"></script>
+        <script type="text/javascript" src="pjs/display.js"></script>
+        <script type="text/javascript" src="pjs/validation.js"></script>
+        <script type="text/javascript" src="pjs/service.js"></script>
+        <script type="text/javascript" src="pjs/format.js"></script>
+        <script type="text/javascript" src="pjs/append.js"></script>
+        <script type="text/javascript" src="pjs/jquery.masked.js"></script>
+        <script type="text/javascript" src="pjs/jquery.mask.min.js"></script>
+       
+    </body>
+</html>

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <title>Request Home Repair/Building</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href="css/bootstrap.css" type="text/css" rel ="stylesheet" media="screen" >
+    <link href="css/bootstrap-responsive.css" type="text/css" rel ="stylesheet">
+    <link href="css/datepicker.css" type="text/css" rel ="stylesheet">
+    <link rel="stylesheet" href="pcss/styles.css" />
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+    <link href="dist/css/bootstrap.css" type="text/css" rel ="stylesheet" media="screen" >
+</head>
+    <body onload ="repScript()">
+	<!-- nav- start -->
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="cds-script.jsp">Home <span class="sr-only">(current)</span></a></li>
+                        <li><a href="cds-script-2.jsp">Service Repair</a></li>
+                        <li class="active"><a href="scheduled-service.jsp">Scheduled Service</a></li>
+                        <li><a href="replacement.jsp">Replacement</a></li>
+                        <li class="active"><a href="compliments.jsp">Compliment(Happy)</a></li>
+                        <li><a href="concerns.jsp">Concern(Unhappy)</a></li>
+                        <li class="active"><a href="reschedule-service.jsp">Rescheduled Service </a></li>
+                        <li><a href="reschedule-schedule.jsp">Rescheduled Scheduled Service </a></li>
+                        <li class="active"><a href="reschedule-placement-app.jsp">Rescheduled Replacement Appointment</a></li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+                 <div class="page-header"  style="margin-top:5px; text-align:center; color:#FFFFFF"><h2 style="text-align:center;color:#000000">Request Home Repair/Building</h2></div>
+            </div><!-- /.container-fluid -->
+            
+        </nav>
+ <!--nav end -->
+        <div class="container-fluid" style="margin-top:145px; width:85%; margin-left:auto; margin-right:auto;">
+            <!-- <div style="margin-top:-80px; text-align:center; color:#FFFFFF" class="page-header"><h2>Request Home Repair/Building</h2></div> -->
+            <div class = "row-fluid">
+               <div class = "span7">
+                <form class="form-inline" name ="cdsquestions" action= "" id ="cdsquestions" onsubmit= "return formVal(this)"  style="margin-top:10px;" >
+                    <span id = "pmessage" style="font-size:17px; font-weight:bold;"></span>
+                        <div class ="control-group">
+                            <label  class ="lblline">Phone Number:</label>
+                                <select class = "select" onclick = "numVal()" id = "typepho" autocomplete = "off">
+                                    <option value = "0">Select </option>
+                                    <option value = "home">Home</option>
+                                    <option value = "cell">Cell</option>
+                                    <option value = "office">Office</option>
+                                </select>
+                        <input class="span3" type = "text" name ="pho1" id = "pho1" maxlength ="12" onkeydown ="numVal()" onkeyup = "InputPhone(this)" autocomplete = "off" />
+                        </div>
+						<div class = "control-group">
+                                <label>Text Alert Phone Number: </label>
+                                    <div class = "control">
+                                        <label  class ="lblline"></label>
+                                        <select class = "select" onclick = "tphVal()" id = "type2" autocomplete = "off">
+                                            <option value = "0">Select </option>
+                                            <option value = "home">Home</option>
+                                            <option value = "cell">Cell</option>
+                                            <option value = "office">Office</option>
+                                        </select>
+                                            <input class= "span3" type = "text" size = "12" maxlength = "13" name ="textphone" id = "textphone" onchange = "tphVal()" onkeyup = "InputPhone(this)" onblur = "showNumber()" autocomplete = "off"/>
+                                            <label class = "type"><input type= "checkbox" name = "same" value ="same"  id ="same" onclick = "showNumber()" 
+                                                maxlength ="12" autocomplete = "off"/>Same</label>
+                                    </div>
+                        </div>
+                    <span id = "emessage" style="font-size:17px; font-weight:bold;"></span>
+                    <div class = "control-group">
+                        <label  class ="lblline">First Name:</label>
+                            <input class="span3"   type = "text" size = "" name ="fname" id = "fname" maxlength= "45" onkeyup ="namfVal()" 
+                            autocomplete = "off" onblur= "showNumber1()"/>
+                        <label  class ="lblmiddle" style = "margin-right:auto; margin-left:-80px;">Middle Initial:</label>
+                            <input class="span1" type = "text" autocomplete = "off" name ="mname" id = "mname" onkeyup = "namemVal()" 
+                            onblur= "showNumber1()" autocomplete = "off" />
+                        <label  class ="lblright" style = "margin-right:auto; margin-left:-110px;">Last Name:</label>
+                            <input class="span3" type = "text" autocomplete = "off" name ="lname" id = "lname" onkeyup = "namlVal()" 
+                            onblur= "showNumber1()" autocomplete = "off" />
+                    </div>
+						
+                    <span id = "oenmessage" style="font-size:17px; font-weight:bold;"></span>
+					 <div id="emailDIV">
+						<div class = "control-group">
+							<label class ="lblline">Email Address:</label>
+							<input class="span3" type = "text" size = "45" name ="email" id = "email" onkeyup= "mailVal()" onfocus= "mailVal()"/>
+							<input type = "button" id = "addEmail" value = "+" onclick = "emailAdd()"/>
+						</div>
+					</div>
+					<span id = "amessage" style="font-size:17px; font-weight:bold;"></span>
+                        <div class = "control-group">
+                            <label class ="lblline"> Service Address:</label>
+                                <input class= "span2" type = "text" size = "" name= "address" id = "address" onkeyup = "houseVal()"autocomplete = "default" onchange = "addChange()" autocomplete = "off"/>
+                                <input class= "span3" type = "text" size = "" name= "address1" id = "address1" onkeyup = "streetVal()" onchange = "addChange()" autocomplete = "off"/>
+                                <select class = "select2" id = "strloc" onfocus = "locstVal()" autocomplete = "off">
+                                    <option value = "0" >Select</option>
+                                    <option value = "avenue">Apartment</option>
+                                    <option value = "street">Suite</option>
+                                    <option value = "road">None</option>
+                                </select>
+                                <input class= "span1" type = "text" size = "" name= "address2" id = "address2" onkeyup = "suiteVal()" autocomplete = "default" onchange = "addChange()" autocomplete = "off"/>
+                        </div>
+                         <span id = "dmessage" style="font-size:17px; font-weight:bold;"></span>
+                        <div class = "control-group">
+                            <label  class ="lblline" >Zip:</label>
+                                <input class="span2" type = "text" size = "s" name ="zip" id = "zip" maxlength = "5" onkeyup= "codeVal()" onchange = "addChange()" autocomplete = "off"/>
+                             <label  class ="lblmiddle" style = "margin-right:auto; margin-left:-100px;">City:</label>
+                                <input class="span2" type = "text" size = "" name ="city" id = "city" onkeyup = "ciVal()" onchange = "addChange()" autocomplete = "off"/>
+                             <label class ="lblright" style = "margin-right:auto; margin-left:-180px;" >State:</label>
+                                <input class="span1" type = "text" size = "" name ="state" id = "state" maxlength = "2" placeholder ="TX" onkeyup = "stVal()" onchange = "addChange()" autocomplete = "off"/>
+								<label class = "type"><input type= "checkbox" name = "addupdate" value ="addupdate"  id ="addupdate" onclick = "addChange()" autocomplete = "off"  />Update Address</label>
+						</div>
+                        <span id = "dmessage" style="font-size:17px; font-weight:bold;"></span>
+                        <div class = "control-group">
+                            <label>Who called to report damages:</label>
+                                <label class = "type2"><input type="checkbox" value="Residual" name = "residential" id = "residential" onclick ="" autocomplete = "off">Customer</label>
+                                <label class = "type2"><input type="checkbox" value="Residual" name = "residential" id = "residential" onclick ="" autocomplete = "off">Techican</label>
+                        </div>
+                        <div id = "dagelist">
+                           <h2 id = "titledage">Area of the Home</h2>
+                            <div class = "homeara">
+                                 <label class = "type"><input type="checkbox" value="Residual" name = "residential" id = "residential" onclick ="" autocomplete = "off"> Dining Room</label>
+                                 <label class = "type"><input type="checkbox" value="Residual" name = "residential" id = "residential" onclick =""  autocomplete = "off">Whole House</label>
+                                 <label class = "type"><input type="checkbox" value="Residual" name = "residential" id = "residential" onclick =""  autocomplete = "off">Kitchen</label>
+                            </div>
+                             <div class = "homeara">
+                                <label class = "type"><input type="checkbox" value="Residual" name = "residential" id = "residential" onclick ="" autocomplete = "off">Bedroom 1</label>
+                                <label class = "type"><input type="checkbox" value="Residual" name = "residential" id = "residential" onclick ="" autocomplete = "off">Bedroom 2</label>
+                                <label class = "type"><input type="checkbox" value="Residual" name = "residential" id = "residential" onclick ="" autocomplete = "off">Bedroom 3</label>
+                            </div>
+                            <div class = "homeara">
+                                <label class = "type"><input type="checkbox" value="Residual" name = "residential" id = "residential" onclick =""  autocomplete = "off">Bedroom 4</label>
+                                <label class = "type"><input type="checkbox" value="Residual" name = "residential" id = "residential" onclick =""  autocomplete = "off">Bedroom 5</label>
+                                <label class = "type"><input type="checkbox" value="Residual" name = "residential" id = "residential" onclick =""  autocomplete = "off">Laundry</label>
+                            </div>
+                            <div class = "homeara">
+                                <label class = "type"><input type="checkbox" value="Residual" name = "residential" id = "residential" onclick =""  autocomplete = "off">Bathroom</label>
+                                <label class = "type"><input type="checkbox" value="Residual" name = "residential" id = "residential" onclick =""  autocomplete = "off">Bathroom 2</label>
+                                <label class = "type"><input type="checkbox" value="Residual" name = "residential" id = "residential" onclick =""  autocomplete = "off">Bathroom 3</label>
+                            </div>
+                            <div class = "homeara">
+                                 <label class = "type"><input type="checkbox" value="Residual" name = "residential" id = "residential" autocomplete = "off">Living Room</label>
+                                 <label class = "type"><input type="checkbox" value="Residual" name = "residential" id = "residential" autocomplete = "off">Living Room 2</label>
+                                 <label class = "type"><input type="checkbox" value="Residual" name = "residential" id = "residential" onclick =""  autocomplete = "off">Bathroom 4</label>
+                            </div>
+                            <div class = "homeara">
+                                <label class = "type"><input type="checkbox" value="Residual" name = "residential" id = "residential" onclick =""  autocomplete = "off">Game Room</label>
+                            </div>
+                            <div class = "homeara">
+                                 <label class = "type"><input type="checkbox" value="Residual" name = "residential" id = "residential" onclick =""  autocomplete = "off"> Media Room</label>
+                            </div>
+                            <div class = "homeara">
+                                 <label class = "type"><input type="checkbox" value="Residual" name = "residential" id = "residential" onclick =""  autocomplete = "off">Play Room</label>
+                            </div>
+                            <div class = "homeara">
+                                <label class = "type"><input type="checkbox" value="Residual" name = "residential" id = "residential" onclick =""  autocomplete = "off">Breakfast Room</label>
+                            </div>
+							<div class = "homeara">
+                                 <label class = "type"><input type= "checkbox" name = "other" value ="other"  id ="other" onclick = "airVal()"  autocomplete = "off"/>Other</label>
+                                  <input class="span2" style= "display:none" type = "text" name ="otco" id = "otco" onkeyup = "airVal()"  autocomplete = "off"/>
+                            </div>
+                        </div>
+                            <div id = "dagelist">
+                                <h2 id = "titledage">Damage</h2>
+                                    <label class = "type2"><input type="checkbox" value="Residual" name = "residential" id = "residential" onclick =""  autocomplete = "off">Water Leak</label>
+                                    <label class = "type2"><input type="checkbox" value="Residual" name = "residential" id = "residential" onclick =""  autocomplete = "off">Flooring</label>
+                                    <label class = "type2"><input type="checkbox" value="Residual" name = "residential" id = "residential" onclick =""  autocomplete = "off">Water Damage</label>
+                                    <label class = "type2"><input type="checkbox" value="Residual" name = "residential" id = "residential" onclick =""  autocomplete = "off">Wall</label>
+                                    <label class = "type2"><input type="checkbox" value="Residual" name = "residential" id = "residential" onclick =""  autocomplete = "off">Trim</label>
+                                    <label class = "type2"><input type="checkbox" value="Residual" name = "residential" id = "residential" onclick =""  autocomplete = "off">Attic Access</label>
+                                    <label class = "type2"><input type="checkbox" value="Residual" name = "residential" id = "residential" onclick =""  autocomplete = "off">Outside</label>
+                                    <label class = "type2"><input type="checkbox" value="Residual" name = "residential" id = "residential" onclick =""  autocomplete = "off">Smoke</label>
+                                    <label class = "type2"><input type="checkbox" value="Residual" name = "residential" id = "residential" onclick =""  autocomplete = "off">Traced Dirt/Mud In</label>
+									<label class = "type"><input type= "checkbox" name = "other" value ="other"  id ="other" onclick = "airVal()"  autocomplete = "off" />Other</label>
+                                    <input class="span2" style= "display:none" type = "text" name ="otco" id = "otco" onkeyup = "airVal()"  autocomplete = "off"/>
+                            </div>
+                            <div id = "dagelist1">    
+                                <h2 id = "titledage">Extent of the Damages</h2>
+                                <div class = "control-group">
+                                    <label class = "question2">
+                                    <textarea  id = "messpost" maxlength = "1024" rows ="8" style = "margin-right:auto; margin-left:30px;margin-top:-10px; width:850px"></textarea>
+                                    <div id ="wordcount">0</div>
+                                    </label>
+                                </div>
+                            </div>
+                        <div class="form-actions">
+                            <a href="#sConfirm"><input type="button" class="btn" value="Confirm" onclick ="formVal()" onchange = "stboVal()" id = "firm"/></a>
+                            <a class="btn" href="cds-script.jsp">Return to Inbound Home Page</a>
+                        </div> 
+                </form>
+                </div><!--end of span7-->
+                <div class = "span5">
+                <form class="form-inline" name ="cdsquestions" action= "" id ="cdsquestions" onsubmit= "return formVal(this)" style="margin-top:10px;"  > 
+				<!--call history table-->
+                        <table class="table table-bordered" style = "table-layout:fixed">
+                                <tr>
+                                    <th colspan="5" align="center"><h3>Call History</h3></th>
+                                </tr>
+                                <tr>
+									<th></th>
+                                    <th>Select</th>
+                                    <th>Date</th>
+                                    <th>Tech</th>  
+                                    <th>Work Done</th>
+                                </tr>
+                                <tr>
+                                    <td style = "width:10px"><input type ="checkbox"/></td>
+                                    <td> 11/17/10</td>
+                                    <td> Robert</td>
+                                    <td> Change Filter </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td style = "width:10px"><input type ="checkbox"/></td>
+                                    <td> 11/17/10</td>
+                                    <td> Bob</td>
+                                    <td> Fluid </td>
+                                     <td></td>
+                                </tr>
+                        </table> 
+                    <!--call history table ares end-->
+                        <form class="form-inline" name ="cdsquestions" action= "" id ="cdsquestions" onsubmit= "return formVal(this)" > 
+                             <div id ="dagelist1 ">
+                                <h2 id = "titledage">Schedule To See Supervisior</h2>
+                                <div class ="control-group">
+                                   <h4 id = "">What day is best for you?</h4>
+                                        <div class = "control">
+                                             <label  class =""></label>
+                                            <label class = "type"><input type= "radio" name = "time" value ="today"  id ="today" onchange = "daysVal()"/>Today</label>
+                                            <label class = "type"><input type= "radio" name = "time" value ="tomorrow"  id ="tomorrow" onchange = "daysVal()"/>Tomorrow</label>
+                                            <label class = "type"><input type= "radio" name = "time" value ="asap"  id ="asap" onchange = "daysVal()" />ASAP</label>
+                                            <label style = "margin-right:auto; margin-left:30px;">Date:</label>
+                                            <input class="span2" type = "text" name= "tdate" id ="tdate" onchange = "daysVal()" title ="Please enter date" />
+                                        </div>
+                                    </div>
+                                <div class ="control-group">
+                                    <label  class =""style = ""></label>
+                                        <label class = "type"><input type= "radio" name = "timew" value ="morning"  id ="monday" onchange = "weekVal()" />Monday</label>
+                                        <label class = "type"><input type= "radio" name = "timew" value ="tuesday"  id ="tuesday"  onchange = "weekVal()"/>Tuesday</label>
+                                        <label class = "type"><input type= "radio" name = "timew" value ="wednesday"  id ="wednesday" onchange = "weekVal()" />Wednesday</label>
+                                        <label class = "type"><input type= "radio" name = "timew" value ="thursday"  id ="thursday" onchange = "weekVal()"/>Thursday</label>
+                                        <label class = "type"><input type= "radio" name = "timew" value ="friday"  id ="friday" onchange = "weekVal()" />Friday</label>
+                                </div>
+                                <div class ="control-group">
+                                    <label  class =""style = ""></label>
+                                        <label class = "type"><input type= "radio" name = "timew" value ="saturday"  id ="saturday" onchange = "weekVal()"/>Saturday</label>
+                                        <label class = "type"><input type= "radio" name = "timew" value ="sunday"  id ="sunday" onchange = "weekVal()" />Sunday</label>
+                                </div>
+                                <div class ="control-group">
+                                    <h4 id = "">What time is best  for you?</h4>
+                                     <div class = "control">
+                                         <label  class =" " style = ""></label>
+                                        <label class = "type"><input type= "radio" name = "timec" value ="morning"  id ="morning" onchange = "timeVal()"/>Morning</label>
+                                        <label class = "type"><input type= "radio" name = "timec" value ="afternoon"  id ="afternoon" onchange = "timeVal()" />Afternoon</label>
+                                        <label class = "type"><input type= "radio" name = "timec" value ="evening"  id ="evening" onchange = "timeVal()" />Evening</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                   
+                </div><!-- end of span 6-->
+            </div><!--row fliud-->
+        </div><!--container-->
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <script type="text/javascript" src="js/scripts.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="dist/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="pjs/repScript.js"></script>
+        <script type="text/javascript" src="pjs/display.js"></script>
+        <script type="text/javascript" src="pjs/validation.js"></script>
+        <script type="text/javascript" src="pjs/service.js"></script>
+        <script type="text/javascript" src="pjs/format.js"></script>
+        <script type="text/javascript" src="pjs/append.js"></script>
+        <script type="text/javascript" src="pjs/jquery.masked.js"></script>
+        <script type="text/javascript" src="pjs/jquery.mask.min.js"></script>
+
+    </body>
+</html>

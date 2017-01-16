@@ -1,0 +1,718 @@
+<%--
+    Document   : human-resources
+    Created on : Jan 18, 2016, 4:41:05 PM
+    Author     : Robbie
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Human Resource</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/bootstrap.css" type="text/css" rel ="stylesheet" media="screen" >
+        <link href="css/bootstrap-responsive.css" type="text/css" rel ="stylesheet">
+        <link href="css/datepicker.css" type="text/css" rel ="stylesheet">
+        <link rel="stylesheet" href="pcss/styles.css" />
+        <!-- <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />  -->
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+       <!--  <link rel="stylesheet" href="http:/resources/demos/style.css"> -->
+        <link href="dist/css/bootstrap.css" type="text/css" rel ="stylesheet" media="screen" >
+        <style>
+            label
+            {
+                display: inline-block;
+                width: 100px;
+                margin-bottom: 5px;
+                align: center;
+            }
+        </style>
+    </head>
+    <body onload ="repScript()">
+        <!-- nav- start -->
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="cds-script.jsp">Home <span class="sr-only">(current)</span></a></li>
+                        <li><a href="cds-script-2.jsp">Service Repair</a></li>
+                        <li class="active"><a href="scheduled-service.jsp">Scheduled Service</a></li>
+                        <li><a href="replacement.jsp">Replacement</a></li>
+                        <li class="active"><a href="compliments.jsp">Compliment(Happy)</a></li>
+                        <li><a href="concerns.jsp">Concern(Unhappy)</a></li>
+                        <li class="active"><a href="reschedule-service.jsp">Rescheduled Service </a></li>
+                        <li><a href="reschedule-schedule.jsp">Rescheduled Scheduled Service </a></li>
+                        <li class="active"><a href="reschedule-placement-app.jsp">Rescheduled Replacement Appointment</a></li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+                 <div class="page-header"  style="margin-top:5px; text-align:center; color:#FFFFFF"><h2 style="text-align:center;color:#000000">Technician Module
+                 </h2></div>
+            </div><!-- /.container-fluid -->
+
+        </nav>
+        <!--nav end -->
+
+        <div class="container-fluid" style="margin-top:145px; width:85%; margin-left:auto; margin-right:auto; border-style:soild; border-width:1px;border-radius:4px;">
+             <!-- <div style="margin-top:-80px; text-align:center; color:#FFFFFF" class="page-header"><h2>Human Resource</h2></div> -->
+           <div class = "row-fluid">
+              <!-- span7 area start-->
+                <div class = "span7">
+                    <table border="2" align="center" style="background-color: #00FF00">
+                        <tr>
+                            <td>
+                                <p>Technician ID: </p>
+                            </td>
+                            <td>
+                                <input type="number" name="tt_sid" >
+                            </td>
+                            <td>
+                                <p>First Name: </p>
+                            </td>
+                            <td>
+                                <input type="text" name="tt_sfname" >
+                            </td>
+                            <td>
+                                <input type="submit" name="tt_search" value="Search">
+                            </td>
+                        </tr>
+                    </table>
+                    <br/>
+                    <form method="post" action="/php/techmaint/process.php">
+                        <table border="0" align="center">
+                            <tr>
+                                <td>
+                                    <p>Technician ID: </p>
+                                </td>
+                                <td>
+                                    <input type="text" name="tt_id"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>First Name: </p>
+                                </td>
+                                <td>
+                                    <input type="text" name="tt_fname" />
+                                </td>
+                                <td>
+                                    <p>Middle Name: </p>
+                                </td>
+                                <td>
+                                    <input type="text" name="tt_mname" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Cell Phone: </p>
+                                </td>
+                                <td>
+                                    <input type="tel" name="tt_cellpho" />
+                                </td>
+                                <td>
+                                    <p>Home Phone: </p>
+                                </td>
+                                <td>
+                                    <input type="tel" name="tt_cellpho2" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Email 1: </p>
+                                </td>
+                                <td>
+                                    <input type="email" name="tt_email1" />
+                                </td>
+                                <td>
+                                    <p>Email 2: </p>
+                                </td>
+                                <td>
+                                    <input type="email" name="tt_email2" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Address 1: </p>
+                                </td>
+                                <td>
+                                    <input type="text" name="tt_homeadr1" />
+                                </td>
+                                <td>
+                                    <p>Address 2: </p>
+                                </td>
+                                <td>
+                                    <input type="text" name="tt_homeadr2" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>City: </p>
+                                </td>
+                                <td>
+                                    <input type="text" name="tt_city" />
+                                </td>
+                                <td>
+                                    <p>State: </p>
+                                </td>
+                                <td>
+                                                                        <select name="ee_state" required>
+                                        <option value="alabam">Alabama</option>
+                                        <option value="alaska">Alaska</option>
+                                        <option value="arizona">Arizon</option>
+                                        <option value="arkansas">Arkansas</option>
+                                        <option value="california">California</option>
+                                        <option value="colorado">Colorado</option>
+                                        <option value="connecticut">Connecticut</option>
+                                        <option value="delaware">Delaware</option>
+                                        <option value="florida">Florida</option>
+                                        <option value="georgia">Georgia</option>
+                                        <option value="hawaii">Hawaii</option>
+                                        <option value="idaho">Idaho</option>
+                                        <option value="illinois">Illinois</option>
+                                        <option value="indiana">Indiana</option>
+                                        <option value="iowa">Iowa</option>
+                                        <option value="kansas">Kansas</option>
+                                        <option value="kentucky">Kentucky</option>
+                                        <option value="louisiana">Louisiana</option>
+                                        <option value="maine">Maine</option>
+                                        <option value="maryland">Maryland</option>
+                                        <option value="massachusetts">Massachusetts</option>
+                                        <option value="michigan">Michigan</option>
+                                        <option value="minnesota">Minnesota</option>
+                                        <option value="missouri">Missouri</option>
+                                        <option value="montana">Montana</option>
+                                        <option value="nebraska">Nebraska</option>
+                                        <option value="nevada">Nevada</option>
+                                        <option value="newhampshire">New Hampshire</option>
+                                        <option value="newjersey">New Jersey</option>
+                                        <option value="newmexico">New Mexico</option>
+                                        <option value="newyork">New York</option>
+                                        <option value="northcarolina">North Carolina</option>
+                                        <option value="northdakota">Nort Dakota</option>
+                                        <option value="ohio">Ohio</option>
+                                        <option value="oklahoma">Oklahoma</option>
+                                        <option value="oregon">Oregon</option>
+                                        <option value="pennsylvania">Pennsylvania</option>
+                                        <option value="rhodeisland">Rhode Island</option>
+                                        <option value="southcarolina">South Carolina</option>
+                                        <option value="southdakota">South Dakota</option>
+                                        <option value="tennessee">Tennessee</option>
+                                        <option value="texas">Texas</option>
+                                        <option value="utah">Utah</option>
+                                        <option value="vermont">Vermont</option>
+                                        <option value="virginia">Virgina</option>
+                                        <option value="washington">Washington</option>
+                                        <option value="westvirginia">West Virginia</option>
+                                        <option value="wisconsin">Wisconsin</option>
+                                        <option value="wyoming">Wyoming</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Zip: (5-Digit Code</p>
+                                </td>
+                                <td>
+                                    <input type="number" name="tt_zip5" />
+                                </td>
+                                <td>
+                                    <p>Zip: (4-Digit Code)</p>
+                                </td>
+                                <td>
+                                    <input type="number" name="tt_zip4" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Vehicle Number: </p>
+                                </td>
+                                <td>
+                                    <input type="number" name="tt_vehnum" />
+                                </td>
+                                <td>
+                                    <p>Vehicle Inspection: </p>
+                                </td>
+                                <td>
+                                    <input type="text" name="tt_vehinspect" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Tablet Number: </p>
+                                </td>
+                                <td>
+                                    <input type="number" name="tt_tabnum" />
+                                </td>
+                                <td>
+                                    <p>Computer Number: </p>
+                                </td>
+                                <td>
+                                    <input type="number" name="tt_computernum" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Start Date: </p>
+                                </td>
+                                <td>
+                                    <input type="date" name="tt_startdate" />
+                                </td>
+                                <td>
+                                    <p>End Date: </p>
+                                </td>
+                                <td>
+                                    <input type="date" name="tt_enddate" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Reason for Leaving: </p>
+                                </td>
+                                <td>
+                                    <input type="text" name="tt_reasonleaving" />
+                                </td>
+                                <td>
+                                    <p>Rehire: </p>
+                                </td>
+                                <td>
+                                    <select name="tt_rehire">
+                                        <option value="yes">Yes</option>
+                                        <option value="no">No</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Medical Insurance: </p>
+                                </td>
+                                <td>
+                                    <select name="tt_benefit_med">
+                                        <option value="no">N/A</option>
+                                        <option value="tt_med_gld">Gold Package</option>
+                                        <option value="tt_med_brz">Bronze Package</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <p>Dental Insurance: </p>
+                                </td>
+                                <td>
+                                    <select name="tt_benefit_dental">
+                                        <option value="no">N/A</option>
+                                        <option value="tt_dnt_gld">Gold Package</option>
+                                        <option value="tt_dnt_brz">Bronze Package</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Vision Insurance: </p>
+                                </td>
+                                <td>
+                                    <select name="tt_benefit_vision">
+                                        <option value="no">N/A</option>
+                                        <option value="tt_vsn_gld">Gold Package</option>
+                                        <option value="tt_vsn_brz">Bronze Package</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <p>Life Insurance: </p>
+                                </td>
+                                <td>
+                                    <select name="tt_benefit_life">
+                                        <option value="0">$0.00</option>
+                                        <option value="5">$5,000</option>
+                                        <option value="10">$10,000</option>
+                                        <option value="15">$15,000</option>
+                                        <option value="20">$20,000</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>
+                                </td>
+                    </form>
+                    <form method="post" action="/php/humanresources/process.php">
+                        <table border="0" align="center">
+                            <tr>
+                                <td>
+                                    <p>Technician ID: </p>
+                                </td>
+                                <td>
+                                    <input type="text" name="tt_id" />*
+                                </td>
+                                <td>
+                                    <p>First Name: </p>
+                                </td>
+                                <td>
+                                    <input type="text" name="tt_fname" required />*
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Middle Name: </p>
+                                </td>
+                                <td>
+                                    <input type="text" name="tt_mname" />
+                                </td>
+                                <td>
+                                    <p>Last Name: </p>
+                                </td>
+                                <td>
+                                    <input type="text" name="tt_lname" required />*
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Email 1: </p>
+                                </td>
+                                <td>
+                                    <input type="email" name="tt_email1" required />*
+                                </td>
+                                <td>
+                                    <p>Email 2: </p>
+                                </td>
+                                <td>
+                                    <input type="email" name="tt_email2" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                  <p>Address 1: </p>
+                                </td>
+                                <td>
+                                  <input type="text" name="tt_adr1" />
+                                </td>
+                                <td>
+                                  <p>Address 2: </p>
+                                </td>
+                                <td>
+                                  <input type="text" name="tt_adr2" />
+                                </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <p>City: </p>
+                              </td>
+                              <td>
+                                <input type="text" name="tt_city" />
+                              </td>
+                              <td>
+                                <p>State: </p>
+                              </td>
+                              <td>
+                                <select class ="select4" name="ee_state" required>
+                                    <option value="0">Select</option>
+                                    <option value="Alabama">Alabama</option>
+                                    <option value="Alaska">Alaska</option>
+                                    <option value="Arizona">Arizona</option>
+                                    <option value="Arkansas">Arkansas</option>
+                                    <option value="California">California</option>
+                                    <option value="Colorado">Colorado</option>
+                                    <option value="Connecticut">Connecticut</option>
+                                    <option value="Delaware">Delaware</option>
+                                    <option value="Florida">Florida</option>
+                                    <option value="Georgia">Georgia</option>
+                                    <option value="Hawaii">Hawaii</option>
+                                    <option value="Idaho">Idaho</option>
+                                    <option value="Illinois">Illinois</option>
+                                    <option value="Indiana">Indiana</option>
+                                    <option value="Iowa">Iowa</option>
+                                    <option value="Kansas">Kansas</option>
+                                    <option value="Kentucky">Kentucky</option>
+                                    <option value="Louisiana">Louisiana</option>
+                                    <option value="maine">Maine</option>
+                                    <option value="maryland">Maryland</option>
+                                    <option value="massachusetts">Massachusetts</option>
+                                    <option value="michigan">Michigan</option>
+                                    <option value="minnesota">Minnesota</option>
+                                    <option value="missouri">Missouri</option>
+                                    <option value="montana">Montana</option>
+                                    <option value="nebraska">Nebraska</option>
+                                    <option value="nevada">Nevada</option>
+                                    <option value="newhampshire">New Hampshire</option>
+                                    <option value="newjersey">New Jersey</option>
+                                    <option value="newmexico">New Mexico</option>
+                                    <option value="newyork">New York</option>
+                                    <option value="northcarolina">North Carolina</option>
+                                    <option value="northdakota">Nort Dakota</option>
+                                    <option value="ohio">Ohio</option>
+                                    <option value="oklahoma">Oklahoma</option>
+                                    <option value="oregon">Oregon</option>
+                                    <option value="pennsylvania">Pennsylvania</option>
+                                    <option value="rhodeisland">Rhode Island</option>
+                                    <option value="southcarolina">South Carolina</option>
+                                    <option value="southdakota">South Dakota</option>
+                                    <option value="tennessee">Tennessee</option>
+                                    <option value="texas">Texas</option>
+                                    <option value="utah">Utah</option>
+                                    <option value="vermont">Vermont</option>
+                                    <option value="virginia">Virgina</option>
+                                    <option value="washington">Washington</option>
+                                    <option value="westvirginia">West Virginia</option>
+                                    <option value="wisconsin">Wisconsin</option>
+                                    <option value="wyoming">Wyoming</option>
+                                </select>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <p>Zip 5: </p>
+                              </td>
+                              <td>
+                                <input type="text" name="tt_zip5" />
+                              </td>
+                              <td>
+                                <p>Zip 4: </p>
+                              </td>
+                              <td>
+                                <input type="text" name="tt_zip4" />
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <p>Vehicle Number: </p>
+                              </td>
+                              <td>
+                                <input type="text" name="tt_vehnum" />
+                              </td>
+                              <td>
+                                <p>Vehicle Inspection: </p>
+                              </td>
+                              <td>
+                                <input type="text" name="tt_vehinspect" />
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <p>Tablet Number: </p>
+                              </td>
+                              <td>
+                                <input type="text" name="tt_tabletnum" />
+                              </td>
+                              <td>
+                                <p>Computer Number: </p>
+                              </td>
+                              <td>
+                                <input type="text" name="tt_computernum" />
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <p>Start Date: </p>
+                              </td>
+                              <td>
+                                <input type="date" name="tt_startdate" />
+                              </td>
+                              <td>
+                                <p>End Date: </p>
+                              </td>
+                              <td>
+                                <input type="date" name="tt_enddate" />
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <p>Reason for Leaving: </p>
+                              </td>
+                              <td>
+                                <input type="text" name="tt_reasonleaving" />
+                              </td>
+                              <td>
+                                <p>Rehire: </p>
+                              </td>
+                              <td>
+                                <select name="tt_rehire">
+                                  <option value="no">No</option>
+                                  <option value="yes">Yes</option>
+                                </select>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <p>Medical Coverage: </p>
+                              </td>
+                              <td>
+                                <select name="tt_benefit_med">
+                                  <option value="no">N/A</option>
+                                  <option value="tt_med_gld">Gold Package</option>
+                                  <option value="tt_med_brz">Bronze Package</option>
+                                </select>
+                              </td>
+                              <td>
+                                <p>Dental Coverage: </p>
+                              </td>
+                              <td>
+                                <select name="tt_benefit_dental">
+                                  <option value="no">N/A</option>
+                                  <option value="tt_dnt_gld">Gold Package</option>
+                                  <option value="tt_dnt_brz">Bronze Package</option>
+                                </select>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <p>Vision Coverage: </p>
+                              </td>
+                              <td>
+                                <select name="tt_benefit_vision">
+                                  <option value="no">N/A</option>
+                                  <option value="tt_vsn_gld">Gold Package</option>
+                                  <option value="tt_vsn_brz">Bronze Package</option>
+                                </select>
+                              </td>
+                              <td>
+                                <p>Life Coverage: </p>
+                              </td>
+                              <td>
+                                <select name="tt_benefit_life">
+                                  <option value="no">N/A</option>
+                                  <option value="5">$5,000</option>
+                                  <option value="10">$10,000</option>
+                                  <option value="15">$15,000</option>
+                                  <option value="20">$20,000</option>
+                                </selec>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <p>Work Loc 1: </p>
+                              </td>
+                              <td>
+                                <input type="text" name="tt_workloc1">
+                              </td>
+                              <td>
+                                <p>Work Loc 2: </p>
+                              </td>
+                              <td>
+                                <input type="text" name="tt_workloc2">
+                              </td>
+                            </tr>
+                        </table>
+                        <br/>
+                        <table border="0" align="center">
+                            <tr>
+                                <td>
+                                    <input type="submit" class="btn btn-success" value="Add Employee!" />
+                                </td>
+                                <td>
+                                    <input type="reset" class="btn btn-success" value="Clear Fields!" />
+                                </td>
+                                <td>
+                                    <input type="button" class="btn btn-success" value="Update Employee!" />
+                                </td>
+
+                            </tr>
+                        </table>
+                    <br/>
+                </form>
+                </div><!--span7 area end-->
+
+                              <div class = "span5" style="margin-top:10px;">
+
+                 <div class="accordion" id="accordion2">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">Rep Script</a>
+                        </div>
+                        <div id="collapseOne" class="accordion-body collapse in">
+                            <div class="accordion-inner">
+                                    <div class="accordion-inner">
+                                        <div class="alert alert-info" style="width:80%; min-height:30px;" id="message">
+                                        <strong style="font-size:17px;" id="showScript"></strong></div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">Frequest Ask Questions</a>
+                        </div>
+                    <div id="collapseTwo" class="accordion-body collapse">
+                        <div class="accordion-inner">
+                            <h3>How much does it cost for you to come out? What does your service fee include?</h3>
+                            <p>Our service fee includes diagnosing the problem, checking the system operation, and advising of what your system need to work  at its best efficiency. It's really the best bargin when it come to
+                            service because it's flat rate and there no hourly charge. When would you like us to come out? Would you like us to come out? Would you prefer us today or tomorrow?</p>
+                            <h3>Explanation</h3>
+                            <p>You have to give value to the service, or the service fee will always be too high as far as the  customer is concerned. Telling the customer what is coverd by the  service fee helps create the value.</p>
+                            <h3>"I can get it cheaper</h3>
+                            <p>I'm sure you can find someone who'll charge you less on the front end, but i"m also sure we'll give you better service and better warranties too.  We offer an exclusive "fixed right ot it's free quarantee
+                            and lifetime parts warranties. I'm sure the once our technician come out, you'll be very impressed with our service. Now would you be home____or ____ for us to come by?</p>
+                            <h3>Explanation</h3>
+                            <p>While this isn't really a question, what the customer is really asking is why does it cost so much.  Here again, the important thing is to build value in the customer's mind. Remember that 75%
+                            customer's satifaction comes from the service he's received.</p>
+                            <h3>How much is Freon?</h3>
+                            <p>The technician will be able to evaluate your system and determine what you need.  We don't change by the pound, which in end saves you money. I guarantee we'll do the best possible job for you when
+                            we come out</p>
+                            <h3>Explanation</h3>
+                            <p>If the unit is  cooling, talk with the customer about scheduling a tune up. Remember, up to pounds of Freon can be added for the cost of tune up, and then there are all the other
+                            benefits of a tune up to help sell it.</p>
+                            <p>If unit is not cooling , book a service call and send a service technician.</p>
+                            <h3>How much does it cost for you to come out? What does your service fee include?</h3>
+                            <p>Let go ahead and get you on the schedule. Would you prefer us today or tomorrow?</p>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">Customer Summary</a>
+                        </div>
+                        <div id="collapseThree" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                <!-- <table class="table table-bordered">
+                                    <tr>
+                                        <th></th>
+                                        <th>Address</th>
+                                        <th>Date</th>
+                                        <th>Next Service Date</th>
+                                        <th>Techican</th>
+
+                                   <tr>
+                                        <td style = "width:10px"><input type ="checkbox"/></td>
+                                        <td> Address 1</td>
+                                        <td> <input class="span3" type = "date" name= "tdate" id ="tdate" /></td>
+                                        <td> <input class="span3" type = "date" name= "tdate" id ="tdate" /></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><input type ="checkbox"/></td>
+                                        <td> Address 1</td>
+                                    </tr>
+                                    <tr>
+                                            <td><input type ="checkbox"/></td>
+                                            <td> Address 1</td>
+                                    </tr>
+                                    <tr>
+                                            <td><input type ="checkbox"/></td>
+                                            <td> Address 1</td>
+                                    </tr>
+                                </table>  -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+              <!--span4 area end-->
+
+
+            </div><!--rowfluid-->
+
+
+            </div><!--rowfluid-->
+
+        </div><!--container-->
+
+    </body>
+</html>
