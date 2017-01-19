@@ -440,6 +440,34 @@ if ($res) {
                                           <input type="text" name="ee_sickdays" value="<?php echo $ee_sickdays ?>"/>
                                         </td>
                                       </tr>
+                                      <tr>
+                                        <td>
+                                          <b>Child Support:</b>
+                                        </td>
+                                        <td>
+                                          <input type="text" name="ee_chldspt" value="<?php echo $ee_chldspt ?>"/>
+                                        </td>
+                                        <td>
+                                          <b>Sport Coverage:</b>
+                                        </td>
+                                        <td>
+                                          <input type="text" name="ee_sprtcvg" value="<?php echo $ee_sprtcvg ?>"/>
+                                        </td>
+                                        <td>
+                                          <b>Alimony:</b>
+                                        </td>
+                                        <td>
+                                          <input type="text" name="ee_alimony" value="<?php echo $ee_alimony ?>"/>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td>
+                                          <b>Other Deductions:</b>
+                                        </td>
+                                        <td>
+                                          <input type="text" name="ee_ded_otr" value="<?php echo $ee_ded_otr ?>"/>
+                                        </td>
+                                      </tr>
                                     </table>
                                     <br/>
                                     <h3 align="center">Job Functions</h3>
@@ -653,4 +681,3 @@ if ($res) {
         <script type="text/javascript" src="js/jquery.mask.min.js"></script>
     </body>
 </html>
-
